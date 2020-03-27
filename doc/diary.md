@@ -98,7 +98,7 @@ Anwesenheit: alle
 
 To-do:  
 
-	   - Klinik Suedhand und Meiringen fuer Interview anfragen  
+	   - Klinik Suedhang und Meiringen fuer Interview anfragen  
 
 Naechste Audiokonferenz: 24.03.2020 um 18:10 Uhr.
 
@@ -109,7 +109,7 @@ Naechste Audiokonferenz: 24.03.2020 um 18:10 Uhr.
 Anwesenheit: alle
 
 - Audiokonferenzen uber MS Teams
-- Anfrage fuer Interview Klinik Suedhand Bern -> Absage 
+- Anfrage fuer Interview Klinik Suedhang Bern -> Absage 
 - Anfrage fuer Interview Klinik Meiringen -> Absage
 - Bestehende Software fuer Aerzte betrachtet und diskutiert
 - Zweite und dritte Design Thinking Durchlauf
