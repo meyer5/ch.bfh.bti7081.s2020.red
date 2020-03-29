@@ -133,5 +133,20 @@ Naechste Audiokonferenz: 29.03.2020 um 15:00 Uhr
 <br>	   
 
 #### <p align="center">**29.03.2020:**</p>
+Anwesenheit: alle ausser peltd
+
+- Audiokonferenzen uber MS Teams
+- Besprechung ueber Praesentation  
+- Besprechung ueber Dokumentation
+- Planung Praesentation
+
+
+To-do:  
+
+	   - Alle Dokumente fuer Task1 auf Github pushen
+	   - Muendliche Praesentation vorbereiten
+	   
+Naechste Audiokonferenz: 30.03.2020 um 16:15 Uhr
+
 			
 
