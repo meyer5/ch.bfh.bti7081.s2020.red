@@ -130,7 +130,21 @@ To-do:
 Naechste Audiokonferenz: 29.03.2020 um 15:00 Uhr
 
 <br>
-<br>	   
+<br>	  
+
+#### <p align="center">**25.03.2020:**</p> 
+
+- Dokumentation erstellt  
+
+<br>
+<br> 
+
+#### <p align="center">**28.03.2020:**</p>
+
+- Praesentation erstellt
+
+<br>
+<br>	
 
 #### <p align="center">**29.03.2020:**</p>
 Anwesenheit: alle ausser peltd
@@ -147,6 +161,11 @@ To-do:
 	   - Muendliche Praesentation vorbereiten
 	   
 Naechste Audiokonferenz: 30.03.2020 um 16:15 Uhr
+
+<br>
+<br>	
+
+#### <p align="center">**30.03.2020:**</p>
 
 			
 
