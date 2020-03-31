@@ -171,11 +171,11 @@ Anwesenheit: alle
 - Praesentation Task1 vorgetragen
 - Kurze Fragerunde & Feedback durch Dozenten
 - Audiokonferenzen uber MS Teams
-- Nachbesprechnung Task1 (Storyboards Aerzteseite klarer aufzeigen)
+- Nachbesprechnung Task1 (Prototypes Aerzteseite klarer aufzeigen)
 
 To-do:  
 
-	   - 1-2 Storyboards fuer Sucht-Tagebuch pro Mitglied
+	   - 1-2 Prototypes fuer Sucht-Tagebuch pro Mitglied
 	   
 	   
 Naechste Audiokonferenz: 31.03.2020 um 18:10 Uhr
