@@ -181,10 +181,48 @@ To-do:
 Naechste Audiokonferenz: 31.03.2020 um 18:10 Uhr
 
 <br>
+<br>
 <br>	
 
-#### <p align="center">**31.03.2020:**</p>
+------
+	
+#### *Task 2*
 
+#### To do:
+ * User & System Requirements dokumentieren
+ * Abgeben:
+ 	* Software Requirements Specification Document (1 PDF Datei)
+ 	
+ **Deadline:** 14.04.2020
+
+
+<br>
+<br>
+<br>
+
+#### <p align="center">**31.03.2020:**</p>
+Anwesenheit: alle 
+
+- Neue Prototypes analysiert 
+- Ruecksprache mit Dozenten
+- Mit Task2 begonnen
+- Reguirements document mit preface, introduction, User requirements definition
+  system evolution und testing begonnen 
+- Feedback zu Task1 erhlaten (Dokumentation 17/20 Pkt., Praesentation 4/5 Pkt.)
+
+To-do:  
+
+	   - Use Case und requirement Szenario -> denen
+	   - Use Case und Use Case Scenario Description und Testing -> kiruk
+	   - Introduction, Overview Use Case, Formatierung und Gliederung Dokument -> meyer
+	   - System architecture und system Modeling -> peltd
+	   - System evolution und system requirements -> rodrj
+	   
+	   
+Naechste Audiokonferenz: 05.04.2020 um 15:00 Uhr
+
+<br>
+<br>	
 
 			
 
