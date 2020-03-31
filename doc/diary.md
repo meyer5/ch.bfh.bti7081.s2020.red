@@ -166,6 +166,25 @@ Naechste Audiokonferenz: 30.03.2020 um 16:15 Uhr
 <br>	
 
 #### <p align="center">**30.03.2020:**</p>
+Anwesenheit: alle 
+
+- Praesentation Task1 vorgetragen
+- Kurzes Fragerunde & Feedback durch Dozenten
+- Audiokonferenzen uber MS Teams
+- Nachbesprechnung Task1 (Storyboards Aerzteseite klarer aufzeigen)
+
+To-do:  
+
+	   - 1-2 Storyboards fuer Sucht-Tagebuch pro Mitglied
+	   
+	   
+Naechste Audiokonferenz: 31.03.2020 um 18:10 Uhr
+
+<br>
+<br>	
+
+#### <p align="center">**31.03.2020:**</p>
+
 
 			
 
