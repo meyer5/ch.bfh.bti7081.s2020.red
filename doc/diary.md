@@ -169,7 +169,7 @@ Naechste Audiokonferenz: 30.03.2020 um 16:15 Uhr
 Anwesenheit: alle 
 
 - Praesentation Task1 vorgetragen
-- Kurzes Fragerunde & Feedback durch Dozenten
+- Kurze Fragerunde & Feedback durch Dozenten
 - Audiokonferenzen uber MS Teams
 - Nachbesprechnung Task1 (Storyboards Aerzteseite klarer aufzeigen)
 
