@@ -222,7 +222,36 @@ To-do:
 Naechste Audiokonferenz: 05.04.2020 um 15:00 Uhr
 
 <br>
-<br>	
+<br>
+
+#### <p align="center">**02.04.2020:**</p>	
+
+- Interview gefuehrt -> rodrj
+
+<br>
+<br>
+
+#### <p align="center">**05.04.2020:**</p>	
+Anwesenheit: alle 
+
+- Ueber Interview Antworten diskutiert 
+- Erstellte Use Cases besprochen
+
+
+To-do:  
+
+	   - Use Case und requirement Szenario -> denen
+	   - Use Case und Use Case Scenario Description und Testing -> kiruk
+	   - Formatierung und Gliederung Dokument -> meyer
+	   - System architecture und system Modeling -> peltd
+	   - System evolution und system requirements -> rodrj
+	   
+	   
+Naechste Audiokonferenz: 07.04.2020 um 18:00 Uhr
+
+
+
+
 
 			
 
