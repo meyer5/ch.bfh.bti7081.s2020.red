@@ -249,6 +249,28 @@ To-do:
 	   
 Naechste Audiokonferenz: 07.04.2020 um 18:00 Uhr
 
+<br>
+<br>
+
+#### <p align="center">**07.04.2020:**</p>
+Anwesenheit: alle auser meyer
+
+- Bisher erledigte Themen zusammen diskutiert
+  und Aenderungen vorgenommen
+
+
+To-do:  
+
+	   - Glossar -> denen
+	   - Testing -> kiruk
+	   - Formatierung und Gliederung Dokument -> meyer
+	   - System Modeling -> peltd
+	   
+	   
+Naechste Audiokonferenz: 10.04.2020 um 15:00 Uhr
+
+
+
 
 
 
