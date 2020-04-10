@@ -269,6 +269,27 @@ To-do:
 	   
 Naechste Audiokonferenz: 10.04.2020 um 15:00 Uhr
 
+<br>
+<br>
+
+#### <p align="center">**10.04.2020:**</p>
+Anwesenheit: alle auser rodrj
+
+- Bisher erledigte Themen zusammen diskutiert
+  und Aenderungen vorgenommen
+
+
+To-do:  
+
+	   - Formatierung und Gliederung Dokument -> meyer
+	   - PDF Dokument pushen -> peltd
+	   
+	   
+Naechste Audiokonferenz: 14.04.2020
+
+<br>
+<br>
+
 
 
 
