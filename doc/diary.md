@@ -26,7 +26,7 @@
  		* Resultat Design Thkining Prozess
  		* Bilder (Personas, Storyboards)
  		* Zusammenfassen und Entscheid begruenden
- 		* Praesentation
+ 	* Praesentation
  	
  **Deadline:** 30.03.2020
 
@@ -347,10 +347,10 @@ Naechste Audiokonferenz: 20.04.2020
 #### To do:
  * UML Domain diagramm erstellen
  * UML Sequence diagramm erstellen
- * Erste Version UML Klasendiagramm
- * Diagramme vorstellen und darüber diskutieren (max. 10 min)
+ * Erste Version UML Klassendiagramm
+ * Diagramme vorstellen und darueber diskutieren (max. 10 min)
  * Abgeben:
- 	* Dokument mit allen Diagramme (1 PDF Datei)
+ 	* Dokument mit alle Diagrammen (1 PDF Datei)
  	
  **Deadline:** 27.04.2020
 
@@ -362,6 +362,7 @@ Naechste Audiokonferenz: 20.04.2020
 #### <p align="center">**20.04.2020:**</p>
 Anwesenheit: alle
 
+- Review von Team Orange gelesen
 - Mit Task 4 angefangen
 - UML Domain Diagramm erstellt
 - Sequenzdiagramm angefangen
@@ -372,7 +373,7 @@ To-do:
 	   - Ideen fuer Sequenzdiagramm -> alle
 	   
 	   
-Naechste Audiokonferenz: 21.04.2020 um 18:15
+Naechste Audiokonferenz: 21.04.2020 um 18:15 Uhr
 
 <br>
 <br>
