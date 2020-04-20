@@ -347,7 +347,7 @@ Naechste Audiokonferenz: 20.04.2020
 #### To do:
  * UML Domain diagramm erstellen
  * UML Sequence diagramm erstellen
- * Erste Version UML Klassendiagramm
+ * Erste Version UML Klassendiagramm erstellen
  * Diagramme vorstellen und darueber diskutieren (max. 10 min)
  * Abgeben:
  	* Dokument mit alle Diagrammen (1 PDF Datei)
