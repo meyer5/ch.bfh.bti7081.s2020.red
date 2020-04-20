@@ -21,10 +21,12 @@
 #### To do:
  * Design Thinking Prozess mehrmals durchlaufen und dokumentieren
  * Praesentation (10 min pro Gruppe)
- * Dokumentation (1 PDF Datei)
- 	* Resultat Design Thkining Prozess
- 	* Bilder (Personas, Storyboards)
- 	* Zusammenfassen und Entscheid begruenden
+ * Abgeben:
+ 	* Dokumentation (1 PDF Datei)
+ 		* Resultat Design Thkining Prozess
+ 		* Bilder (Personas, Storyboards)
+ 		* Zusammenfassen und Entscheid begruenden
+ 		* Praesentation
  	
  **Deadline:** 30.03.2020
 
@@ -191,7 +193,7 @@ Naechste Audiokonferenz: 31.03.2020 um 18:10 Uhr
 #### To do:
  * User & System Requirements dokumentieren
  * Abgeben:
- 	* Software Requirements Specification Document (1 PDF Datei)
+ 	* Software Requirements Specification Dokument (1 PDF Datei)
  	
  **Deadline:** 14.04.2020
 
@@ -297,7 +299,7 @@ Naechste Audiokonferenz: 14.04.2020
 #### To do:
  * Software Requirements Specification Document von Team white reviewen
  * Abgeben:
- 	* Review Document (1 PDF Datei)
+ 	* Review Dokument (1 PDF Datei)
  	
  **Deadline:** 20.04.2020
 
@@ -322,6 +324,60 @@ Naechste Audiokonferenz: 19.04.2020 um 15:00 Uhr
 <br>
 <br>
 
+#### <p align="center">**19.04.2020:**</p>
+Anwesenheit: alle auser peltd
+
+- Task 3 im Team bearbeitet 
+
+
+To-do:  
+
+	   - Task3 pushen
+	   
+	   
+Naechste Audiokonferenz: 20.04.2020
+
+<br>
+<br>
+
+------
+	
+#### *Task 4*
+
+#### To do:
+ * UML Domain diagramm erstellen
+ * UML Sequence diagramm erstellen
+ * Erste Version UML Klasendiagramm
+ * Diagramme vorstellen und darüber diskutieren (max. 10 min)
+ * Abgeben:
+ 	* Dokument mit allen Diagramme (1 PDF Datei)
+ 	
+ **Deadline:** 27.04.2020
+
+
+<br>
+<br>
+<br>
+
+#### <p align="center">**20.04.2020:**</p>
+Anwesenheit: alle
+
+- Mit Task 4 angefangen
+- UML Domain Diagramm erstellt
+- Sequenzdiagramm angefangen
+
+
+To-do:  
+
+	   - Ideen fuer Sequenzdiagramm -> alle
+	   
+	   
+Naechste Audiokonferenz: 21.04.2020 um 18:15
+
+<br>
+<br>
+
+#### <p align="center">**21.04.2020:**</p>
 
 
 
