@@ -290,6 +290,38 @@ Naechste Audiokonferenz: 14.04.2020
 <br>
 <br>
 
+------
+	
+#### *Task 3*
+
+#### To do:
+ * Software Requirements Specification Document von Team white reviewen
+ * Abgeben:
+ 	* Review Document (1 PDF Datei)
+ 	
+ **Deadline:** 20.04.2020
+
+
+<br>
+<br>
+<br>
+
+#### <p align="center">**14.04.2020:**</p>
+Anwesenheit: alle auser meyer
+
+- Task 3 im Team bearbeitet
+
+
+To-do:  
+
+	   - Task3 Dokument ergänzen -> alle
+	   
+	   
+Naechste Audiokonferenz: 19.04.2020 um 15:00 Uhr
+
+<br>
+<br>
+
 
 
 
