@@ -210,7 +210,7 @@ Anwesenheit: alle
 - Mit Task2 begonnen
 - Reguirements document mit preface, introduction, User requirements definition
   system evolution und testing begonnen 
-- Feedback zu Task1 erhlaten (Dokumentation 17/20 Pkt., Praesentation 4/5 Pkt.)
+- Feedback zu Task1 erhalten (Dokumentation 17/20 Pkt., Praesentation 4/5 Pkt.)
 
 To-do:  
 
@@ -364,7 +364,7 @@ Anwesenheit: alle
 
 - Review von Team Orange gelesen
 - Mit Task 4 angefangen
-- UML Domain Diagramm erstellt
+- Domain Diagramm erstellt
 - Sequenzdiagramm angefangen
 
 
@@ -379,7 +379,28 @@ Naechste Audiokonferenz: 21.04.2020 um 18:15 Uhr
 <br>
 
 #### <p align="center">**21.04.2020:**</p>
+Anwesenheit: alle
 
+- Domain Diagramm angepasst
+- Sequenzdiagramm erstellt
+- Klassendiagramm erstellt
+- Ruecksprache mit Dozenten
+- Feedback zu Task2 erhalten (Dokumentation 14/15 Pkt.)
+	- Zwischenstand: 35/40 Pkt.
+
+
+To-do:  
+
+	   - PowerPoint Praesentation erstellen -> denen
+	   - Domain Diagramm abschliessen -> meyer
+	   - Sequenzdiagramm & Klassendiagramm abschliessen -> rodrj
+	   
+	   
+	   
+Naechste Audiokonferenz: 27.04.2020 
+
+<br>
+<br>
 
 
 
