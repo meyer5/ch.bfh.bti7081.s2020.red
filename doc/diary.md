@@ -391,13 +391,50 @@ Anwesenheit: alle
 
 To-do:  
 
-	   - PowerPoint Praesentation erstellen -> denen
-	   - Domain Diagramm abschliessen -> meyer
-	   - Sequenzdiagramm & Klassendiagramm abschliessen -> rodrj
+	   - PowerPoint Praesentation erstellen und pushen -> denen
+	   - Domain Diagramm abschliessen und pushen -> meyer
+	   - Sequenzdiagramm & Klassendiagramm abschliessen und pushen -> rodrj
 	   
 	   
 	   
-Naechste Audiokonferenz: 27.04.2020 
+Naechste Audiokonferenz: 28.04.2020 
+
+<br>
+<br>
+
+#### <p align="center">**27.04.2020:**</p>
+Anwesenheit: alle
+
+- Task 4 prasesentiert
+- Feedback zu Task 4
+
+
+
+<br>
+<br>
+
+
+#### <p align="center">**28.04.2020:**</p>
+Anwesenheit: alle
+
+- Planung Task 5
+- Planung Task 6
+- Punkte Task 3 (4/5 Pkt.)
+- Punkte Task 4 (9/10 Pkt.)
+	- Zwischenstand: 48/55 Pkt.
+
+
+To-do:  
+
+	   - Diagramme v. Task 4 anpassen und IDE Setup -> meyer
+	   - Detailliertes Klassendiagramm -> rodrj
+	   - Komponentendiagramm -> denen
+	   - Verteilungsdiagramm -> kiruk
+	   - Scrum Setup -> peltd
+	   
+	   
+	   
+Naechste Audiokonferenz: 03.05.2020 um 14:00 Uhr
 
 <br>
 <br>
