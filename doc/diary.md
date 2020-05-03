@@ -402,6 +402,7 @@ Naechste Audiokonferenz: 28.04.2020
 <br>
 <br>
 
+
 #### <p align="center">**27.04.2020:**</p>
 Anwesenheit: alle
 
@@ -410,6 +411,38 @@ Anwesenheit: alle
 
 
 
+<br>
+<br>
+
+------
+	
+#### *Task 5*
+
+#### To do:
+ * UML Komponentendiagramm & Einsatz- und Verteilungsdiagramm
+ * UML Sequence diagramm erstellen
+ * Detailliertes UML Klassendiagramm 
+ * Diagramme vorstellen (max. 5 min)
+ * Abgeben:
+ 	* Dokument mit alle Diagrammen (1 PDF Datei)
+ 	
+ **Deadline:** 04.05.2020
+ 
+
+#### *Task 6*
+
+#### To do:
+ * Scrum Setup (Excel verwenden)
+	* Product Backlog
+ 	* Sprint Backlog
+ * Planung praesentieren (max. 5 min)
+ * Abgeben:
+ 	* Scrum Dokument (Excel Datei)
+ 	
+ **Deadline:** 04.05.2020
+
+
+<br>
 <br>
 <br>
 
@@ -429,7 +462,7 @@ To-do:
 	   - Diagramme v. Task 4 anpassen und IDE Setup -> meyer
 	   - Detailliertes Klassendiagramm -> rodrj
 	   - Komponentendiagramm -> denen
-	   - Verteilungsdiagramm -> kiruk
+	   - Einsatz- & Verteilungsdiagramm -> kiruk
 	   - Scrum Setup -> peltd
 	   
 	   
@@ -439,6 +472,27 @@ Naechste Audiokonferenz: 03.05.2020 um 14:00 Uhr
 <br>
 <br>
 
+#### <p align="center">**03.05.2020:**</p>
+Anwesenheit: alle
+
+- Besprechung Komponentendiagramm 
+- Besprechung Einsatz- & Verteilungsdiagramm 
+- Besprechung Planung Task 6
+
+
+
+To-do:  
+
+	   - Detailliertes Klassendiagramm -> rodrj
+	   - Komponentendiagramm anpassen/ergaenzen -> denen
+	   - Einsatz- & Verteilungsdiagramm anpassen/ergaenzen -> kiruk
+	   - Scrum Setup -> peltd
+
+
+Naechste Audiokonferenz: 04.05.2020 um 16:00 Uhr
+
+<br>
+<br>
 
 
 
