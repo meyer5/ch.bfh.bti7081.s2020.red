@@ -1,10 +1,10 @@
-package interfaces;
+package ch.bfh.btx8081.interfaces;
 
-import exceptions.UserNotFoundException;
-import exceptions.WrongPasswordException;
-import model.DiaryManager;
-import model.Doctor;
-import model.Patient;
+import ch.bfh.btx8081.exceptions.UserNotFoundException;
+import ch.bfh.btx8081.exceptions.WrongPasswordException;
+import ch.bfh.btx8081.model.DiaryManager;
+import ch.bfh.btx8081.model.Doctor;
+import ch.bfh.btx8081.model.Patient;
 
 public abstract class ServiceManager {
 	

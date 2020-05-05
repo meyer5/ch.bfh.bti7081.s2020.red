@@ -1,8 +1,8 @@
-package model;
+package ch.bfh.btx8081.model;
 
 import java.util.ArrayList;
 
-import exceptions.ShowAvoidanceStrategyException;
+import ch.bfh.btx8081.exceptions.ShowAvoidanceStrategyException;
 
 public class Diary {
 	

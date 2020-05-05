@@ -1,4 +1,4 @@
-package exceptions;
+package ch.bfh.btx8081.exceptions;
 
 public class WrongPasswordException extends Exception{
 

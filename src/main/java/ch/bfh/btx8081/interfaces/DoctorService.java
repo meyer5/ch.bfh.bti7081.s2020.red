@@ -1,7 +1,7 @@
-package interfaces;
+package ch.bfh.btx8081.interfaces;
 
-import model.Doctor;
-import model.Patient;
+import ch.bfh.btx8081.model.Doctor;
+import ch.bfh.btx8081.model.Patient;
 
 public class DoctorService implements Service {
 

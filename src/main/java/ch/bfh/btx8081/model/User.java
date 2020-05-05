@@ -1,6 +1,6 @@
-package model;
+package ch.bfh.btx8081.model;
 
-import exceptions.WrongPasswordException;
+import ch.bfh.btx8081.exceptions.WrongPasswordException;
 
 public abstract class User {
 

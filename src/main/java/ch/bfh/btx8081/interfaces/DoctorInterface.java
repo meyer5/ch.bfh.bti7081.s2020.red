@@ -1,14 +1,14 @@
-package interfaces;
+package ch.bfh.btx8081.interfaces;
 
 import java.util.ArrayList;
 
-import exceptions.UserNotFoundException;
-import exceptions.WrongPasswordException;
-import model.Activity;
-import model.AvoidanceStrategy;
-import model.Doctor;
-import model.Entry;
-import model.Patient;
+import ch.bfh.btx8081.exceptions.UserNotFoundException;
+import ch.bfh.btx8081.exceptions.WrongPasswordException;
+import ch.bfh.btx8081.model.Activity;
+import ch.bfh.btx8081.model.AvoidanceStrategy;
+import ch.bfh.btx8081.model.Doctor;
+import ch.bfh.btx8081.model.Entry;
+import ch.bfh.btx8081.model.Patient;
 
 public interface DoctorInterface {
 

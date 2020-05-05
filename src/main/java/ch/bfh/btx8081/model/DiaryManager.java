@@ -1,12 +1,12 @@
-package model;
+package ch.bfh.btx8081.model;
 
 import java.util.ArrayList;
 
-import exceptions.ShowAvoidanceStrategyException;
-import exceptions.UserNotFoundException;
-import exceptions.WrongPasswordException;
-import interfaces.DoctorInterface;
-import interfaces.PatientInterface;
+import ch.bfh.btx8081.exceptions.ShowAvoidanceStrategyException;
+import ch.bfh.btx8081.exceptions.UserNotFoundException;
+import ch.bfh.btx8081.exceptions.WrongPasswordException;
+import ch.bfh.btx8081.interfaces.DoctorInterface;
+import ch.bfh.btx8081.interfaces.PatientInterface;
 
 public class DiaryManager implements PatientInterface, DoctorInterface {
 	
