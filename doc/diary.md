@@ -494,6 +494,58 @@ Naechste Audiokonferenz: 04.05.2020 um 16:00 Uhr
 <br>
 <br>
 
+#### <p align="center">**04.05.2020:**</p>
+Anwesenheit: alle
+
+- Besprechung Klassendiagramm
+- Besprechung Scrum Setup
+- Besprechung und Planung Sprint 1
+- Task 5 & 6 vorgetragen
+- Task 5 & 6 gepusht und abgeschlossen
+
+
+
+
+Naechste Audiokonferenz: 05.05.2020
+
+<br>
+<br>
+
+------
+	
+#### *Task 7*
+
+#### To do:
+ * Product & sprint backlog up to date halten
+ * Sprint 1 erledigen
+ 
+ **Deadline:** 12.05.2020
+
+
+<br>
+<br>
+<br>
+
+#### <p align="center">**05.05.2020:**</p>
+
+Anwesenheit: alle
+
+- Planung Sprint 1
+
+
+
+To-do:  
+
+	   - siehe Scrum.xlsx im Teams
+	   
+
+Naechste Audiokonferenz: 08.05.2020 um 15:00 Uhr
+	    
+	   
+	   
+
+
+
 
 
 
