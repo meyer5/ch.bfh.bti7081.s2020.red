@@ -13,7 +13,9 @@ import com.vaadin.flow.server.PWA;
 @PWA(name = "Project Base for Vaadin", shortName = "Project Base")
 public class MainView extends VerticalLayout {
 
-    public MainView() {
+	private static final long serialVersionUID = 1L;
+
+	public MainView() {
         Button button = new Button("Click me",
                 event -> Notification.show("Clicked!"));
         add(button);
