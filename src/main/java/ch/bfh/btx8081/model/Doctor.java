@@ -14,17 +14,17 @@ public class Doctor extends User{
 	}
 	
 //	Constructor for new doctor
-	public Doctor(long id, String firstName, String lastName, String phoneNumber, String eMail, String userName, String password) {
+	protected Doctor(long id, String firstName, String lastName, String phoneNumber, String eMail, String userName, String password) {
 		super(id, firstName, lastName, phoneNumber, eMail, userName, password);
 	}
 	
 //	adder & remover
 	
-	public void addPatient(Patient patient) {
+	protected void addPatient(Patient patient) {
 		this.patients.add(patient);
 	}
 	
-	public void removePatient(Patient patient) {
+	protected void removePatient(Patient patient) {
 		this.patients.remove(patient);
 	}
 	
@@ -34,7 +34,7 @@ public class Doctor extends User{
 		return patients;
 	}
 
-	public void setPatients(ArrayList<Patient> patients) {
+	protected void setPatients(ArrayList<Patient> patients) {
 		this.patients = patients;
 	}
 

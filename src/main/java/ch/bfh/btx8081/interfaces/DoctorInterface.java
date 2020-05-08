@@ -2,7 +2,9 @@ package ch.bfh.btx8081.interfaces;
 
 import java.util.ArrayList;
 
+import ch.bfh.btx8081.exceptions.PatientNotFoundException;
 import ch.bfh.btx8081.exceptions.UserNotFoundException;
+import ch.bfh.btx8081.exceptions.UsernameIsAlreadyTakenException;
 import ch.bfh.btx8081.exceptions.WrongPasswordException;
 import ch.bfh.btx8081.model.Activity;
 import ch.bfh.btx8081.model.AvoidanceStrategy;
@@ -12,7 +14,7 @@ import ch.bfh.btx8081.model.Patient;
 
 public interface DoctorInterface {
 
-	ArrayList<Patient> searchPatientOfDoctor(Doctor doctor, String SearchQuery);
+	ArrayList<Patient> searchPatientOfDoctor(Doctor doctor, String SearchQuery) throws PatientNotFoundException;
 
 	ArrayList<Patient> getAllPatientsOfDoctor(Doctor doctor);
 
@@ -21,11 +23,11 @@ public interface DoctorInterface {
 	void authenticate(String userName, String password) throws WrongPasswordException, UserNotFoundException;
 
 	void newDoctor(String firstName, String lastName, String phoneNumber, String eMail, String userName,
-			String password);
+			String password) throws UsernameIsAlreadyTakenException;
 
 	void newPatient(String firstName, String lastName, String phoneNumber, String eMail, String userName,
 			String password, String addiction, String mainInfo, Doctor doctor, String consumedSubstance,
-			String consumptionMetric, String conditionAutomaticAlarm);
+			String consumptionMetric, String conditionAutomaticAlarm) throws UsernameIsAlreadyTakenException;
 
 	void changeContactInfo(Patient patient, String firstName, String lastName, String phoneNumber, String eMail);
 

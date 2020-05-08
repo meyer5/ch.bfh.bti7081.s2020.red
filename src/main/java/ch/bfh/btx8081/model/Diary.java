@@ -5,15 +5,15 @@ import java.util.ArrayList;
 import ch.bfh.btx8081.exceptions.ShowAvoidanceStrategyException;
 
 public class Diary {
-	
-	private String consumedSubstance;
-	private String consumptionMeric;
-	private String conditionAutomaticAlarm;
-	private ArrayList<Activity> activities =  new ArrayList<Activity>();
-	private ArrayList<AvoidanceStrategy> avoidanceStrategies =  new ArrayList<AvoidanceStrategy>();
-	private ArrayList<QuestionForConsultation> unansweredQuestions =  new ArrayList<QuestionForConsultation>();
+
+	private String consumedSubstance = "";
+	private String consumptionMeric = "";
+	private String conditionAutomaticAlarm = "";
+	private ArrayList<Activity> activities = new ArrayList<Activity>();
+	private ArrayList<AvoidanceStrategy> avoidanceStrategies = new ArrayList<AvoidanceStrategy>();
+	private ArrayList<QuestionForConsultation> unansweredQuestions = new ArrayList<QuestionForConsultation>();
 	private ArrayList<Entry> entries = new ArrayList<Entry>();
-	
+
 //	Constructor for persistence
 
 	public Diary(String consumedSubstance, String consumptionMeric, String conditionAutomaticAlarm,
@@ -28,9 +28,10 @@ public class Diary {
 		this.unansweredQuestions = unansweredQuestions;
 		this.entries = entries;
 	}
-	
+
 //	Constructor for new diary in patient constructor
-	public Diary(String consumedSubstance, String consumptionMeric, String conditionAutomaticAlarm) {
+	
+	protected Diary(String consumedSubstance, String consumptionMeric, String conditionAutomaticAlarm) {
 		super();
 		this.consumptionMeric = consumptionMeric;
 		this.consumedSubstance = consumedSubstance;
@@ -39,12 +40,16 @@ public class Diary {
 		this.avoidanceStrategies = defaultAvoidanceStrategies();
 	}
 
-	public void newEntry(int mood, long consumption, int pressureToConsume, int motivation, ArrayList<Activity> activities,
-			String comment, QuestionForConsultation questionForConsultation) throws ShowAvoidanceStrategyException {
-		this.addEntry(new Entry(mood, consumption, pressureToConsume, motivation, activities,
-			comment, questionForConsultation));
-		this.addQuestion(questionForConsultation);
-		
+	protected void newEntry(int mood, long consumption, int pressureToConsume, int motivation,
+			ArrayList<Activity> activities, String comment, String questionForConsultation)
+			throws ShowAvoidanceStrategyException {
+		QuestionForConsultation q = null;
+		if (questionForConsultation != null && !questionForConsultation.equals("")) {
+			q = new QuestionForConsultation(questionForConsultation);
+			this.addQuestion(q);
+		}
+		this.addEntry(new Entry(mood, consumption, pressureToConsume, motivation, activities, comment, q));
+
 		if (pressureToConsume > 6) {
 			throw new ShowAvoidanceStrategyException();
 		}
@@ -52,42 +57,41 @@ public class Diary {
 	}
 
 //	adder & remover
-	
-	public void addAvoidanceStrategy(AvoidanceStrategy avoidanceStrategy) {
+
+	protected void addAvoidanceStrategy(AvoidanceStrategy avoidanceStrategy) {
 		this.avoidanceStrategies.add(avoidanceStrategy);
 	}
-	
-	public void removeAvoidanceStrategy(AvoidanceStrategy avoidanceStrategy) {
+
+	protected void removeAvoidanceStrategy(AvoidanceStrategy avoidanceStrategy) {
 		this.avoidanceStrategies.remove(avoidanceStrategy);
 	}
-	
-	public void addQuestion(QuestionForConsultation questionForConsultation) {
+
+	protected void addQuestion(QuestionForConsultation questionForConsultation) {
 		this.unansweredQuestions.add(questionForConsultation);
 	}
-	
-	public void questionAnswered(QuestionForConsultation questionForConsultation) {
+
+	protected void questionAnswered(QuestionForConsultation questionForConsultation) {
 		this.unansweredQuestions.remove(questionForConsultation);
 	}
-	
-	public void addActivity(Activity activity) {
+
+	protected void addActivity(Activity activity) {
 		this.activities.add(activity);
 	}
-	
-	public void removeActivity(Activity activity) {
+
+	protected void removeActivity(Activity activity) {
 		this.activities.remove(activity);
 	}
-	
-	public void addEntry(Entry entry) {
+
+	protected void addEntry(Entry entry) {
 		this.entries.add(entry);
 	}
-	
-	public void removeEntry(Entry entry) {
+
+	protected void removeEntry(Entry entry) {
 		this.entries.remove(entry);
 	}
-	
-	
+
 //	Default Diary
-	
+
 	private ArrayList<AvoidanceStrategy> defaultAvoidanceStrategies() {
 		ArrayList<AvoidanceStrategy> res = new ArrayList<AvoidanceStrategy>();
 		res.add(new AvoidanceStrategy("1"));
@@ -96,7 +100,7 @@ public class Diary {
 		res.add(new AvoidanceStrategy("4"));
 		return res;
 	}
-	
+
 	private ArrayList<Activity> defaultActivities() {
 		ArrayList<Activity> res = new ArrayList<Activity>();
 		res.add(new Activity("1", "1111"));
@@ -106,14 +110,13 @@ public class Diary {
 		return res;
 	}
 
-	
 //	getters & setters
 
 	public String getConsumedSubstance() {
 		return consumedSubstance;
 	}
 
-	public void setConsumedSubstance(String consumedSubstance) {
+	protected void setConsumedSubstance(String consumedSubstance) {
 		this.consumedSubstance = consumedSubstance;
 	}
 
@@ -121,7 +124,7 @@ public class Diary {
 		return consumptionMeric;
 	}
 
-	public void setConsumptionMeric(String consumptionMeric) {
+	protected void setConsumptionMeric(String consumptionMeric) {
 		this.consumptionMeric = consumptionMeric;
 	}
 
@@ -129,7 +132,7 @@ public class Diary {
 		return conditionAutomaticAlarm;
 	}
 
-	public void setConditionAutomaticAlarm(String conditionAutomaticAlarm) {
+	protected void setConditionAutomaticAlarm(String conditionAutomaticAlarm) {
 		this.conditionAutomaticAlarm = conditionAutomaticAlarm;
 	}
 
@@ -137,7 +140,7 @@ public class Diary {
 		return activities;
 	}
 
-	public void setActivities(ArrayList<Activity> activities) {
+	protected void setActivities(ArrayList<Activity> activities) {
 		this.activities = activities;
 	}
 
@@ -145,7 +148,7 @@ public class Diary {
 		return avoidanceStrategies;
 	}
 
-	public void setAvoidanceStrategies(ArrayList<AvoidanceStrategy> avoidanceStrategies) {
+	protected void setAvoidanceStrategies(ArrayList<AvoidanceStrategy> avoidanceStrategies) {
 		this.avoidanceStrategies = avoidanceStrategies;
 	}
 
@@ -153,7 +156,7 @@ public class Diary {
 		return unansweredQuestions;
 	}
 
-	public void setUnansweredQuestions(ArrayList<QuestionForConsultation> unansweredQuestions) {
+	protected void setUnansweredQuestions(ArrayList<QuestionForConsultation> unansweredQuestions) {
 		this.unansweredQuestions = unansweredQuestions;
 	}
 
@@ -161,10 +164,8 @@ public class Diary {
 		return entries;
 	}
 
-	public void setEntries(ArrayList<Entry> entries) {
+	protected void setEntries(ArrayList<Entry> entries) {
 		this.entries = entries;
 	}
-	
 
-	
 }

@@ -2,9 +2,9 @@ package ch.bfh.btx8081.model;
 
 public class AvoidanceStrategy {
 	
-	private String strategy;
+	private String strategy = "";
 
-	public AvoidanceStrategy(String strategy) {
+	protected AvoidanceStrategy(String strategy) {
 		super();
 		this.strategy = strategy;
 	}
@@ -15,7 +15,7 @@ public class AvoidanceStrategy {
 		return strategy;
 	}
 
-	public void setStrategy(String strategy) {
+	protected void setStrategy(String strategy) {
 		this.strategy = strategy;
 	}
 	

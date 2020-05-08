@@ -2,10 +2,10 @@ package ch.bfh.btx8081.model;
 
 public class Patient extends User {
 	
-	private String addiction;
-	private String mainInfo;
-	private Doctor doctor;
-	private Diary diary;
+	private String addiction = "";
+	private String mainInfo = "";
+	private Doctor doctor = null;
+	private Diary diary = null;
 	
 //	Constructor for persistence
 	public Patient(long id, String firstName, String lastName, String phoneNumber, String eMail, String userName,
@@ -19,7 +19,7 @@ public class Patient extends User {
 	}
 
 //	Constructor for new patient in Manager
-	public Patient(long id, String firstName, String lastName, String phoneNumber, String eMail, String userName,
+	protected Patient(long id, String firstName, String lastName, String phoneNumber, String eMail, String userName,
 			String password, String addiction, String mainInfo, Doctor doctor, String consumedSubstance, String consumptionMetric, String conditionAutomaticAlarm) {
 		super(id, firstName, lastName, phoneNumber, eMail, userName, password);
 		this.addiction = addiction;
@@ -28,19 +28,17 @@ public class Patient extends User {
 		this.diary = new Diary(consumedSubstance, consumptionMetric, conditionAutomaticAlarm);
 	}
 	
-	
-	
 //	Alarm
 	
-	public void sendEmergenceAlarm() {
+	protected void sendEmergenceAlarm() {
 //		TODO
 	}
 	
-	public void sendUrgentCaseAlarm() {
+	protected void sendUrgentCaseAlarm() {
 //		TODO
 	}
 	
-	public void sendAppontmentAlarm() {
+	protected void sendAppontmentAlarm() {
 //		TODO
 	}
 	
@@ -50,7 +48,7 @@ public class Patient extends User {
 		return addiction;
 	}
 
-	public void setAddiction(String addiction) {
+	protected void setAddiction(String addiction) {
 		this.addiction = addiction;
 	}
 
@@ -58,7 +56,7 @@ public class Patient extends User {
 		return mainInfo;
 	}
 
-	public void setMainInfo(String mainInfo) {
+	protected void setMainInfo(String mainInfo) {
 		this.mainInfo = mainInfo;
 	}
 
@@ -66,7 +64,7 @@ public class Patient extends User {
 		return doctor;
 	}
 
-	public void setDoctor(Doctor doctor) {
+	protected void setDoctor(Doctor doctor) {
 		doctor.removePatient(this);
 		this.doctor = doctor;
 		doctor.addPatient(this);
@@ -76,7 +74,7 @@ public class Patient extends User {
 		return diary;
 	}
 
-	public void setDiary(Diary diary) {
+	protected void setDiary(Diary diary) {
 		this.diary = diary;
 	}
 

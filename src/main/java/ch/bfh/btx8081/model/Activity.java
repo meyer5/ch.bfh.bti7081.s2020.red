@@ -2,10 +2,10 @@ package ch.bfh.btx8081.model;
 
 public class Activity {
 	
-	private String activity;
-	private String iconID;
+	private String activity = "";
+	private String iconID = "";
 	
-	public Activity(String activity, String iconID) {
+	protected Activity(String activity, String iconID) {
 		super();
 		this.activity = activity;
 		this.iconID = iconID;
@@ -16,13 +16,13 @@ public class Activity {
 	public String getActivity() {
 		return activity;
 	}
-	public void setActivity(String activity) {
+	protected void setActivity(String activity) {
 		this.activity = activity;
 	}
 	public String getIconID() {
 		return iconID;
 	}
-	public void setIconID(String iconID) {
+	protected void setIconID(String iconID) {
 		this.iconID = iconID;
 	}
 

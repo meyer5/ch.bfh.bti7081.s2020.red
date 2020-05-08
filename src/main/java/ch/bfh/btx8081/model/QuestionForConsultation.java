@@ -2,9 +2,9 @@ package ch.bfh.btx8081.model;
 
 public class QuestionForConsultation {
 	
-	private String question;
+	private String question = "";
 
-	public QuestionForConsultation(String question) {
+	protected QuestionForConsultation(String question) {
 		super();
 		this.question = question;
 	}
@@ -15,7 +15,7 @@ public class QuestionForConsultation {
 		return question;
 	}
 
-	public void setQuestion(String question) {
+	protected void setQuestion(String question) {
 		this.question = question;
 	}
 	
