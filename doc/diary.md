@@ -527,10 +527,12 @@ Naechste Audiokonferenz: 05.05.2020
 <br>
 
 #### <p align="center">**05.05.2020:**</p>
-
 Anwesenheit: alle
 
 - Planung Sprint 1
+- Punkte Task 5 (9/10 Pkt.)
+- Punkte Task 6 (10/10 Pkt.)
+	- Zwischenstand: 67/75 Pkt.
 
 
 
@@ -540,6 +542,25 @@ To-do:
 	   
 
 Naechste Audiokonferenz: 08.05.2020 um 15:00 Uhr
+
+<br>
+<br>
+
+#### <p align="center">**08.05.2020:**</p>
+Anwesenheit: alle
+
+- Besprechung ueber bisherige Implementierung
+
+
+
+To-do:  
+
+	   - siehe Scrum.xlsx im Teams
+	   
+
+Naechste Audiokonferenz: 11.05.2020 um 16:00 Uhr
+
+
 	    
 	   
 	   
