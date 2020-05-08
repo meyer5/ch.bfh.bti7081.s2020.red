@@ -23,9 +23,9 @@ public abstract class User {
 		this.password = password;
 	}
 	
-	protected void authenticate(String userName, String password) throws WrongPasswordException {
+	protected User authenticate(String userName, String password) throws WrongPasswordException {
 		if (userName.equals(this.userName) && password.equals(this.password)) {
-			return;
+			return this;
 		} else {
 			throw new WrongPasswordException();
 		}
