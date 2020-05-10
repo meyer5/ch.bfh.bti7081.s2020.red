@@ -17,15 +17,17 @@ public class ConsumptionView extends VerticalLayout implements PatientViewInterf
 
 	public static final String VIEW_NAME = "Consumption";
 
-	private ViewListenerInterface presenter;
-
+	private Presenter presenter;
+	private EntryViewController viewController;
+	
 	private Label motivationLbl;
 	private BigDecimalField bigDecimalField;
 	private Button nextBtn;
 
-	public ConsumptionView(NewEntryView baseView) {
+	public ConsumptionView(Presenter presenter, EntryViewController viewController) {
 		
-		presenter = new Presenter();
+		this.presenter = presenter;
+		this.viewController = viewController;
 		
 		// Label with instruction
 		motivationLbl = new Label("How much have you consumed today?");
@@ -40,9 +42,9 @@ public class ConsumptionView extends VerticalLayout implements PatientViewInterf
 		// Next Button
 		nextBtn = new Button("Next");
 		// go to next view
-		nextBtn.addClickListener(e -> baseView.setView(baseView.getCommentView()));
+		nextBtn.addClickListener(e -> handleNextBtn());
 		// pass value to listener
-		presenter.nextBtnClicked(this.VIEW_NAME, getConsumption());
+		
 		this.add(nextBtn);
 
 	}
@@ -52,9 +54,14 @@ public class ConsumptionView extends VerticalLayout implements PatientViewInterf
 	}
 
 	@Override
-	public void addListener(ViewListenerInterface listener) {
-		this.presenter = listener;
+	public String getName() {
+		return ConsumptionView.VIEW_NAME;
+	}
 
+	@Override
+	public void handleNextBtn() {
+		this.viewController.setView();
+		presenter.nextBtnClicked(ConsumptionView.VIEW_NAME, getConsumption());
 	}
 
 }

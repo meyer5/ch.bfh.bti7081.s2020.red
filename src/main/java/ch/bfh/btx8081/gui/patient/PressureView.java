@@ -14,16 +14,17 @@ public class PressureView  extends VerticalLayout implements PatientViewInterfac
 	private static final long serialVersionUID = 1114308463028569154L;
 	public static final String VIEW_NAME = "Pressure";
 	
-	private ViewListenerInterface presenter;
+	private Presenter presenter;
+	private EntryViewController viewController;
 	
 	private NumberField  pressureLevel;
 	private Label pressureLbl;
 	private Button nextBtn;
 	
-	public PressureView(NewEntryView baseView) {
+	public PressureView(Presenter presenter, EntryViewController viewController) {
 		
-		presenter = new Presenter();
-		
+		this.presenter = presenter;
+		this.viewController = viewController;
 		// Label with instruction
 		pressureLbl = new Label("Enter your consumtion pressure on a scale from 1 to 10");
 		this.add(pressureLbl);
@@ -39,20 +40,27 @@ public class PressureView  extends VerticalLayout implements PatientViewInterfac
 		
 		// Next Button
 		nextBtn = new Button("Next");
-		nextBtn.addClickListener(e -> baseView.setView(baseView.getConsumptionView()));
-		presenter.nextBtnClicked(this.VIEW_NAME, getPressureIndex() );
+		nextBtn.addClickListener(e -> handleNextBtn());
 		this.add(nextBtn);	
 		
-	}
-	
-	@Override
-	public void addListener(ViewListenerInterface listener) {
-		this.presenter = listener;	
 	}
 	
 	
 	public double getPressureIndex() {
 		return pressureLevel.getValue();
+	}
+
+
+	@Override
+	public String getName() {
+		return PressureView.VIEW_NAME;
+	}
+
+
+	@Override
+	public void handleNextBtn() {
+		this.viewController.setView();
+		presenter.nextBtnClicked(PressureView.VIEW_NAME, getPressureIndex() );
 	}
 	
 	

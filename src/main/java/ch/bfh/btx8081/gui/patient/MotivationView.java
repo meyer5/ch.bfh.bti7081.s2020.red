@@ -17,16 +17,17 @@ public class MotivationView extends VerticalLayout implements PatientViewInterfa
 
 	public static final String VIEW_NAME = "Motivation";
 	
-	private ViewListenerInterface presenter;
-		
+	private Presenter presenter;
+	private EntryViewController viewController;
+	
 	private NumberField motivationLevel;
 	private Label motivationLbl;
 	private Button nextBtn;
 
-	public MotivationView(NewEntryView baseView) {
+	public MotivationView(Presenter presenter, EntryViewController viewController) {
 		
-		presenter = new Presenter();
-		
+		this.presenter = presenter;
+		this.viewController = viewController;
 		// Label with instruction
 		motivationLbl = new Label("Enter your motivation on a scale from 1 to 10");
 		this.add(motivationLbl);
@@ -42,9 +43,9 @@ public class MotivationView extends VerticalLayout implements PatientViewInterfa
 		// Next Button
 		nextBtn = new Button("Next");
 		// go to next view
-		nextBtn.addClickListener(e -> baseView.setView(baseView.getConsumptionView()));
+		nextBtn.addClickListener(e -> handleNextBtn());
 		// pass value to listener 
-		presenter.nextBtnClicked(this.VIEW_NAME, getMotivationIndex() );
+		
 		this.add(nextBtn);
 
 	}
@@ -54,9 +55,18 @@ public class MotivationView extends VerticalLayout implements PatientViewInterfa
 		return motivationLevel.getValue();
 	}
 
+
 	@Override
-	public void addListener(ViewListenerInterface listener) {
-		this.presenter = listener;	
+	public String getName() {
+		return MotivationView.VIEW_NAME;
+	}
+
+
+	@Override
+	public void handleNextBtn() {
+		this.viewController.setView();
+		this.presenter.nextBtnClicked(MotivationView.VIEW_NAME, getMotivationIndex() );
+		
 	}
 
 }

@@ -1,13 +1,13 @@
 package ch.bfh.btx8081.gui.patient;
 /**
- * Marker Interface or Presenter
+ * Marker Interface for Presenter
  * @author Remo
  *
  */
 public interface PatientViewInterface {
 	
-	
-	public void addListener(ViewListenerInterface listener);
+	public void handleNextBtn();
+	public String getName();
 	
 	
 }

@@ -6,13 +6,11 @@ import java.util.List;
 public interface ViewListenerInterface {
 	
 		
-	public List<PatientViewInterface> addView(PatientViewInterface view);
-
 	public void nextBtnClicked(String viewName, double motivationNumber);
 
 	public void nextBtnClicked(String viewName, BigDecimal consumption);
 
-	public void nextBtnClicked(String viewName, String comment);
+	public void nextBtnClicked(String viewName, String input);
 	
 	
 }

@@ -5,59 +5,58 @@ import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
 
-public class CommentView extends VerticalLayout implements PatientViewInterface {
+public class QuestionView extends VerticalLayout implements PatientViewInterface {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -3846334412179047472L;
+	private static final long serialVersionUID = 2232819652036225247L;
 
-	public static final String VIEW_NAME = "Comments";
+	public static final String VIEW_NAME = "Questions";
 
 	private Presenter presenter;
 	private EntryViewController viewController;
-	
 	private Label commentLbl;
 	private Button nextBtn;
 	private TextArea textArea;
 
-	public CommentView(Presenter presenter, EntryViewController viewController) {
+	public QuestionView(Presenter presenter, EntryViewController viewController) {
 		
 		this.presenter = presenter;
 		this.viewController = viewController;
 		
-		commentLbl = new Label("Comments");
-		add(commentLbl);
+		commentLbl = new Label("Questions");
+		this.add(commentLbl);
 
 		textArea = new TextArea();
-		textArea.setPlaceholder("Write your comments here (if you want)");
-		add(textArea);
+		textArea.setPlaceholder("Do you have any questions for your next session?");
+		this.add(textArea);
 
 		// Next Button
 		nextBtn = new Button("Next");
 		// go to next view 
+		//TODO what's next View???
 		nextBtn.addClickListener(e -> handleNextBtn());
+		// pass value to listener
 		
-		add(nextBtn);
+		this.add(nextBtn);
 	}
 	
-	
-	private String getComment() {
+	public String getQuestions() {
 		return textArea.getValue();
 	}
 
 	@Override
 	public String getName() {
-		return CommentView.VIEW_NAME;
+		return QuestionView.VIEW_NAME;
 	}
-
 
 	@Override
 	public void handleNextBtn() {
-		this.viewController.setView();
-		this.presenter.nextBtnClicked(CommentView.VIEW_NAME, getComment());
+		viewController.setView();
+		this.presenter.nextBtnClicked(QuestionView.VIEW_NAME, getQuestions());
 	}
-	
+
 	
 	
 }
