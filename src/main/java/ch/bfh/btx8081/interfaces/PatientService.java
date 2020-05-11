@@ -44,7 +44,7 @@ public class PatientService implements Service {
 	public void newEntry(int mood, long consumption, int pressureToConsume, int motivation,
 			ArrayList<Activity> activities, String comment, String questionForConsultation)
 			throws ShowAvoidanceStrategyException {
-		patientInterface.newEntry(patient, mood, consumption, pressureToConsume, motivation, activities, comment,
+		patientInterface.newEntry(patient, consumption, pressureToConsume, motivation, activities, comment,
 				questionForConsultation);
 	}
 

@@ -144,10 +144,10 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 	}
 
 	@Override
-	public void newEntry(Patient patient, int mood, long consumption, int pressureToConsume, int motivation,
+	public void newEntry(Patient patient, long consumption, int pressureToConsume, int motivation,
 			ArrayList<Activity> activities, String comment, String questionForConsultation)
 			throws ShowAvoidanceStrategyException {
-		patient.getDiary().newEntry(mood, consumption, pressureToConsume, motivation, activities, comment,
+		patient.getDiary().newEntry(consumption, pressureToConsume, motivation, activities, comment,
 				questionForConsultation);
 	}
 

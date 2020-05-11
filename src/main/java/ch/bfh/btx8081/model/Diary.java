@@ -40,7 +40,7 @@ public class Diary {
 		this.avoidanceStrategies = defaultAvoidanceStrategies();
 	}
 
-	protected void newEntry(int mood, long consumption, int pressureToConsume, int motivation,
+	protected void newEntry(long consumption, int pressureToConsume, int motivation,
 			ArrayList<Activity> activities, String comment, String questionForConsultation)
 			throws ShowAvoidanceStrategyException {
 		QuestionForConsultation q = null;
@@ -48,7 +48,7 @@ public class Diary {
 			q = new QuestionForConsultation(questionForConsultation);
 			this.addQuestion(q);
 		}
-		this.addEntry(new Entry(mood, consumption, pressureToConsume, motivation, activities, comment, q));
+		this.addEntry(new Entry(consumption, pressureToConsume, motivation, activities, comment, q));
 
 		if (pressureToConsume > 6) {
 			throw new ShowAvoidanceStrategyException();

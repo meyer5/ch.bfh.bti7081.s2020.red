@@ -20,7 +20,7 @@ public interface PatientInterface {
 
 	void removeNewAvoidanceStrategy(Patient patient, AvoidanceStrategy avoidanceStrategy);
 	
-	void newEntry(Patient patient, int mood, long consumption, int pressureToConsume, int motivation,
+	void newEntry(Patient patient, long consumption, int pressureToConsume, int motivation,
 			ArrayList<Activity> activities, String comment, String questionForConsultation)
 			throws ShowAvoidanceStrategyException;
 	
