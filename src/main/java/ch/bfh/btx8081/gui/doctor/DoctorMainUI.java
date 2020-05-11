@@ -1,6 +1,5 @@
 package ch.bfh.btx8081.gui.doctor;
 
-
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.html.H2;
@@ -27,9 +26,12 @@ public class DoctorMainUI extends AppLayout {
         final VerticalLayout menuBar = new VerticalLayout();
          
 		menuBar.add(new RouterLink(PatientDashboard.TITLE, PatientDashboard.class));
+		menuBar.add(new RouterLink(PatientInformation.TITLE, PatientInformation.class));
+		
   
         addToDrawer(menuBar);
         
     }
+   
 }
 
