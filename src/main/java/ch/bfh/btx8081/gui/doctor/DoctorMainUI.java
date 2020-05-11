@@ -11,27 +11,28 @@ import com.vaadin.flow.router.RouterLink;
 @Route(value = "Doctor")
 public class DoctorMainUI extends AppLayout {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -5980036826709531009L;
-	
-    public DoctorMainUI() {
-    	
-        setPrimarySection(AppLayout.Section.NAVBAR);
-        final boolean touchOptimized = true;
-        addToNavbar(touchOptimized, new DrawerToggle());
-        addToNavbar(new H2("Addiction Diary"));
-        
-        final VerticalLayout menuBar = new VerticalLayout();
-         
-		menuBar.add(new RouterLink(PatientDashboard.TITLE, PatientDashboard.class));
-		menuBar.add(new RouterLink(PatientInformation.TITLE, PatientInformation.class));
-		
-  
-        addToDrawer(menuBar);
-        
-    }
-   
+  /**
+   * 
+   */
+  private static final long serialVersionUID = -5980036826709531009L;
+
+  public DoctorMainUI() {
+
+    setPrimarySection(AppLayout.Section.NAVBAR);
+    final boolean touchOptimized = true;
+    addToNavbar(touchOptimized, new DrawerToggle());
+    addToNavbar(new H2("Addiction Diary"));
+
+    final VerticalLayout menuBar = new VerticalLayout();
+
+    menuBar.add(new RouterLink(PatientDashboard.TITLE, PatientDashboard.class));
+    menuBar.add(new RouterLink(PatientInformation.TITLE, PatientInformation.class));
+    menuBar.add(new RouterLink(CreatePatientView.TITLE, CreatePatientView.class));
+    menuBar.add(new RouterLink(SearchByNameView.TITLE, SearchByNameView.class));
+
+    addToDrawer(menuBar);
+
+  }
+
 }
 
