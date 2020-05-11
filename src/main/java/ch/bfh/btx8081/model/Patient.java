@@ -19,7 +19,7 @@ public class Patient extends User {
 	}
 
 //	Constructor for new patient in Manager
-	public Patient(long id, String firstName, String lastName, String phoneNumber, String eMail, String userName,
+	protected Patient(long id, String firstName, String lastName, String phoneNumber, String eMail, String userName,
 			String password, String addiction, String mainInfo, Doctor doctor, String consumedSubstance, String consumptionMetric, String conditionAutomaticAlarm) {
 		super(id, firstName, lastName, phoneNumber, eMail, userName, password);
 		this.addiction = addiction;
