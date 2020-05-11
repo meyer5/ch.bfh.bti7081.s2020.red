@@ -5,13 +5,18 @@ import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 
+import ch.bfh.btx8081.gui.doctor.DoctorMainUI;
+
+/**
+ * This class is responsible for the navigation between the 
+ * different entry views
+ * 
+ * @author Remo
+ */
+
 @Route(value = "entry")
 public class EntryViewController extends VerticalLayout{
-
-
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 6093477111794627722L;
 
 	public static final String VIEW_NAME = "Diary Entry";
@@ -19,7 +24,7 @@ public class EntryViewController extends VerticalLayout{
 	private Component title;
 	
 	private Presenter presenter;
-	
+		
 	// Views
 	private Component startView;
 	private Component motivationView;
@@ -30,7 +35,6 @@ public class EntryViewController extends VerticalLayout{
 	private Component questionView;
 	private Component confirmView;
 	
-//	private Component startView;
 	private PatientViewInterface currentView;
 
 	public EntryViewController() {
@@ -88,7 +92,7 @@ public class EntryViewController extends VerticalLayout{
 		default:
 			nextView = startView;
 		}
-//		System.out.println(nextView.getClass());
+//		System.out.println(nextView.getClass());	// to check for correct class
 		setCurrentView(nextView);
 		return nextView;
 	}
@@ -115,8 +119,11 @@ public class EntryViewController extends VerticalLayout{
 		return startView;
 	}
 
-	
-	
+	public Presenter getPresenter() {
+		return presenter;
+	}
+
+
 	
 	
 }

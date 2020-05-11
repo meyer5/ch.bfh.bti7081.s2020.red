@@ -5,17 +5,21 @@ import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
 
+/**
+ * View where patient can enter questions for the next session
+ * @author Remo
+ *
+ */
 public class QuestionView extends VerticalLayout implements PatientViewInterface {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 2232819652036225247L;
 
 	public static final String VIEW_NAME = "Questions";
 
 	private Presenter presenter;
 	private EntryViewController viewController;
+	
+	private Label title;
 	private Label commentLbl;
 	private Button nextBtn;
 	private TextArea textArea;
@@ -25,21 +29,21 @@ public class QuestionView extends VerticalLayout implements PatientViewInterface
 		this.presenter = presenter;
 		this.viewController = viewController;
 		
+		// Label with title
+		this.title = new Label("Questions");
+		add(title);
+		
 		commentLbl = new Label("Questions");
-		this.add(commentLbl);
+		add(commentLbl);
 
 		textArea = new TextArea();
 		textArea.setPlaceholder("Do you have any questions for your next session?");
-		this.add(textArea);
+		add(textArea);
 
-		// Next Button
+
 		nextBtn = new Button("Next");
-		// go to next view 
-		//TODO what's next View???
 		nextBtn.addClickListener(e -> handleNextBtn());
-		// pass value to listener
-		
-		this.add(nextBtn);
+		add(nextBtn);
 	}
 	
 	public String getQuestions() {

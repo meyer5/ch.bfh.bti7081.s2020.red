@@ -8,11 +8,15 @@ import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.NumberField;
 
+/**
+ * View where patient enters his motivation on a given scale
+ * 
+ * @author Remo
+ *
+ */
 public class MotivationView extends VerticalLayout implements PatientViewInterface {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -4974676408821678992L;
 
 	public static final String VIEW_NAME = "Motivation";
@@ -20,6 +24,7 @@ public class MotivationView extends VerticalLayout implements PatientViewInterfa
 	private Presenter presenter;
 	private EntryViewController viewController;
 	
+	private Label title;
 	private NumberField motivationLevel;
 	private Label motivationLbl;
 	private Button nextBtn;
@@ -28,9 +33,13 @@ public class MotivationView extends VerticalLayout implements PatientViewInterfa
 		
 		this.presenter = presenter;
 		this.viewController = viewController;
+		
+		// Label with title
+		this.title = new Label("Motivation");
+		add(title);
 		// Label with instruction
-		motivationLbl = new Label("Enter your motivation on a scale from 1 to 10");
-		this.add(motivationLbl);
+		this.motivationLbl = new Label("Enter your motivation on a scale from 1 to 10");
+		add(motivationLbl);
 
 		// NumberField
 		motivationLevel = new NumberField();
@@ -38,7 +47,7 @@ public class MotivationView extends VerticalLayout implements PatientViewInterfa
 		motivationLevel.setHasControls(true);
 		motivationLevel.setMin(1);
 		motivationLevel.setMax(10);
-		this.add(motivationLevel);
+		add(motivationLevel);
 
 		// Next Button
 		nextBtn = new Button("Next");
@@ -46,7 +55,7 @@ public class MotivationView extends VerticalLayout implements PatientViewInterfa
 		nextBtn.addClickListener(e -> handleNextBtn());
 		// pass value to listener 
 		
-		this.add(nextBtn);
+		add(nextBtn);
 
 	}
 
