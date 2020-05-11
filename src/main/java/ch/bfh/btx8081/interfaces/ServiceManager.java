@@ -5,35 +5,24 @@ import ch.bfh.btx8081.exceptions.WrongPasswordException;
 import ch.bfh.btx8081.model.DiaryManager;
 import ch.bfh.btx8081.model.Doctor;
 import ch.bfh.btx8081.model.Patient;
+import ch.bfh.btx8081.model.User;
 
 public abstract class ServiceManager {
 	
-	static private DiaryManager diaryManager = DiaryManager.getInstance();
-//	private static ServiceManager instance;
-//	
-//	private ServiceManager() {
-//	}
-//	
-//	public static ServiceManager getInstance() {
-//		if (instance == null) {
-//            instance = new ServiceManager();
-//        }
-//        return instance;
-//	}
+	private static DiaryManager diaryManager = DiaryManager.getInstance();
 	
 	public static Service  getService(String userName, String Password) throws WrongPasswordException, UserNotFoundException {
-		diaryManager.authenticate(userName, Password);
+		User user = diaryManager.authenticate(userName, Password);
 		
-		if (diaryManager.searchUserByUsername(userName).getClass().equals(Doctor.class)) {
-			return (Service) new DoctorService((Doctor) diaryManager.searchUserByUsername(userName));
+		if (user.getClass().equals(Doctor.class)) {
+			return (Service) new DoctorService((Doctor) user);
 			
-		} if (diaryManager.searchUserByUsername(userName).getClass().equals(Patient.class)) {
-			return (Service) new PatientService((Patient) diaryManager.searchUserByUsername(userName));	
+		} if (user.getClass().equals(Patient.class)) {
+			return (Service) new PatientService((Patient) user);	
 		} else {
 			return null;
 		}
 		
 	}
 	
-
 }
