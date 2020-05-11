@@ -8,11 +8,14 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.BigDecimalField;
 import com.vaadin.flow.component.textfield.TextFieldVariant;
 
+/**
+ * View where patient can enter his daily consumption
+ * 
+ * @author Remo
+ *
+ */
 public class ConsumptionView extends VerticalLayout implements PatientViewInterface {
 
-	/**
-	 * View where patient can enter his daily consumption
-	 */
 	private static final long serialVersionUID = -8273399642497118085L;
 
 	public static final String VIEW_NAME = "Consumption";
@@ -20,6 +23,7 @@ public class ConsumptionView extends VerticalLayout implements PatientViewInterf
 	private Presenter presenter;
 	private EntryViewController viewController;
 	
+	private Label title;
 	private Label motivationLbl;
 	private BigDecimalField bigDecimalField;
 	private Button nextBtn;
@@ -29,23 +33,23 @@ public class ConsumptionView extends VerticalLayout implements PatientViewInterf
 		this.presenter = presenter;
 		this.viewController = viewController;
 		
+		// Label with title
+		this.title = new Label("Consumption");
+		add(title);
+		
 		// Label with instruction
 		motivationLbl = new Label("How much have you consumed today?");
-		this.add(motivationLbl);
+		add(motivationLbl);
 
 		bigDecimalField = new BigDecimalField("Total consumption");
 		bigDecimalField.addThemeVariants(TextFieldVariant.LUMO_ALIGN_RIGHT);
 		// TODO link wit ConsumtionMetric from DiaryManager
 		// setPrefixComponent(new Icon(VaadinIcon.DOLLAR));
-		this.add(bigDecimalField);
+		add(bigDecimalField);
 		
-		// Next Button
 		nextBtn = new Button("Next");
-		// go to next view
 		nextBtn.addClickListener(e -> handleNextBtn());
-		// pass value to listener
-		
-		this.add(nextBtn);
+		add(nextBtn);
 
 	}
 

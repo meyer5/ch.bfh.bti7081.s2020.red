@@ -36,15 +36,13 @@ public class EntryViewController extends VerticalLayout{
 
 	public EntryViewController() {
 		
-		// this.title = new Label("Diary Entry");
-		this.title = new Label("Addiction Overview");
+		this.title = new Label("Diary Entry");
 		add(title);		
 		
 		this.presenter = new Presenter();
 		
 		// initialise views
 		this.startView = new StartView(presenter, this);
-		this.addictionOverviewView = new AddictionOverviewView(presenter, this);
 		this.pressureView = new PressureView(presenter, this);
 		this.motivationView = new MotivationView(presenter, this);
 		this.consumptionView = new ConsumptionView(presenter, this);
@@ -88,9 +86,6 @@ public class EntryViewController extends VerticalLayout{
 		case ConfirmView.VIEW_NAME:
 			nextView = startView;
 			break;
-		case AddictionOverviewView.VIEW_NAME:
-			nextView = addictionOverviewView;
-			break;
 		default:
 			nextView = startView;
 		}
@@ -105,7 +100,10 @@ public class EntryViewController extends VerticalLayout{
 		Component nextView = getNextView();
 		this.add(title, nextView);
 	}
+	
 
+	
+	
 	public void setCurrentView(Component nextView) {
 		this.currentView = (PatientViewInterface) nextView;
 	}
@@ -117,4 +115,9 @@ public class EntryViewController extends VerticalLayout{
 	public Component getStartView() {
 		return startView;
 	}
+
+	
+	
+	
+	
 }

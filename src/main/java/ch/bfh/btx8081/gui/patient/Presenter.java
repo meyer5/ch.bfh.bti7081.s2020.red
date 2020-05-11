@@ -3,8 +3,18 @@ package ch.bfh.btx8081.gui.patient;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class Presenter implements ViewListenerInterface {
+import ch.bfh.btx8081.interfaces.PatientService;
+import ch.bfh.btx8081.interfaces.Service;
 
+/**
+ * This class collects the data entered in the different 
+ * entry views by the patient
+ * 
+ * @author Remo
+ */
+
+public class Presenter implements ViewListenerInterface {
+	
 	
 	private BigDecimal consumption;
 	private double motivation;
@@ -15,11 +25,16 @@ public class Presenter implements ViewListenerInterface {
 	private boolean confirmed;
 	private LocalDate date;
 	
+	private Service service;
+	
+	// TODO Instanz von PatientService
+	
 	//TODO Input validation
 	// Fragen -> leerer String oder NULL
 	
-	public Presenter() {
+	public Presenter(Service service) {
 		super();
+		
 		this.consumption = new BigDecimal(0);
 		this.motivation = 0.0;
 		this.comment = "";
@@ -29,6 +44,8 @@ public class Presenter implements ViewListenerInterface {
 		this.date = LocalDate.now();
 	}
 
+	
+	
 	@Override
 	public void nextBtnClicked(String viewName, double number) {
 				
@@ -65,16 +82,21 @@ public class Presenter implements ViewListenerInterface {
 		
 	}
 	
+	@Override
 	public void nextBtnClicked(String viewName, boolean confirm) {
 		setConfirmed(true);
 		System.out.println(confirm);
 	}
 	
-	public void nextBtnClicked(String viewName, LocalDate entryDate) {
+	@Override
+	public void startBtnClicked(String viewName, LocalDate entryDate) {
 		setDate(entryDate);
 		System.out.println(entryDate);
 	}
 
+	//TODO wenn confirm button gedrückt wird "packet" gespeichert
+	
+	//TODO "packet" mit allen Daten
 	
 
 	public BigDecimal getConsumption() {

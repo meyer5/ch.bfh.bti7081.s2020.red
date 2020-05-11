@@ -8,7 +8,6 @@ import ch.bfh.btx8081.exceptions.NoQuestionForConsultationException;
 public class Entry {
 
 	private LocalDate date = null;
-	private int mood = 0;
 	private long consumption = 0;
 	private int pressureToConsume = 0;
 	private int motivation = 0;
@@ -18,11 +17,10 @@ public class Entry {
 
 //	Constructor for diary
 
-	protected Entry(int mood, long consumption, int pressureToConsume, int motivation, ArrayList<Activity> activities,
+	protected Entry(long consumption, int pressureToConsume, int motivation, ArrayList<Activity> activities,
 			String comment, QuestionForConsultation questionForConsultation) {
 		super();
 		this.setDate(LocalDate.now());
-		this.mood = mood;
 		this.consumption = consumption;
 		this.pressureToConsume = pressureToConsume;
 		this.motivation = motivation;
@@ -33,11 +31,10 @@ public class Entry {
 	
 //	Constructor for persistence
 	
-	public Entry(LocalDate date, int mood, long consumption, int pressureToConsume, int motivation,
+	public Entry(LocalDate date, long consumption, int pressureToConsume, int motivation,
 			ArrayList<Activity> activities, String comment, QuestionForConsultation questionForConsultation) {
 		super();
 		this.date = date;
-		this.mood = mood;
 		this.consumption = consumption;
 		this.pressureToConsume = pressureToConsume;
 		this.motivation = motivation;
@@ -54,14 +51,6 @@ public class Entry {
 
 	protected void setDate(LocalDate date) {
 		this.date = date;
-	}
-
-	public int getMood() {
-		return mood;
-	}
-
-	protected void setMood(int mood) {
-		this.mood = mood;
 	}
 
 	public long getConsumption() {

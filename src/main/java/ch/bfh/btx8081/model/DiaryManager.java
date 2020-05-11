@@ -21,6 +21,7 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 //	Singleton
 	private DiaryManager() {
 		this.id = 1000;
+		this.setUp();
 	}
 
 	public static DiaryManager getInstance() {
@@ -47,10 +48,10 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 	}
 
 	@Override
-	public ArrayList<Patient> searchPatientOfDoctor(Doctor doctor, String SearchQuery) throws PatientNotFoundException {
+	public ArrayList<Patient> searchPatientOfDoctor(Doctor doctor, String searchQuery) throws PatientNotFoundException {
 		ArrayList<Patient> res = new ArrayList<Patient>();
 		for (Patient a : doctor.getPatients()) {
-			if (a.toString().contains(SearchQuery)) {
+			if (a.toString().contains(searchQuery)) {
 				res.add(a);
 			}
 		}
@@ -74,9 +75,8 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 
 //	User management
 
-	@Override
-	public void authenticate(String userName, String password) throws WrongPasswordException, UserNotFoundException {
-		this.searchUserByUsername(userName).authenticate(userName, password);
+	public User authenticate(String userName, String password) throws WrongPasswordException, UserNotFoundException {
+		return this.searchUserByUsername(userName).authenticate(userName, password);
 	}
 
 	@Override
@@ -144,10 +144,10 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 	}
 
 	@Override
-	public void newEntry(Patient patient, int mood, long consumption, int pressureToConsume, int motivation,
+	public void newEntry(Patient patient, long consumption, int pressureToConsume, int motivation,
 			ArrayList<Activity> activities, String comment, String questionForConsultation)
 			throws ShowAvoidanceStrategyException {
-		patient.getDiary().newEntry(mood, consumption, pressureToConsume, motivation, activities, comment,
+		patient.getDiary().newEntry(consumption, pressureToConsume, motivation, activities, comment,
 				questionForConsultation);
 	}
 
@@ -185,6 +185,30 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 
 	public void setDoctors(ArrayList<Doctor> doctors) {
 		this.doctors = doctors;
+	}
+
+//	Testing
+	private void setUp() {
+//		this.newDoctor(firstName, lastName, phoneNumber, eMail, userName, password);
+		try {
+			this.newDoctor("Hans", "Meier", "0777777777", "hans.meier@mail.ch", "hmeier", "123");
+
+			this.newDoctor("Heidi", "Müller", "0700000000", "heidi.mueller@mail.ch", "hmueller", "asdf");
+//		this.newPatient(firstName, lastName, phoneNumber, eMail, userName, password, addiction, mainInfo, doctor, consumedSubstance, consumptionMetric, conditionAutomaticAlarm);
+			this.newPatient("Remo", "Meyer", "0700000001", "hans.meier@mail.ch", "remo", "123", "Hero", "Kommentar",
+					(Doctor) this.searchUserByUsername("hmeier"), "Hero", "mg", "Nicht implementiert");
+			this.newPatient("Kaurisanker", "Kirupananthan", "0700000002", "hans.meier@mail.ch", "kausi", "123", "Hero",
+					"Kommentar", (Doctor) this.searchUserByUsername("hmeier"), "Hero", "mg", "Nicht implementiert");
+			this.newPatient("Natalya", "Dénervaud", "0700000003", "hans.meier@mail.ch", "natalya", "123", "Hero",
+					"Kommentar", (Doctor) this.searchUserByUsername("hmeier"), "Hero", "mg", "Nicht implementiert");
+			this.newPatient("Dmytriy", "Pelts", "0700000004", "hans.meier@mail.ch", "dmytriy", "123", "Hero",
+					"Kommentar", (Doctor) this.searchUserByUsername("hmueller"), "Hero", "mg", "Nicht implementiert");
+			this.newPatient("Julian", "Rodriguez", "0700000005", "hans.meier@mail.ch", "julian", "123", "Hero",
+					"Kommentar", (Doctor) this.searchUserByUsername("hmueller"), "Hero", "mg", "Nicht implementiert");
+		} catch (UsernameIsAlreadyTakenException | UserNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

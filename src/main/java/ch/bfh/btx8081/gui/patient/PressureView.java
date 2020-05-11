@@ -5,18 +5,23 @@ import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.NumberField;
 
+
+/**
+ * View where patient can enter felt pressure to consume 
+ * on a given scale
+ * 
+ * @author Remo
+ *
+ */
 public class PressureView  extends VerticalLayout implements PatientViewInterface{
 	
-	/**
-	 * Shows View where patient can enter felt pressure to consume 
-	 * on a scale from 1 to 10
-	 */
 	private static final long serialVersionUID = 1114308463028569154L;
 	public static final String VIEW_NAME = "Pressure";
 	
 	private Presenter presenter;
 	private EntryViewController viewController;
 	
+	private Label title;
 	private NumberField  pressureLevel;
 	private Label pressureLbl;
 	private Button nextBtn;
@@ -25,9 +30,13 @@ public class PressureView  extends VerticalLayout implements PatientViewInterfac
 		
 		this.presenter = presenter;
 		this.viewController = viewController;
+		
+		// Label with title
+		this.title = new Label("Pressure");
+		add(title);
 		// Label with instruction
 		pressureLbl = new Label("Enter your consumtion pressure on a scale from 1 to 10");
-		this.add(pressureLbl);
+		add(pressureLbl);
 		
 		// NumberField
 		pressureLevel = new NumberField ();

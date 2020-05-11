@@ -4,11 +4,15 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
+/**
+ * View where Patient can choose one or more activities he
+ * performed in order to avoid consumption
+ * 
+ * @author Remo
+ *
+ */
 public class ActivityView extends VerticalLayout implements PatientViewInterface {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -6591395272625160181L;
 
 	public static final String VIEW_NAME = "Activity";
@@ -17,7 +21,7 @@ public class ActivityView extends VerticalLayout implements PatientViewInterface
 	private EntryViewController viewController;
 	
 	private Label title;
-	
+	private Label commentLbl;
 	private Button nextBtn;
 
 	public ActivityView(Presenter presenter, EntryViewController viewController) {
@@ -25,16 +29,15 @@ public class ActivityView extends VerticalLayout implements PatientViewInterface
 		this.presenter = presenter;
 		this.viewController = viewController;
 		
-		this.title = new Label("What did you do today?");
-		this.add(title);
+		this.title = new Label("Activities");
+		add(title);
 		
-		// Next Button
+		this.commentLbl = new Label("What did you do today?");
+		add(commentLbl);
+		
 		nextBtn = new Button("Next");
-		// go to next view
 		nextBtn.addClickListener(e -> handleNextBtn());
-		// pass value to listener
-
-		this.add(nextBtn);
+		add(nextBtn);
 
 	}
 	
@@ -49,6 +52,7 @@ public class ActivityView extends VerticalLayout implements PatientViewInterface
 	@Override
 	public void handleNextBtn() {
 		this.viewController.setView();
+		// TODO
 //		presenter.nextBtnClicked(ActivityView.VIEW_NAME, getMotivationIndex());
 	}
 

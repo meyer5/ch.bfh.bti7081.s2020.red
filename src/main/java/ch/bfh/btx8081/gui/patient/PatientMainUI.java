@@ -20,12 +20,18 @@ import com.vaadin.flow.server.VaadinService;
 import com.vaadin.flow.server.VaadinSession;
 
 
+
+/**
+ * View for patient after login
+ * with overwiew
+ * and diary entry option
+ * 
+ * @author Remo
+ *
+ */
 @Route(value = "Patient")
 public class PatientMainUI extends AppLayout implements RouterLayout {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -2650280342702537272L;
 
 		
@@ -60,7 +66,7 @@ public class PatientMainUI extends AppLayout implements RouterLayout {
 				
 		// Navigation items
         //TODO change pictures
-		addToDrawer(createMenuLink(EntryViewController.class, EntryViewController.VIEW_NAME, VaadinIcon.INFO_CIRCLE.create()));
+		addToDrawer(createMenuLink(StartView.class, StartView.VIEW_NAME, VaadinIcon.INFO_CIRCLE.create()));
 				
 
 	}
