@@ -8,7 +8,7 @@ import com.vaadin.flow.router.Route;
 
 import ch.bfh.btx8081.model.Patient;
 
-@Route(value = "search by Name", layout = DoctorMainUI.class)
+@Route(value = "searchByName", layout = DoctorMainUI.class)
 public class SearchByNameView extends VerticalLayout {
 
 
