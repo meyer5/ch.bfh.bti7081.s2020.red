@@ -6,6 +6,8 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 
 import ch.bfh.btx8081.gui.doctor.DoctorMainUI;
+import ch.bfh.btx8081.interfaces.PatientInterface;
+import ch.bfh.btx8081.interfaces.PatientService;
 
 /**
  * This class is responsible for the navigation between the 
@@ -36,13 +38,14 @@ public class EntryViewController extends VerticalLayout{
 	private Component confirmView;
 	
 	private PatientViewInterface currentView;
+	private PatientService patientService;
 
 	public EntryViewController() {
 		
 		this.title = new Label("Diary Entry");
 		add(title);		
 		
-		this.presenter = new Presenter();
+		this.presenter = new Presenter(patientService);
 		
 		// initialise views
 		this.startView = new StartView(presenter, this);
@@ -58,7 +61,9 @@ public class EntryViewController extends VerticalLayout{
 		// Add initial view
 		add(startView);
 	}
-
+	
+	
+	//TODO View nach confirm view ????
 	public Component getNextView() {
 		String viewName = currentView.getName();
 		System.out.println(viewName);

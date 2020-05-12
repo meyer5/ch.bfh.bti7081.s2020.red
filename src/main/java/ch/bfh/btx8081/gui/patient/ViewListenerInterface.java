@@ -12,17 +12,16 @@ import java.time.LocalDate;
  */
 public interface ViewListenerInterface {
 	
-	
-		
+
 	public void nextBtnClicked(String viewName, double motivationNumber);
 
 	public void nextBtnClicked(String viewName, BigDecimal consumption);
 
 	public void nextBtnClicked(String viewName, String input);
 	
-	public void nextBtnClicked(String viewName, boolean confirm);
+	public void confirmBtnClicked(String viewName, boolean confirm);
 	
 	public void startBtnClicked(String viewName, LocalDate entryDate);
-	
+		
 	
 }

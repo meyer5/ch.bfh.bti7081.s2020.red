@@ -51,7 +51,8 @@ public class ConfirmView extends VerticalLayout implements PatientViewInterface 
 	@Override
 	public void handleNextBtn() {
 		this.viewController.setView();
-		this.presenter.nextBtnClicked(QuestionView.VIEW_NAME, confirm());
+		this.presenter.confirmBtnClicked(QuestionView.VIEW_NAME, confirm());
+		
 	}
 
 }
