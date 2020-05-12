@@ -14,7 +14,7 @@ import ch.bfh.btx8081.model.DiaryManager;
 import ch.bfh.btx8081.model.Patient;
 
 @Route(value = "PatientInfo", layout = DoctorMainUI.class)
-public class PatientInfo extends HorizontalLayout {
+public class PatientInfoPresenter extends HorizontalLayout {
 	
 	/**
 	 * 
@@ -26,7 +26,7 @@ public class PatientInfo extends HorizontalLayout {
 	private final VerticalLayout layout;
 	private final DoctorService service;
 	
-	public PatientInfo() throws WrongPasswordException, UserNotFoundException {
+	public PatientInfoPresenter() throws WrongPasswordException, UserNotFoundException {
 		
 		final PatientFormLayout patientShowLayout = new PatientFormLayout();
         layout = new VerticalLayout();

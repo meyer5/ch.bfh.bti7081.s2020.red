@@ -11,20 +11,53 @@ public class PatientFormLayout extends FormLayout {
 	 */
 	private static final long serialVersionUID = -4993947004340633343L;
 	
-	final private TextField firstName = new TextField("First Name"); 
-	final private TextField lastName = new TextField("Last Name"); 
-	final private TextField phoneNumber = new TextField("Phone Number");
-	final private TextField eMail = new TextField("E-Mail");
-	final private TextField addiction = new TextField("Addiction");
-	final private TextField doctor = new TextField("Doctor");
-	final private TextArea mainInfo = new TextArea("Patient Main Info");
-	final private TextField consumedSubstance = new TextField("Consumed Substance");
-	final private TextField consumptionMeric = new TextField("Consumption Meric");
-	final private TextField conditionAutomaticAlarm = new TextField("Max Consumption Alarm");
+	private FormLayout blockOne = new FormLayout();
+	private FormLayout blockTwo = new FormLayout();
+	private FormLayout blockThree = new FormLayout();
+	
+	final private TextField firstName = new TextField(); 
+	final private TextField lastName = new TextField(); 
+	final private TextField phoneNumber = new TextField();
+	final private TextField eMail = new TextField();
+	final private TextField addiction = new TextField();
+	final private TextField userName = new TextField();
+	final private TextField doctor = new TextField();
+	final private TextArea mainInfo = new TextArea();
+	final private TextField consumedSubstance = new TextField();
+	final private TextField consumptionMetric = new TextField();
+	final private TextField conditionAutomaticAlarm = new TextField();
+	
+	
 	
 	public PatientFormLayout() {
-		add(firstName, lastName, phoneNumber, eMail, addiction, doctor, mainInfo, 
-				consumedSubstance, consumptionMeric, conditionAutomaticAlarm);
+		
+		firstName.setWidth("100%");
+		lastName.setWidth("100%");
+		userName.setWidth("100%");
+		phoneNumber.setWidth("100%");
+		eMail.setWidth("100%");
+		addiction.setWidth("100%");
+		mainInfo.setWidth("100%");
+		doctor.setWidth("100%");
+		consumedSubstance.setWidth("100%");
+		consumptionMetric.setWidth("100%");
+		conditionAutomaticAlarm.setWidth("100%");
+		
+		blockOne.addFormItem(firstName, "First Name");
+		blockOne.addFormItem(lastName, "Last name");
+		blockOne.addFormItem(userName, "Username");
+		blockOne.addFormItem(phoneNumber, "Phone number");
+		blockOne.addFormItem(eMail, "Email");
+		
+		blockThree.addFormItem(doctor, "Doctor");
+		blockThree.addFormItem(addiction, "Addiction");
+		
+		blockTwo.addFormItem(consumedSubstance, "Consumed substance");
+		blockTwo.addFormItem(consumptionMetric, "Consumed metric");
+		blockTwo.addFormItem(conditionAutomaticAlarm, "Condition automatic alarm");
+		blockTwo.addFormItem(mainInfo, "Main info");
+		
+		add(blockOne, blockTwo, blockThree);
 	}
 
 	public TextField getFirstName() {
@@ -79,12 +112,16 @@ public class PatientFormLayout extends FormLayout {
 		return consumedSubstance;
 	}
 
-	public TextField getConsumptionMeric() {
-		return consumptionMeric;
+	public TextField getConsumptionMetric() {
+		return consumptionMetric;
 	}
 
 	public TextField getConditionAutomaticAlarm() {
 		return conditionAutomaticAlarm;
+	}
+
+	public TextField getUserName() {
+		return userName;
 	}
 
 }

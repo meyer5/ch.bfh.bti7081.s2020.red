@@ -26,8 +26,7 @@ public class DoctorMainUI extends AppLayout {
     final VerticalLayout menuBar = new VerticalLayout();
 
     menuBar.add(new RouterLink(PatientDashboard.TITLE, PatientDashboard.class));
-    //menuBar.add(new RouterLink(PatientInformation.TITLE, PatientInformation.class));
-    menuBar.add(new RouterLink(PatientInfo.TITLE, PatientInfo.class));
+    menuBar.add(new RouterLink(PatientInfoPresenter.TITLE, PatientInfoPresenter.class));
     menuBar.add(new RouterLink(CreatePatientView.TITLE, CreatePatientView.class));
     menuBar.add(new RouterLink(SearchByNameView.TITLE, SearchByNameView.class));
 
