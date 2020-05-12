@@ -30,17 +30,33 @@ public class PatientFormLayout extends FormLayout {
 	public TextField getFirstName() {
 		return firstName;
 	}
+	
+	public void setFirstName(String firstName) {
+		this.firstName.setValue(firstName);
+	}
 
 	public TextField getLastName() {
 		return lastName;
+	}
+	
+	public void setLastName(String lastName) {
+		this.lastName.setValue(lastName);
 	}
 
 	public TextField getPhoneNumber() {
 		return phoneNumber;
 	}
+	
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber.setValue(phoneNumber);
+	}
 
-	public TextField geteMail() {
+	public TextField getEMail() {
 		return eMail;
+	}
+	
+	public void setEMail(String eMail) {
+		this.eMail.setValue(eMail);
 	}
 
 	public TextField getAddiction() {
@@ -49,6 +65,10 @@ public class PatientFormLayout extends FormLayout {
 
 	public TextField getDoctor() {
 		return doctor;
+	}
+	
+	public void setDoctor(String doctorFirstName) {
+		this.doctor.setValue(doctorFirstName);
 	}
 
 	public TextArea getMainInfo() {
@@ -66,5 +86,5 @@ public class PatientFormLayout extends FormLayout {
 	public TextField getConditionAutomaticAlarm() {
 		return conditionAutomaticAlarm;
 	}
-	
+
 }
