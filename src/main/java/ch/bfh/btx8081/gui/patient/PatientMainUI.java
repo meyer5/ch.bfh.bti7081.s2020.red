@@ -66,7 +66,7 @@ public class PatientMainUI extends AppLayout implements RouterLayout {
 				
 		// Navigation items
         //TODO change pictures
-		addToDrawer(createMenuLink(StartView.class, StartView.VIEW_NAME, VaadinIcon.INFO_CIRCLE.create()));
+		addToDrawer(createMenuLink(EntryViewController.class, EntryViewController.VIEW_NAME, VaadinIcon.INFO_CIRCLE.create()));
 				
 
 	}

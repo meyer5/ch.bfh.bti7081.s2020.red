@@ -19,26 +19,26 @@ public class Presenter implements ViewListenerInterface {
 	private BigDecimal consumption;
 	private double motivation;
 	private String comment;
-	private String questions;
+	private String question;
 	private double pressure;
 	
 	private boolean confirmed;
 	private LocalDate date;
 	
-	private Service service;
+	private PatientService patientService;
 	
 	// TODO Instanz von PatientService
 	
 	//TODO Input validation
 	// Fragen -> leerer String oder NULL
 	
-	public Presenter(Service service) {
-		super();
+	public Presenter(PatientService service) {
 		
+		this.patientService = service;
 		this.consumption = new BigDecimal(0);
 		this.motivation = 0.0;
 		this.comment = "";
-		this.questions = "";
+		this.question = "";
 		this.pressure = 0.0;
 		this.confirmed = false;
 		this.date = LocalDate.now();
@@ -83,20 +83,29 @@ public class Presenter implements ViewListenerInterface {
 	}
 	
 	@Override
-	public void nextBtnClicked(String viewName, boolean confirm) {
+	public void confirmBtnClicked(String viewName, boolean confirm) {
 		setConfirmed(true);
 		System.out.println(confirm);
+		// create the entry for the patient service
+//		patientService.newEntry(consumption, pressure, motivation, activities, comment, question);;
 	}
 	
 	@Override
-	public void startBtnClicked(String viewName, LocalDate entryDate) {
+	public void startBtnClicked(String viewName, LocalDate entryDate) {	
 		setDate(entryDate);
 		System.out.println(entryDate);
 	}
 
 	//TODO wenn confirm button gedrückt wird "packet" gespeichert
 	
-	//TODO "packet" mit allen Daten
+	
+	// getPatient.getDiaries
+	
+	
+	
+	
+	
+	
 	
 
 	public BigDecimal getConsumption() {
@@ -112,7 +121,7 @@ public class Presenter implements ViewListenerInterface {
 	}
 
 	public String getQuestions() {
-		return questions;
+		return question;
 	}
 
 	public double getPressure() {
@@ -137,7 +146,7 @@ public class Presenter implements ViewListenerInterface {
 	}
 
 	private void setQuestions(String questions) {
-		this.questions = questions;
+		this.question = questions;
 	}
 
 	private void setPressure(double pressure) {
