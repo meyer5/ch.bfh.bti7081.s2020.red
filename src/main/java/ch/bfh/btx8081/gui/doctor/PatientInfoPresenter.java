@@ -1,5 +1,6 @@
 package ch.bfh.btx8081.gui.doctor;
 
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -24,13 +25,13 @@ public class PatientInfoPresenter extends HorizontalLayout {
 	public static final String TITLE = "Patient Info";
 	
 	private final VerticalLayout layout;
-	private final DoctorService service;
+	private DoctorService service = null;
 	
 	public PatientInfoPresenter() throws WrongPasswordException, UserNotFoundException {
 		
 		final PatientFormLayout patientShowLayout = new PatientFormLayout();
         layout = new VerticalLayout();
-        
+                      
         this.service = (DoctorService) ServiceManager.getService("hmeier", "123");
         //service.selectPatient((Patient) DiaryManager.getInstance().searchUserByUsername("remo"));
         
@@ -38,21 +39,34 @@ public class PatientInfoPresenter extends HorizontalLayout {
         patientShowLayout.setLastName("Pops");
         patientShowLayout.setPhoneNumber("0782344534");
         patientShowLayout.setEMail("peter.pops@gmail.com");
+        patientShowLayout.setConsumedSubstance("alcohol");
         ((PatientFormLayout) patientShowLayout).setDoctor(service.getDoctor().getFirstName());       
  
         
         // Build a footer, add Save and Cancel buttons
         final HorizontalLayout footer = new HorizontalLayout();
 
+        // Browser page is updated
         Button buttonCancel = new Button("Cancel"); 
-        buttonCancel.addClickListener(event -> buttonCancel.setText("Saved"));
+        buttonCancel.addClickListener(event -> UI.getCurrent().getPage().reload());
         
-        
+        // Changed fields will be saved and browser page is updated
         Button buttonEdit = new Button("Edit", event -> {
             try {
-                //System.out.println(service.getDoctor().getFirstName());
-                //System.out.println(service.getCurrentPatient().getFirstName());
-                //System.out.println(service.getDoctor().getFirstName());
+            	service.changeMainInfo(patientShowLayout.getMainInfo().getValue());
+            	
+            	service.changeContactInfo(patientShowLayout.getFirstName().getValue(), 
+            			                  patientShowLayout.getLastName().getValue(), 
+            			                  patientShowLayout.getPhoneNumber().getValue(), 
+            			                  patientShowLayout.getEMail().getValue());
+            	
+            	service.setConditionAutomaticAlarm(patientShowLayout.getConditionAutomaticAlarm().getValue());
+            	
+            	System.out.println(patientShowLayout.getMainInfo().getValue());
+            	System.out.println(patientShowLayout.getFirstName().getValue());
+            	
+            	UI.getCurrent().getPage().reload();
+            	
             } catch (final Exception e) {
                 e.printStackTrace();
             }
