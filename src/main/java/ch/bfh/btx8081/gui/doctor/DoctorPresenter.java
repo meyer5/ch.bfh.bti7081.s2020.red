@@ -1,107 +1,162 @@
 package ch.bfh.btx8081.gui.doctor;
 
-import java.util.ArrayList;
-
-import ch.bfh.btx8081.exceptions.PatientNotFoundException;
-import ch.bfh.btx8081.exceptions.UserNotFoundException;
 import ch.bfh.btx8081.exceptions.UsernameIsAlreadyTakenException;
-import ch.bfh.btx8081.exceptions.WrongPasswordException;
-import ch.bfh.btx8081.interfaces.DoctorInterface;
-import ch.bfh.btx8081.interfaces.Service;
-import ch.bfh.btx8081.model.Activity;
-import ch.bfh.btx8081.model.AvoidanceStrategy;
-import ch.bfh.btx8081.model.Doctor;
-import ch.bfh.btx8081.model.Entry;
-import ch.bfh.btx8081.model.Patient;
+import ch.bfh.btx8081.interfaces.DoctorService;
 
-public class DoctorPresenter implements DoctorInterface {
+public class DoctorPresenter implements DoctorView {
 
-  
 
-  @Override
-  public ArrayList<Patient> searchPatientOfDoctor(Doctor doctor, String SearchQuery)
-      throws PatientNotFoundException {
-    // TODO Auto-generated method stub
-    return null;
+  private String firstName, lastName, phoneNumber, eMail, userName, password, addiction, mainInfo,
+      consumedSubstance, consumptionMetric, conditionAutomaticAlarm;
+
+  private DoctorView view;
+
+  private DoctorService service;
+
+
+  public DoctorPresenter(DoctorService service, DoctorView view) {
+
+    this.service = service;
+    this.view = view;
+    this.firstName = "";
+    this.lastName = "";
+    this.phoneNumber = "";
+    this.eMail = "";
+    this.userName = "";
+    this.password = "";
+    this.addiction = "";
+    this.mainInfo = "";
+    this.consumedSubstance = "";
+    this.consumptionMetric = "";
+    this.conditionAutomaticAlarm = "";
   }
 
-  @Override
-  public ArrayList<Patient> getAllPatientsOfDoctor(Doctor doctor) {
-    // TODO Auto-generated method stub
-    return null;
+
+  public String getFirstName() {
+    return firstName;
   }
 
-  @Override
-  public ArrayList<Entry> getDiaryEntries(Patient patient) {
-    // TODO Auto-generated method stub
-    return null;
+
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
   }
 
-	/*
-	 * @Override public void authenticate(String userName, String password) throws
-	 * WrongPasswordException, UserNotFoundException { // TODO Auto-generated method
-	 * stub
-	 *
-	 * }
-	 */
 
-  @Override
-  public void newDoctor(String firstName, String lastName, String phoneNumber, String eMail,
-      String userName, String password) throws UsernameIsAlreadyTakenException {
-    // TODO Auto-generated method stub
-    
+  public String getLastName() {
+    return lastName;
   }
 
-  @Override
-  public void newPatient(String firstName, String lastName, String phoneNumber, String eMail,
-      String userName, String password, String addiction, String mainInfo, Doctor doctor,
-      String consumedSubstance, String consumptionMetric, String conditionAutomaticAlarm)
-      throws UsernameIsAlreadyTakenException {
-    // TODO Auto-generated method stub
-    
+
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
   }
 
-  @Override
-  public void changeContactInfo(Patient patient, String firstName, String lastName,
-      String phoneNumber, String eMail) {
-    // TODO Auto-generated method stub
-    
+
+  public String getPhoneNumber() {
+    return phoneNumber;
   }
 
-  @Override
-  public void changeMainInfo(Patient patient, String newMainInfo) {
-    // TODO Auto-generated method stub
-    
+
+  public void setPhoneNumber(String phoneNumber) {
+    this.phoneNumber = phoneNumber;
   }
 
-  @Override
-  public void createNewActivity(Patient patient, String activity, String iconID) {
-    // TODO Auto-generated method stub
-    
+
+  public String getEmail() {
+    return eMail;
   }
 
-  @Override
-  public void removeNewActivity(Patient patient, Activity activity) {
-    // TODO Auto-generated method stub
-    
+
+  public void setEmail(String email) {
+    this.eMail = email;
   }
 
-  @Override
-  public void createNewAvoidanceStrategy(Patient patient, String avoidanceStrategy) {
-    // TODO Auto-generated method stub
-    
+
+  public String getUserName() {
+    return userName;
   }
 
-  @Override
-  public void removeNewAvoidanceStrategy(Patient patient, AvoidanceStrategy avoidanceStrategy) {
-    // TODO Auto-generated method stub
-    
+
+  public void setUserName(String userName) {
+    this.userName = userName;
   }
 
-  @Override
-  public void setConditionAutomaticAlarm(Patient patient, String conditionAutomaticAlarm) {
-    // TODO Auto-generated method stub
-    
+
+  public String getPassword() {
+    return password;
   }
+
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
+
+  public String getAddiction() {
+    return addiction;
+  }
+
+
+  public void setAddiction(String addiction) {
+    this.addiction = addiction;
+  }
+
+
+  public String getMainInfo() {
+    return mainInfo;
+  }
+
+
+  public void setMainInfo(String mainInfo) {
+    this.mainInfo = mainInfo;
+  }
+
+
+  public DoctorService getService() {
+    return service;
+  }
+
+
+  public void setService(DoctorService service) {
+    this.service = service;
+  }
+
+
+  public DoctorView getView() {
+    return view;
+  }
+
+
+  public void setView(DoctorView view) {
+    this.view = view;
+  }
+
+
+  @Override
+  public void saveButton(String patientData) {
+    try {
+      String[] patientDataSplitted = patientData.split(";");
+      this.firstName = patientDataSplitted[0];
+      this.lastName = patientDataSplitted[1];
+      this.phoneNumber = patientDataSplitted[2];
+      this.eMail = patientDataSplitted[3];
+      this.userName = patientDataSplitted[4];
+      this.password = patientDataSplitted[5];
+      this.addiction = patientDataSplitted[6];
+      this.mainInfo = patientDataSplitted[7];
+      this.consumedSubstance = patientDataSplitted[8];
+      this.consumptionMetric = patientDataSplitted[9];
+      this.conditionAutomaticAlarm = patientDataSplitted[10];
+
+      service.newPatient(firstName, lastName, phoneNumber, eMail, userName, password, addiction,
+          mainInfo, consumedSubstance, consumptionMetric, conditionAutomaticAlarm);
+    } catch (UsernameIsAlreadyTakenException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+   
+
+  }
+
 
 }
