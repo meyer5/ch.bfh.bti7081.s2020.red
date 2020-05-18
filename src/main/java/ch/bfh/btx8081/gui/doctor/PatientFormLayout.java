@@ -6,9 +6,6 @@ import com.vaadin.flow.component.textfield.TextField;
 
 public class PatientFormLayout extends FormLayout {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -4993947004340633343L;
 	
 	private FormLayout blockOne = new FormLayout();

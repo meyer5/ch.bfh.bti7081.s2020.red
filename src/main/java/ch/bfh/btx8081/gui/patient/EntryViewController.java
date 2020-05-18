@@ -109,9 +109,6 @@ public class EntryViewController extends VerticalLayout{
 		this.add(title, nextView);
 	}
 	
-
-	
-	
 	public void setCurrentView(Component nextView) {
 		this.currentView = (PatientViewInterface) nextView;
 	}

@@ -84,11 +84,11 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 			String password) throws UsernameIsAlreadyTakenException {
 		try {
 			this.searchUserByUsername(userName);
+			throw new UsernameIsAlreadyTakenException();
 		} catch (UserNotFoundException e) {
 			this.addDoctor(new Doctor(this.nextID(), firstName, lastName, phoneNumber, eMail, userName, password));
 		}
-		throw new UsernameIsAlreadyTakenException();
-
+		
 	}
 
 	@Override
@@ -97,12 +97,11 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 			String consumptionMetric, String conditionAutomaticAlarm) throws UsernameIsAlreadyTakenException {
 		try {
 			this.searchUserByUsername(userName);
+			throw new UsernameIsAlreadyTakenException();
 		} catch (UserNotFoundException e) {
 			new Patient(this.nextID(), firstName, lastName, phoneNumber, eMail, userName, password, addiction, mainInfo,
 					doctor, consumedSubstance, consumptionMetric, conditionAutomaticAlarm);
 		}
-		throw new UsernameIsAlreadyTakenException();
-
 	}
 
 //	Patient management
@@ -192,19 +191,25 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 //		this.newDoctor(firstName, lastName, phoneNumber, eMail, userName, password);
 		try {
 			this.newDoctor("Hans", "Meier", "0777777777", "hans.meier@mail.ch", "hmeier", "123");
-
+			System.out.println("hmeier - created");
 			this.newDoctor("Heidi", "Müller", "0700000000", "heidi.mueller@mail.ch", "hmueller", "asdf");
+			System.out.println("hmueller - created");
 //		this.newPatient(firstName, lastName, phoneNumber, eMail, userName, password, addiction, mainInfo, doctor, consumedSubstance, consumptionMetric, conditionAutomaticAlarm);
 			this.newPatient("Remo", "Meyer", "0700000001", "hans.meier@mail.ch", "remo", "123", "Hero", "Kommentar",
 					(Doctor) this.searchUserByUsername("hmeier"), "Hero", "mg", "Nicht implementiert");
+			System.out.println("remo - created");
 			this.newPatient("Kaurisanker", "Kirupananthan", "0700000002", "hans.meier@mail.ch", "kausi", "123", "Hero",
 					"Kommentar", (Doctor) this.searchUserByUsername("hmeier"), "Hero", "mg", "Nicht implementiert");
+			System.out.println("kausi - created");
 			this.newPatient("Natalya", "Dénervaud", "0700000003", "hans.meier@mail.ch", "natalya", "123", "Hero",
 					"Kommentar", (Doctor) this.searchUserByUsername("hmeier"), "Hero", "mg", "Nicht implementiert");
+			System.out.println("natalya - created");
 			this.newPatient("Dmytriy", "Pelts", "0700000004", "hans.meier@mail.ch", "dmytriy", "123", "Hero",
 					"Kommentar", (Doctor) this.searchUserByUsername("hmueller"), "Hero", "mg", "Nicht implementiert");
+			System.out.println("dmytriy - created");
 			this.newPatient("Julian", "Rodriguez", "0700000005", "hans.meier@mail.ch", "julian", "123", "Hero",
 					"Kommentar", (Doctor) this.searchUserByUsername("hmueller"), "Hero", "mg", "Nicht implementiert");
+			System.out.println("julian - created");
 		} catch (UsernameIsAlreadyTakenException | UserNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

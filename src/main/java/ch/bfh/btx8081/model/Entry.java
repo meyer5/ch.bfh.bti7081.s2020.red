@@ -3,8 +3,6 @@ package ch.bfh.btx8081.model;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import ch.bfh.btx8081.exceptions.NoQuestionForConsultationException;
-
 public class Entry {
 
 	private LocalDate date = null;
@@ -93,10 +91,7 @@ public class Entry {
 		this.comment = comment;
 	}
 
-	public QuestionForConsultation getQuestionsForConsultation() throws NoQuestionForConsultationException {
-		if (questionForConsultation == null) {
-			throw new NoQuestionForConsultationException();
-		}
+	public QuestionForConsultation getQuestionsForConsultation() {
 		return questionForConsultation;
 	}
 

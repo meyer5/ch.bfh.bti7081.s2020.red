@@ -8,7 +8,7 @@ import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 
-@Route(value = "Dashboard", layout = DoctorMainUI.class)
+@Route(value = "dashboard", layout = DoctorMainUI.class)
 public class PatientDashboard extends VerticalLayout {
 	
     /**

@@ -12,7 +12,7 @@ import com.vaadin.flow.router.Route;
 import ch.bfh.btx8081.model.Doctor;
 
 
-@Route(value = "create Patient", layout = DoctorMainUI.class)
+@Route(value = "create_patient", layout = DoctorMainUI.class)
 public class CreatePatientView extends VerticalLayout {
 
   /**

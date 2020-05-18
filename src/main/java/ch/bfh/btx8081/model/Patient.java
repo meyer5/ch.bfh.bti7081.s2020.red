@@ -25,6 +25,7 @@ public class Patient extends User {
 		this.addiction = addiction;
 		this.mainInfo = mainInfo;
 		this.doctor = doctor;
+		doctor.addPatient(this);
 		this.diary = new Diary(consumedSubstance, consumptionMetric, conditionAutomaticAlarm);
 	}
 	

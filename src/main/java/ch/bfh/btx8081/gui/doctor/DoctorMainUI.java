@@ -8,12 +8,9 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLink;
 
 
-@Route(value = "Doctor")
+@Route(value = "doctor")
 public class DoctorMainUI extends AppLayout {
 
-  /**
-   * 
-   */
   private static final long serialVersionUID = -5980036826709531009L;
 
   public DoctorMainUI() {
