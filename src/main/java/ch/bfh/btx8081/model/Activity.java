@@ -5,7 +5,7 @@ public class Activity {
 	private String activity = "";
 	private String iconID = "";
 	
-	protected Activity(String activity, String iconID) {
+	public Activity(String activity, String iconID) {
 		super();
 		this.activity = activity;
 		this.iconID = iconID;

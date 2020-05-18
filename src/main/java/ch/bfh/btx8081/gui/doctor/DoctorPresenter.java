@@ -17,6 +17,7 @@ import ch.bfh.btx8081.model.Patient;
 public class DoctorPresenter implements DoctorInterface {
 
   
+
   @Override
   public ArrayList<Patient> searchPatientOfDoctor(Doctor doctor, String SearchQuery)
       throws PatientNotFoundException {
@@ -40,7 +41,7 @@ public class DoctorPresenter implements DoctorInterface {
 	 * @Override public void authenticate(String userName, String password) throws
 	 * WrongPasswordException, UserNotFoundException { // TODO Auto-generated method
 	 * stub
-	 * 
+	 *
 	 * }
 	 */
 

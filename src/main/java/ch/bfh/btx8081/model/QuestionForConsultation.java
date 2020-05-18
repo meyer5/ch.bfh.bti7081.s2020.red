@@ -4,7 +4,7 @@ public class QuestionForConsultation {
 	
 	private String question = "";
 
-	protected QuestionForConsultation(String question) {
+	public QuestionForConsultation(String question) {
 		super();
 		this.question = question;
 	}
