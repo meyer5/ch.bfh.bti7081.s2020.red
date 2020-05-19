@@ -21,8 +21,7 @@ public class DoctorPresenter {
 		this.service = service;
 		this.gui = gui;
 		gui.ifPresent(ui -> ui.navigate(new MainDoctorView().getClass()));
-		
-		
+
 //    	this.view = view;
 		this.firstName = "";
 		this.lastName = "";
@@ -142,7 +141,5 @@ public class DoctorPresenter {
 		}
 
 	}
-
-  }
 
 }
