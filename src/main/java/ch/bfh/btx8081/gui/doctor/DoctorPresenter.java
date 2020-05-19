@@ -3,21 +3,21 @@ package ch.bfh.btx8081.gui.doctor;
 import ch.bfh.btx8081.exceptions.UsernameIsAlreadyTakenException;
 import ch.bfh.btx8081.interfaces.DoctorService;
 
-public class DoctorPresenter implements DoctorView {
+public class DoctorPresenter {
 
 
   private String firstName, lastName, phoneNumber, eMail, userName, password, addiction, mainInfo,
       consumedSubstance, consumptionMetric, conditionAutomaticAlarm;
 
-  private DoctorView view;
+  //private DoctorView view;
 
   private DoctorService service;
 
 
-  public DoctorPresenter(DoctorService service, DoctorView view) {
+  public DoctorPresenter(DoctorService service) {
 
     this.service = service;
-    this.view = view;
+    //this.view = view;
     this.firstName = "";
     this.lastName = "";
     this.phoneNumber = "";
@@ -122,17 +122,17 @@ public class DoctorPresenter implements DoctorView {
   }
 
 
-  public DoctorView getView() {
-    return view;
-  }
+  //public DoctorView getView() {
+  //  return view;
+  //}
 
 
-  public void setView(DoctorView view) {
-    this.view = view;
-  }
+  //public void setView(DoctorView view) {
+   // this.view = view;
+  //}
 
 
-  @Override
+
   public void saveButton(String patientData) {
     try {
       String[] patientDataSplitted = patientData.split(";");

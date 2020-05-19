@@ -24,7 +24,7 @@ public class DoctorMainUI extends AppLayout {
 
     menuBar.add(new RouterLink(PatientDashboard.TITLE, PatientDashboard.class));
     menuBar.add(new RouterLink(PatientInfoPresenter.TITLE, PatientInfoPresenter.class));
-    menuBar.add(new RouterLink(CreatePatientView.TITLE, CreatePatientView.class));
+    //menuBar.add(new RouterLink(CreatePatientView.TITLE, CreatePatientView.class));
     menuBar.add(new RouterLink(SearchByNameView.TITLE, SearchByNameView.class));
 
     addToDrawer(menuBar);
