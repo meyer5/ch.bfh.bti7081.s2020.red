@@ -21,6 +21,8 @@ public class CreatePatientView extends VerticalLayout {
   private static final long serialVersionUID = 1L;
 
   public DoctorPresenter presenter;
+  
+  public static final String TITLE = "createPatientView";
 
   // private ViewController viewController;
 
@@ -50,6 +52,8 @@ public class CreatePatientView extends VerticalLayout {
   private TextField consumptionMetric = new TextField();
   private TextField conditionAutomaticAlarm = new TextField();
   private Button saveButton = new Button("Save Patient");
+  private Button cancelButton = new Button("cancel");
+  
 
 
 
@@ -110,7 +114,7 @@ public class CreatePatientView extends VerticalLayout {
 
 
 
-    add(blockOne, blockTwo, blockThree, saveButton);
+    add(blockOne, blockTwo, blockThree, saveButton, cancelButton);
 
     // shouldn't be implemented here
     saveButton.addClickListener(ClickEvent -> {
