@@ -11,7 +11,7 @@ import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.router.Route;
 
 
-@Route(value = "openQuestions", layout = DoctorMainUI.class)
+@Route(value = "questions")
 public class QuestionsView extends VerticalLayout {
 	
 	  /**
