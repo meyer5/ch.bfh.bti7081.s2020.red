@@ -27,6 +27,7 @@ public class ZZZ_del_DoctorMainUI extends AppLayout {
 //    menuBar.add(new RouterLink(CreatePatientView.TITLE, CreatePatientView.class));
     menuBar.add(new RouterLink(MainDoctorView.TITLE, MainDoctorView.class));
 
+
     addToDrawer(menuBar);
 
   }

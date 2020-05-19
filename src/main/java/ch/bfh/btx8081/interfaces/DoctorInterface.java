@@ -1,6 +1,7 @@
 package ch.bfh.btx8081.interfaces;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import ch.bfh.btx8081.exceptions.PatientNotFoundException;
 import ch.bfh.btx8081.exceptions.UsernameIsAlreadyTakenException;
@@ -12,11 +13,11 @@ import ch.bfh.btx8081.model.Patient;
 
 public interface DoctorInterface {
 
-	ArrayList<Patient> searchPatientOfDoctor(Doctor doctor, String searchQuery) throws PatientNotFoundException;
+	List<Patient> searchPatientOfDoctor(Doctor doctor, String searchQuery) throws PatientNotFoundException;
 
-	ArrayList<Patient> getAllPatientsOfDoctor(Doctor doctor);
+	List<Patient> getAllPatientsOfDoctor(Doctor doctor);
 
-	ArrayList<Entry> getDiaryEntries(Patient patient);
+	List<Entry> getDiaryEntries(Patient patient);
 
 	void newDoctor(String firstName, String lastName, String phoneNumber, String eMail, String userName,
 			String password) throws UsernameIsAlreadyTakenException;

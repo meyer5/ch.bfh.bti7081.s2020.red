@@ -1,20 +1,49 @@
 package ch.bfh.btx8081.model;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import ch.bfh.btx8081.exceptions.ShowAvoidanceStrategyException;
 
+@Entity // (name = "Diary")
+@Table(name = "diary")
 public class Diary {
+
+	@Id
+	@GeneratedValue
+//	@Column(name = "diary_ID")
+	private Long id;
 
 	private String consumedSubstance = "";
 	private String consumptionMeric = "";
 	private String conditionAutomaticAlarm = "";
-	private ArrayList<Activity> activities = new ArrayList<Activity>();
-	private ArrayList<AvoidanceStrategy> avoidanceStrategies = new ArrayList<AvoidanceStrategy>();
-	private ArrayList<QuestionForConsultation> unansweredQuestions = new ArrayList<QuestionForConsultation>();
-	private ArrayList<Entry> entries = new ArrayList<Entry>();
 
-//	Constructor for persistence
+	@OneToMany(mappedBy = "diary", targetEntity=Activity.class)
+	private List<Activity> activities = new ArrayList<Activity>();
+
+	@OneToMany(mappedBy = "diary")
+	private List<AvoidanceStrategy> avoidanceStrategies = new ArrayList<AvoidanceStrategy>();
+
+	private List<QuestionForConsultation> unansweredQuestions = new ArrayList<QuestionForConsultation>();
+
+	@OneToMany(mappedBy = "diary")
+	private List<Entry> entries = new ArrayList<Entry>();
+
+//	Constructor for JPA
+	public Diary() {
+
+	}
 
 	public Diary(String consumedSubstance, String consumptionMeric, String conditionAutomaticAlarm,
 			ArrayList<Activity> activities, ArrayList<AvoidanceStrategy> avoidanceStrategies,
@@ -30,7 +59,7 @@ public class Diary {
 	}
 
 //	Constructor for new diary in patient constructor
-	
+
 	protected Diary(String consumedSubstance, String consumptionMeric, String conditionAutomaticAlarm) {
 		super();
 		this.consumptionMeric = consumptionMeric;
@@ -40,9 +69,8 @@ public class Diary {
 		this.avoidanceStrategies = defaultAvoidanceStrategies();
 	}
 
-	protected void newEntry(long consumption, int pressureToConsume, int motivation,
-			ArrayList<Activity> activities, String comment, String questionForConsultation)
-			throws ShowAvoidanceStrategyException {
+	protected void newEntry(long consumption, int pressureToConsume, int motivation, ArrayList<Activity> activities,
+			String comment, String questionForConsultation) throws ShowAvoidanceStrategyException {
 		QuestionForConsultation q = null;
 		if (questionForConsultation != null && !questionForConsultation.equals("")) {
 			q = new QuestionForConsultation(questionForConsultation);
@@ -92,8 +120,8 @@ public class Diary {
 
 //	Default Diary
 
-	private ArrayList<AvoidanceStrategy> defaultAvoidanceStrategies() {
-		ArrayList<AvoidanceStrategy> res = new ArrayList<AvoidanceStrategy>();
+	private List<AvoidanceStrategy> defaultAvoidanceStrategies() {
+		List<AvoidanceStrategy> res = new ArrayList<AvoidanceStrategy>();
 		res.add(new AvoidanceStrategy("1"));
 		res.add(new AvoidanceStrategy("2"));
 		res.add(new AvoidanceStrategy("3"));
@@ -101,8 +129,8 @@ public class Diary {
 		return res;
 	}
 
-	private ArrayList<Activity> defaultActivities() {
-		ArrayList<Activity> res = new ArrayList<Activity>();
+	private List<Activity> defaultActivities() {
+		List<Activity> res = new ArrayList<Activity>();
 		res.add(new Activity("1", "1111"));
 		res.add(new Activity("2", "1111"));
 		res.add(new Activity("3", "1111"));
@@ -136,35 +164,35 @@ public class Diary {
 		this.conditionAutomaticAlarm = conditionAutomaticAlarm;
 	}
 
-	public ArrayList<Activity> getActivities() {
+	public List<Activity> getActivities() {
 		return activities;
 	}
 
-	protected void setActivities(ArrayList<Activity> activities) {
+	protected void setActivities(List<Activity> activities) {
 		this.activities = activities;
 	}
 
-	public ArrayList<AvoidanceStrategy> getAvoidanceStrategies() {
+	public List<AvoidanceStrategy> getAvoidanceStrategies() {
 		return avoidanceStrategies;
 	}
 
-	protected void setAvoidanceStrategies(ArrayList<AvoidanceStrategy> avoidanceStrategies) {
+	protected void setAvoidanceStrategies(List<AvoidanceStrategy> avoidanceStrategies) {
 		this.avoidanceStrategies = avoidanceStrategies;
 	}
 
-	public ArrayList<QuestionForConsultation> getUnansweredQuestions() {
+	public List<QuestionForConsultation> getUnansweredQuestions() {
 		return unansweredQuestions;
 	}
 
-	protected void setUnansweredQuestions(ArrayList<QuestionForConsultation> unansweredQuestions) {
+	protected void setUnansweredQuestions(List<QuestionForConsultation> unansweredQuestions) {
 		this.unansweredQuestions = unansweredQuestions;
 	}
 
-	public ArrayList<Entry> getEntries() {
+	public List<Entry> getEntries() {
 		return entries;
 	}
 
-	protected void setEntries(ArrayList<Entry> entries) {
+	protected void setEntries(List<Entry> entries) {
 		this.entries = entries;
 	}
 

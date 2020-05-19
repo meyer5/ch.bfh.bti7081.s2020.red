@@ -1,15 +1,34 @@
 package ch.bfh.btx8081.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "doctor")
 public class Doctor extends User{
 	
-	private ArrayList<Patient> patients =  new ArrayList<Patient>();
+	// ArrayList geht nicht, Fehlermeldung
+	@OneToMany(
+			mappedBy = "doctor",
+			cascade = CascadeType.PERSIST
+//	        orphanRemoval = true
+	        )
+	private List<Patient> patients =  new ArrayList<Patient>();
 
+//	Constructor for JPA
+	public Doctor() {
+		
+	}
+	
 //	Constructor for persistence
-	public Doctor(long id, String firstName, String lastName, String phoneNumber, String eMail, String userName, String password,
+	public Doctor(String firstName, String lastName, String phoneNumber, String eMail, String userName, String password,
 			ArrayList<Patient> patients) {
-		super(id, firstName, lastName, phoneNumber, eMail, userName, password);
+		super(firstName, lastName, phoneNumber, eMail, userName, password);
 		this.patients = patients;
 	}
 	
@@ -30,7 +49,7 @@ public class Doctor extends User{
 	
 //	getters & setters
 	
-	public ArrayList<Patient> getPatients() {
+	public List<Patient> getPatients() {
 		return patients;
 	}
 

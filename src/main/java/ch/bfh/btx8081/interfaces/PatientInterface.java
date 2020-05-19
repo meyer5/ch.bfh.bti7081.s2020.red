@@ -1,6 +1,7 @@
 package ch.bfh.btx8081.interfaces;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import ch.bfh.btx8081.exceptions.ShowAvoidanceStrategyException;
 import ch.bfh.btx8081.model.Activity;
@@ -10,7 +11,7 @@ import ch.bfh.btx8081.model.Patient;
 
 public interface PatientInterface {
 
-	ArrayList<Entry> getDiaryEntries(Patient patient);
+	List<Entry> getDiaryEntries(Patient patient);
 	
 	void createNewActivity(Patient patient, String activity, String iconID);
 

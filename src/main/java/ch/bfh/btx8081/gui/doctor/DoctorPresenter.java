@@ -1,11 +1,10 @@
 package ch.bfh.btx8081.gui.doctor;
 
 import java.util.Optional;
-
-import com.vaadin.flow.component.UI;
-
 import ch.bfh.btx8081.exceptions.UsernameIsAlreadyTakenException;
 import ch.bfh.btx8081.interfaces.DoctorService;
+
+import com.vaadin.flow.component.UI;
 
 public class DoctorPresenter {
 
@@ -143,5 +142,7 @@ public class DoctorPresenter {
 		}
 
 	}
+
+  }
 
 }

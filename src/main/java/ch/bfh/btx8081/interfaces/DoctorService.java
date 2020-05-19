@@ -1,6 +1,6 @@
 package ch.bfh.btx8081.interfaces;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import ch.bfh.btx8081.exceptions.PatientNotFoundException;
 import ch.bfh.btx8081.exceptions.UsernameIsAlreadyTakenException;
@@ -28,15 +28,15 @@ public class DoctorService implements Service {
 		this.currentPatient = patient;
 	}
 
-	public ArrayList<Patient> searchPatientOfDoctor(String searchQuery) throws PatientNotFoundException {
+	public List<Patient> searchPatientOfDoctor(String searchQuery) throws PatientNotFoundException {
 		return doctorInterface.searchPatientOfDoctor(doctor, searchQuery);
 	}
 
-	public ArrayList<Patient> getAllPatientsOfDoctor() {
+	public List<Patient> getAllPatientsOfDoctor() {
 		return doctorInterface.getAllPatientsOfDoctor(doctor);
 	}
 
-	public ArrayList<Entry> getDiaryEntries() {
+	public List<Entry> getDiaryEntries() {
 		return doctorInterface.getDiaryEntries(currentPatient);
 	}
 

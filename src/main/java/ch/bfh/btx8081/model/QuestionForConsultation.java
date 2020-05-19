@@ -1,7 +1,14 @@
 package ch.bfh.btx8081.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity(name = "Question")
+@Table(name = "question")
 public class QuestionForConsultation {
 	
+	@Id
 	private String question = "";
 
 	public QuestionForConsultation(String question) {

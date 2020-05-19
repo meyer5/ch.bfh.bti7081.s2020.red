@@ -1,16 +1,48 @@
 package ch.bfh.btx8081.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+
 import ch.bfh.btx8081.exceptions.WrongPasswordException;
 
-public abstract class User {
+@Entity
+@Table(name = "user")
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 
-	private final long id;
+public abstract class User {
+	
+	@Id
+	@Column(nullable = false)
+	@GeneratedValue()
+	private long id;			//cannot be final because of JPA
+	
 	private String firstName = "";
 	private String lastName = "";
 	private String phoneNumber = "";
 	private String eMail = "";
 	private String userName = "";
 	private String password = "";
+	
+	// public constructor with no arguments for JPA
+	
+	public User() {
+		
+	}
+	
+	protected User(String firstName, String lastName, String phoneNumber, String eMail, String userName, String password) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.phoneNumber = phoneNumber;
+		this.eMail = eMail;
+		this.userName = userName;
+		this.password = password;
+	}
 	
 	protected User(long id, String firstName, String lastName, String phoneNumber, String eMail, String userName, String password) {
 		super();

@@ -1,9 +1,26 @@
 package ch.bfh.btx8081.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "activity")
 public class Activity {
-	
+	@Id
 	private String activity = "";
 	private String iconID = "";
+	
+	@ManyToOne
+	@JoinColumn(name = "diaryID")
+	private Diary diary;
+
+//	Constructor for JPA
+	public Activity() {
+		
+	}
 	
 	public Activity(String activity, String iconID) {
 		super();

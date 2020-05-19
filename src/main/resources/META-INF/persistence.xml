@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+	version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
+ 
+	<!-- Persistence Provider -->
+	<!-- RESOURCE-LOCAL: Application-managed transactions -->
+	<!-- JTA: Container-managed transactions -->
+	<persistence-unit name="addictionDiary" transaction-type="RESOURCE_LOCAL">
+		
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+ 
+		<!-- Entity Class / Add Classes here: -->
+		
+		<class>ch.bfh.btx8081.model.User</class>
+		<class>ch.bfh.btx8081.model.QuestionForConsultation</class>
+		<class>ch.bfh.btx8081.model.Patient</class>
+		<class>ch.bfh.btx8081.model.Entry</class>
+		<class>ch.bfh.btx8081.model.Doctor</class>
+		<class>ch.bfh.btx8081.model.Diary</class>
+		<class>ch.bfh.btx8081.model.AvoidanceStrategy</class>
+		<class>ch.bfh.btx8081.model.Activity</class>
+
+		<properties>	
+			<!-- Connection properties -->
+			<property name="javax.persistence.jdbc.driver" value="org.sqlite.JDBC" />
+		    <property name="javax.persistence.jdbc.url" value="jdbc:sqlite:${basedir}/addictionDiary.db" />
+			<!-- <property name="javax.persistence.jdbc.url" value="C:\Users\Remo\git\ch.bfh.bti7081.s2020.red\src\main\resources\addictionDiary.db" /> -->
+			
+			<!-- Fill if we need user and password -->
+			<property name="javax.persistence.jdbc.user" value="" />
+			<property name="javax.persistence.jdbc.password" value="" />
+		    
+		    <property name="eclipselink.logging.level" value="INFO" />
+		    <!-- <property name="eclipselink.logging.level" value="ALL" /> -->
+
+			<!-- JPA doesn't create the schema -->
+			<!-- property name="eclipselink.ddl-generation" value="none" />  -->
+			<!-- JPA destroys and recreates the schema -->
+			<!-- <property name="eclipselink.ddl-generation" value="drop-and-create-tables" /> -->
+			
+			<!-- EclipseLink should create the database schema automatically -->
+  			<property name="eclipselink.ddl-generation" value="drop-and-create-tables" />
+  			<property name="eclipselink.ddl-generation.output-mode" value="database" />
+			
+		</properties>
+ 
+	</persistence-unit>
+</persistence>
