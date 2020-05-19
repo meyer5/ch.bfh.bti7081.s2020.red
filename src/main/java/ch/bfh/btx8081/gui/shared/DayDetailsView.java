@@ -13,8 +13,8 @@ import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-@Route(value = "entry-details")
-public class EntryDetailsView extends VerticalLayout
+@Route(value = "day-details")
+public class DayDetailsView extends VerticalLayout
 {
     private static final long serialVersionUID = 3L;
     public static final String TITLE = "entry";
@@ -23,7 +23,7 @@ public class EntryDetailsView extends VerticalLayout
     VerticalLayout vLayoutRight = new VerticalLayout();
     SplitLayout vSplitLayout = new SplitLayout();
 
-    public EntryDetailsView()
+    public DayDetailsView()
     {
         // TODO: Remove after persistance available
         QuestionForConsultation q = new QuestionForConsultation("BlaBla");
