@@ -1,6 +1,7 @@
 package ch.bfh.btx8081.interfaces;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import ch.bfh.btx8081.exceptions.ShowAvoidanceStrategyException;
 import ch.bfh.btx8081.model.Activity;
@@ -21,7 +22,7 @@ public class PatientService implements Service {
 
 //	Interface
 
-	public ArrayList<Entry> getDiaryEntries() {
+	public List<Entry> getDiaryEntries() {
 		return patientInterface.getDiaryEntries(patient);
 	}
 

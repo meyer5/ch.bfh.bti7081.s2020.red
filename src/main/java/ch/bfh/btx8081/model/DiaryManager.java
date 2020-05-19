@@ -1,6 +1,7 @@
 package ch.bfh.btx8081.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import ch.bfh.btx8081.exceptions.PatientNotFoundException;
 import ch.bfh.btx8081.exceptions.ShowAvoidanceStrategyException;
@@ -64,12 +65,12 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 //	get lists
 
 	@Override
-	public ArrayList<Patient> getAllPatientsOfDoctor(Doctor doctor) {
+	public List<Patient> getAllPatientsOfDoctor(Doctor doctor) {
 		return doctor.getPatients();
 	}
 
 	@Override
-	public ArrayList<Entry> getDiaryEntries(Patient patient) {
+	public List<Entry> getDiaryEntries(Patient patient) {
 		return patient.getDiary().getEntries();
 	}
 

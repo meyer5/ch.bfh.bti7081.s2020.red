@@ -41,6 +41,12 @@ public class DoctorPresenter {
     this.firstName = firstName;
   }
 
+//  @Override
+//  public void authenticate(String userName, String password)
+//      throws WrongPasswordException, UserNotFoundException {
+//    // TODO Auto-generated method stub
+//    
+//  }
 
   public String getLastName() {
     return lastName;

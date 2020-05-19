@@ -2,16 +2,50 @@ package ch.bfh.btx8081.model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "entry")
 public class Entry {
-
+	
+	@Id
+    @GeneratedValue 	//artificial ID
+    private Long id;
+	
 	private LocalDate date = null;
 	private long consumption = 0;
 	private int pressureToConsume = 0;
 	private int motivation = 0;
-	private ArrayList<Activity> activities =  new ArrayList<Activity>();
+	
+	@ManyToOne
+	@JoinColumn(name = "diary_ID")
+	private Diary diary;
+	
+	
+	private List<Activity> activities =  new ArrayList<Activity>();
+	
 	private String comment = "";
+	
+	@OneToOne
 	private QuestionForConsultation questionForConsultation = null;
+	
+	
+	// public constructor with no arguments for JPA
+		public Entry() {
+		
+		}
+	
 
 //	Constructor for diary
 
@@ -75,7 +109,7 @@ public class Entry {
 		this.motivation = motivation;
 	}
 
-	public ArrayList<Activity> getActivities() {
+	public List<Activity> getActivities() {
 		return activities;
 	}
 
