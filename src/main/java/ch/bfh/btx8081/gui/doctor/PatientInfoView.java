@@ -14,8 +14,8 @@ import ch.bfh.btx8081.interfaces.ServiceManager;
 import ch.bfh.btx8081.model.DiaryManager;
 import ch.bfh.btx8081.model.Patient;
 
-@Route(value = "PatientInfo", layout = DoctorMainUI.class)
-public class PatientInfoPresenter extends HorizontalLayout {
+@Route(value = "patient-info")
+public class PatientInfoView extends HorizontalLayout {
 	
 	/**
 	 * 
@@ -27,9 +27,9 @@ public class PatientInfoPresenter extends HorizontalLayout {
 	private final VerticalLayout layout;
 	private DoctorService service = null;
 	
-	public PatientInfoPresenter() throws WrongPasswordException, UserNotFoundException {
+	public PatientInfoView() throws WrongPasswordException, UserNotFoundException {
 		
-		final PatientFormLayout patientShowLayout = new PatientFormLayout();
+		final EditPatientView patientShowLayout = new EditPatientView();
         layout = new VerticalLayout();
                       
         this.service = (DoctorService) ServiceManager.getService("hmeier", "123");
@@ -40,7 +40,7 @@ public class PatientInfoPresenter extends HorizontalLayout {
         patientShowLayout.setPhoneNumber("0782344534");
         patientShowLayout.setEMail("peter.pops@gmail.com");
         patientShowLayout.setConsumedSubstance("alcohol");
-        ((PatientFormLayout) patientShowLayout).setDoctor(service.getDoctor().getFirstName());       
+        ((EditPatientView) patientShowLayout).setDoctor(service.getDoctor().getFirstName());       
  
         
         // Build a footer, add Save and Cancel buttons

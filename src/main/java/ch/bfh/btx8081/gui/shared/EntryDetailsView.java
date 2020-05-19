@@ -1,4 +1,4 @@
-package ch.bfh.btx8081.gui.doctor;
+package ch.bfh.btx8081.gui.shared;
 
 import ch.bfh.btx8081.model.Activity;
 import ch.bfh.btx8081.model.Entry;
@@ -13,17 +13,17 @@ import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-@Route(value = "EntryView", layout = DoctorMainUI.class)
-public class EntryView extends VerticalLayout
+@Route(value = "entry-details")
+public class EntryDetailsView extends VerticalLayout
 {
     private static final long serialVersionUID = 3L;
-    public static final String TITLE = "EntryView";
+    public static final String TITLE = "entry";
 
     VerticalLayout vLayoutLeft = new VerticalLayout();
     VerticalLayout vLayoutRight = new VerticalLayout();
     SplitLayout vSplitLayout = new SplitLayout();
 
-    public EntryView()
+    public EntryDetailsView()
     {
         // TODO: Remove after persistance available
         QuestionForConsultation q = new QuestionForConsultation("BlaBla");

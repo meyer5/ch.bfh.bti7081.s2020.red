@@ -8,8 +8,8 @@ import com.vaadin.flow.router.Route;
 
 import ch.bfh.btx8081.model.Patient;
 
-@Route(value = "searchByName", layout = DoctorMainUI.class)
-public class SearchByNameView extends VerticalLayout {
+@Route(value = "main-doctor")
+public class MainDoctorView extends VerticalLayout {
 
 
     /**
@@ -23,7 +23,7 @@ public class SearchByNameView extends VerticalLayout {
     private Grid<Patient> grid = new Grid<>(Patient.class);
     private TextField filterText = new TextField();
 
-    public SearchByNameView() {
+    public MainDoctorView() {
         filterText.setPlaceholder("Filter by name...");
         filterText.setClearButtonVisible(true);
         filterText.setValueChangeMode(ValueChangeMode.EAGER);

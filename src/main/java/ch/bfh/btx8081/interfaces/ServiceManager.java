@@ -18,7 +18,7 @@ public abstract class ServiceManager {
 			return (Service) new DoctorService((Doctor) user);
 			
 		} if (user.getClass().equals(Patient.class)) {
-			return (Service) new PatientService((Patient) user);	
+			return (Service) new PatientService((Patient) user);
 		} else {
 			return null;
 		}

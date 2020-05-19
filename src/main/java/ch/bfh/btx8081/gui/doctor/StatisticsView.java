@@ -8,8 +8,8 @@ import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 
-@Route(value = "dashboard", layout = DoctorMainUI.class)
-public class PatientDashboard extends VerticalLayout {
+@Route(value = "statistics")
+public class StatisticsView extends VerticalLayout {
 	
     /**
 	 * 
@@ -17,7 +17,7 @@ public class PatientDashboard extends VerticalLayout {
 	private static final long serialVersionUID = 8567041458816914285L;
 	public static final String TITLE = "Patient Dashboard";
 
-    public PatientDashboard() {
+    public StatisticsView() {
 		setPadding(true);
 		//setSpacing(true);
 		//setSizeFull();

@@ -8,12 +8,12 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLink;
 
 
-@Route(value = "doctor")
-public class DoctorMainUI extends AppLayout {
+@Route(value = "del-doctor-main")
+public class ZZZ_del_DoctorMainUI extends AppLayout {
 
   private static final long serialVersionUID = -5980036826709531009L;
 
-  public DoctorMainUI() {
+  public ZZZ_del_DoctorMainUI() {
 
     setPrimarySection(AppLayout.Section.NAVBAR);
     final boolean touchOptimized = true;
@@ -22,10 +22,10 @@ public class DoctorMainUI extends AppLayout {
 
     final VerticalLayout menuBar = new VerticalLayout();
 
-    menuBar.add(new RouterLink(PatientDashboard.TITLE, PatientDashboard.class));
-    menuBar.add(new RouterLink(PatientInfoPresenter.TITLE, PatientInfoPresenter.class));
-    menuBar.add(new RouterLink(CreatePatientView.TITLE, CreatePatientView.class));
-    menuBar.add(new RouterLink(SearchByNameView.TITLE, SearchByNameView.class));
+    menuBar.add(new RouterLink(StatisticsView.TITLE, StatisticsView.class));
+    menuBar.add(new RouterLink(PatientInfoView.TITLE, PatientInfoView.class));
+//    menuBar.add(new RouterLink(CreatePatientView.TITLE, CreatePatientView.class));
+    menuBar.add(new RouterLink(MainDoctorView.TITLE, MainDoctorView.class));
 
     addToDrawer(menuBar);
 

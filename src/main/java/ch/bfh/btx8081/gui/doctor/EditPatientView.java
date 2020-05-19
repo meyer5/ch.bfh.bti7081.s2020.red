@@ -6,12 +6,15 @@ import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
+import com.vaadin.flow.router.Route;
 
-public class PatientFormLayout extends VerticalLayout {
+@Route(value = "edit-patient")
+public class EditPatientView extends VerticalLayout {
 
 	/**
 	 *  Patient Form to showing patient's information
 	 */
+	
 	private static final long serialVersionUID = -4993947004340633343L;
 	
 	private FormLayout blockOne = new FormLayout();
@@ -33,7 +36,7 @@ public class PatientFormLayout extends VerticalLayout {
 	final private TextField consumptionMetric = new TextField();
 	final private TextField conditionAutomaticAlarm = new TextField();
 	
-	public PatientFormLayout() {
+	public EditPatientView() {
 		
 		firstName.setWidth("100%");
 		lastName.setWidth("100%");

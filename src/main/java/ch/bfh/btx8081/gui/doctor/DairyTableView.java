@@ -7,15 +7,15 @@ import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 
-@Route(value = "DairyView", layout = DoctorMainUI.class)
-public class DairyView extends VerticalLayout
+@Route(value = "diary-table")
+public class DairyTableView extends VerticalLayout
 {
     private static final long serialVersionUID = 2L;
     public static final String TITLE = "DiaryView";
 
     private Grid<Entry> grid = new Grid<>(Entry.class);
 
-    public DairyView()
+    public DairyTableView()
     {
         loadDairy();
         createView();

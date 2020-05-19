@@ -12,12 +12,9 @@ import com.vaadin.flow.router.Route;
 import ch.bfh.btx8081.model.Doctor;
 
 
-@Route(value = "create_patient", layout = DoctorMainUI.class)
+@Route(value = "create-patient")
 public class CreatePatientView extends VerticalLayout {
 
-  /**
-   * 
-   */
   private static final long serialVersionUID = 1L;
 
   public DoctorPresenter presenter;
@@ -53,12 +50,7 @@ public class CreatePatientView extends VerticalLayout {
 
 
 
-  public CreatePatientView(DoctorPresenter presenter) {
-
-
-    this.presenter = presenter;
-
-  
+  public CreatePatientView() {
     setSizeFull();
 
     // blockOne

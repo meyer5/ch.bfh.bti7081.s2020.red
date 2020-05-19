@@ -1,4 +1,4 @@
-package ch.bfh.btx8081;
+package ch.bfh.btx8081.gui.shared;
 
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Label;
@@ -11,8 +11,8 @@ import com.vaadin.flow.server.PWA;
 
 import ch.bfh.btx8081.exceptions.UserNotFoundException;
 import ch.bfh.btx8081.exceptions.WrongPasswordException;
-import ch.bfh.btx8081.gui.doctor.DoctorMainUI;
-import ch.bfh.btx8081.gui.patient.PatientMainUI;
+import ch.bfh.btx8081.gui.doctor.DoctorPresenter;
+import ch.bfh.btx8081.gui.patient.PatientPresenter;
 import ch.bfh.btx8081.interfaces.DoctorService;
 import ch.bfh.btx8081.interfaces.PatientService;
 import ch.bfh.btx8081.interfaces.Service;
@@ -37,9 +37,9 @@ public class LogInView extends VerticalLayout {
 			try {
 				Service service = ServiceManager.getService(userName.getValue(), password.getValue());
 				if (service instanceof DoctorService) {
-					this.getUI().ifPresent(ui -> ui.navigate(new DoctorMainUI().getClass()));
+					new DoctorPresenter((DoctorService) service, this.getUI());
 				} else if (service instanceof PatientService) {
-					this.getUI().ifPresent(ui -> ui.navigate(new PatientMainUI().getClass()));
+					new PatientPresenter((PatientService) service, this.getUI());
 				}
 			} catch (WrongPasswordException | UserNotFoundException e) {
 				Notification.show("Username or password wrong!");
