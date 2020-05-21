@@ -9,7 +9,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "doctor")
+//@Table(name = "doctor")
 public class Doctor extends User{
 	
 	// ArrayList geht nicht, Fehlermeldung

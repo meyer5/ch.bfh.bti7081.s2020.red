@@ -3,6 +3,9 @@ package ch.bfh.btx8081.persistence;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
+
+import org.sqlite.SQLiteConfig;
 
 /**
  * This class checks if the JDBC DriverDriver for the SQLite
@@ -12,19 +15,34 @@ import java.sql.SQLException;
  *
  */
 public class TestJpaDriverAndConnection {
-
+	
+	public static final String DB_URL = "jdbc:sqlite:addictionDiary.db";  
+	public static final String DRIVER = "org.sqlite.JDBC";  
+	
+	
 	public static void checkConnection() {
-
+		Connection conn = null;
+		
 		try {
-			Class.forName("org.sqlite.JDBC");
+			Class.forName(DRIVER);
 		} catch (ClassNotFoundException e) {
 			throw new Error("Cannot find JDBC Driver", e);
 		}
-		try (Connection conn = DriverManager.getConnection("jdbc:sqlite:addictionDiary.db")) {
+		try {
+			Properties properties = new Properties();
+			properties.setProperty("PRAGMA foreign_keys", "ON");
+			conn = DriverManager.getConnection(DB_URL, properties);
 			System.out.println("Connection established");
+//			System.out.println(properties.toString());
 		} catch (SQLException e) {
 			throw new Error("Cannot establish database connection", e);
 		}
+		try {
+	        SQLiteConfig config = new SQLiteConfig();  
+	        config.enforceForeignKeys(true);  
+	        conn = DriverManager.getConnection(DB_URL,config.toProperties());  
+	    } catch (SQLException ex) {}
+
 
 	}
 }

@@ -24,10 +24,15 @@ public class TestJpa {
 
 	public static void main(String[] args) throws Exception {
 		
-		TestJpaDriverAndConnection.checkConnection();
+//		TestJpaDriverAndConnection.checkConnection();
 		
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		EntityManager em = factory.createEntityManager();
+		
+		em.setProperty("PRAGMA foreign_keys", "ON");
+			// check if properties are set
+		//System.out.println(em.getProperties().toString());
+		
 		// use entities
 		em.getTransaction().begin();
 	    
@@ -40,6 +45,7 @@ public class TestJpa {
 		patlist.add(pat1);
 		
 		Doctor doc1 = new Doctor("remo", "meyer", "666666", "a@b", "remom", "1234", (ArrayList<Patient>) patlist);
+		
 	    
 //		List<Activity> res = new ArrayList<Activity>();
 //		res.add(new Activity("1", "1111"));

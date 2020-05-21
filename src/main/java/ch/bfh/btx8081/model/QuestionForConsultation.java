@@ -2,15 +2,27 @@ package ch.bfh.btx8081.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-@Entity(name = "Question")
-@Table(name = "question")
+@Entity
+//@Table(name = "question")
 public class QuestionForConsultation {
 	
 	@Id
 	private String question = "";
-
+	
+	@OneToOne
+	private Entry entry;
+	
+	
+//	Constructor for JPA
+	public QuestionForConsultation() {
+		
+	}
+	
 	public QuestionForConsultation(String question) {
 		super();
 		this.question = question;

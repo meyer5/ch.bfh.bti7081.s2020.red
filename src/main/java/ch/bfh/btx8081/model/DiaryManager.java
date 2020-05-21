@@ -10,15 +10,19 @@ import ch.bfh.btx8081.exceptions.UsernameIsAlreadyTakenException;
 import ch.bfh.btx8081.exceptions.WrongPasswordException;
 import ch.bfh.btx8081.interfaces.DoctorInterface;
 import ch.bfh.btx8081.interfaces.PatientInterface;
+import ch.bfh.btx8081.persistence.PersistenceManager;
 
 public class DiaryManager implements PatientInterface, DoctorInterface {
 
 	private static DiaryManager instance = null;
 	private long id = 1000;
 
+	private PersistenceManager persistenceManager;
 //	Solution until persistence is implemented
 	private ArrayList<Doctor> doctors = new ArrayList<Doctor>();
-
+	
+//	private List<Doctor> doctors;
+	
 //	Singleton
 	private DiaryManager() {
 		this.id = 1000;
@@ -31,6 +35,11 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 		}
 		return instance;
 	}
+	
+	// get data from database
+//	private List<Doctor> getDoctorsFromDb() {
+//		return this.doctors = persistenceManager.getDoctors();
+//	}
 
 //	Search
 
@@ -160,11 +169,11 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 //	persistence
 
 	public void save(Doctor doctor) {
-//		TODO
+		persistenceManager.save(doctor);
 	}
 
 	public void save(Patient patient) {
-//		TODO
+		persistenceManager.save(patient);
 	}
 
 //	adder & remover

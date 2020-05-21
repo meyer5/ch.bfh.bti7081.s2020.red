@@ -11,14 +11,14 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "patient")
+//@Table(name = "patient")
 public class Patient extends User {
 	
 	private String addiction = "";
 	private String mainInfo = "";
 	
 	@ManyToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name="doctor_id")
+	//@JoinColumn(name="DOCTOR_ID")
 	private Doctor doctor = null;
 	
 	@OneToOne(cascade = CascadeType.PERSIST)

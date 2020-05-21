@@ -8,12 +8,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "strategy")
+//@Table(name = "strategy")
 public class AvoidanceStrategy {
 	@Id
 	private String strategy = "";
+	
 	@ManyToOne
-	@JoinColumn(name = "diary_ID")
+	@JoinColumn(name = "diary_id")
 	private Diary diary;
 
 //	Constructor for JPA

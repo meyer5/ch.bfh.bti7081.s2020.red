@@ -14,9 +14,10 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
-@Table(name = "entry")
+//@Table(name = "entry")
 public class Entry {
 	
 	@Id
@@ -29,15 +30,15 @@ public class Entry {
 	private int motivation = 0;
 	
 	@ManyToOne
-	@JoinColumn(name = "diary_ID")
+	@JoinColumn(name = "diary_id")
 	private Diary diary;
 	
-	
+	@Transient		//
 	private List<Activity> activities =  new ArrayList<Activity>();
 	
 	private String comment = "";
 	
-	@OneToOne
+	@OneToOne(mappedBy = "entry")
 	private QuestionForConsultation questionForConsultation = null;
 	
 	

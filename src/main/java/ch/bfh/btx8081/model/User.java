@@ -1,30 +1,30 @@
 package ch.bfh.btx8081.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import ch.bfh.btx8081.exceptions.WrongPasswordException;
 
 @Entity
-@Table(name = "user")
+//@Table(name = "user")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 
 public abstract class User {
+
 	
-	@Id
-	@Column(nullable = false)
-	@GeneratedValue()
+//	No need for ID because username is unique
+	@Transient
 	private long id;			//cannot be final because of JPA
 	
 	private String firstName = "";
 	private String lastName = "";
 	private String phoneNumber = "";
 	private String eMail = "";
+	@Id
 	private String userName = "";
 	private String password = "";
 	

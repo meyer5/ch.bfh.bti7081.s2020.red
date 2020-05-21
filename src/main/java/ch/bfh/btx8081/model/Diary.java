@@ -13,16 +13,16 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import ch.bfh.btx8081.exceptions.ShowAvoidanceStrategyException;
 
 @Entity // (name = "Diary")
-@Table(name = "diary")
+//@Table(name = "diary")
 public class Diary {
 
 	@Id
 	@GeneratedValue
-//	@Column(name = "diary_ID")
 	private Long id;
 
 	private String consumedSubstance = "";
@@ -34,7 +34,8 @@ public class Diary {
 
 	@OneToMany(mappedBy = "diary")
 	private List<AvoidanceStrategy> avoidanceStrategies = new ArrayList<AvoidanceStrategy>();
-
+	
+	@Transient
 	private List<QuestionForConsultation> unansweredQuestions = new ArrayList<QuestionForConsultation>();
 
 	@OneToMany(mappedBy = "diary")
