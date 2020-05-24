@@ -178,11 +178,11 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 //	persistence
 
 	public void save(Doctor doctor) {
-		persistenceManager.saveUserData(doctor);
+		persistenceManager.saveDoctor(doctor);
 	}
 
 	public void save(Patient patient) {
-		persistenceManager.saveUserData(patient);
+		persistenceManager.savePatient(patient);
 	}
 
 //	adder & remover
