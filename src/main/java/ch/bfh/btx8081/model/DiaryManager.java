@@ -19,7 +19,7 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 
 	private PersistenceManager persistenceManager;
 //	Solution until persistence is implemented
-	private ArrayList<Doctor> doctors = new ArrayList<Doctor>();
+	private List<Doctor> doctors = new ArrayList<Doctor>();
 	
 //	private List<Doctor> doctors;
 	
@@ -27,7 +27,16 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 	private DiaryManager() {
 		this.id = 1000;
 		this.setUp();
+//		this.doctors = getDoctorsFromDb();
+//		testDB();
 	}
+
+	private void testDB() {
+	for (Doctor d : doctors) {
+		System.out.println(d.getUserName());
+	}
+	
+}
 
 	public static DiaryManager getInstance() {
 		if (instance == null) {
@@ -37,9 +46,9 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 	}
 	
 	// get data from database
-//	private List<Doctor> getDoctorsFromDb() {
-//		return this.doctors = persistenceManager.getDoctors();
-//	}
+	private List<Doctor> getDoctorsFromDb() {
+		return this.doctors = persistenceManager.getDoctors();
+	}
 
 //	Search
 
@@ -169,11 +178,11 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 //	persistence
 
 	public void save(Doctor doctor) {
-		persistenceManager.save(doctor);
+		persistenceManager.saveUserData(doctor);
 	}
 
 	public void save(Patient patient) {
-		persistenceManager.save(patient);
+		persistenceManager.saveUserData(patient);
 	}
 
 //	adder & remover
@@ -188,7 +197,7 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 
 //	getters & setters
 
-	public ArrayList<Doctor> getDoctors() {
+	public List<Doctor> getDoctors() {
 		return doctors;
 	}
 
