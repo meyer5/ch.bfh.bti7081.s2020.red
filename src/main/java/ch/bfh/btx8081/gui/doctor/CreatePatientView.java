@@ -16,10 +16,11 @@ import ch.bfh.btx8081.model.Doctor;
 public class CreatePatientView extends VerticalLayout {
 
   private static final long serialVersionUID = 1L;
+  public static final String TITLE = "CreatePatientView";
 
   public DoctorPresenter presenter;
   
-  public static final String TITLE = "createPatientView";
+  // public static final String TITLE = "createPatientView";
 
   // private ViewController viewController;
 
