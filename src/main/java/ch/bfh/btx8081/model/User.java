@@ -4,21 +4,20 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import ch.bfh.btx8081.exceptions.WrongPasswordException;
 
 @Entity
 //@Table(name = "user")
-@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 
 public abstract class User {
 
 	
 //	No need for ID because username is unique
 	@Transient
-	private long id;			//cannot be final because of JPA
+	private long id;
 	
 	private String firstName = "";
 	private String lastName = "";
