@@ -4,6 +4,7 @@ import java.util.Optional;
 import ch.bfh.btx8081.exceptions.UsernameIsAlreadyTakenException;
 import ch.bfh.btx8081.interfaces.DoctorService;
 
+import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.UI;
 
 public class DoctorPresenter {
@@ -20,7 +21,16 @@ public class DoctorPresenter {
 
 		this.service = service;
 		this.gui = gui;
-		gui.ifPresent(ui -> ui.navigate(new MainDoctorView().getClass()));
+
+//		MainDoctorView view = new MainDoctorView();
+//		view.setup(this);
+//		gui.ifPresent(ui -> ui.navigate(view.getClass()));
+		
+		gui.ifPresent(ui -> ui.navigate(new MainDoctorView(this).getClass()));
+		
+//		removeAll();
+//		Component nextView = getNextView();
+//		this.add(title, nextView);
 
 //    	this.view = view;
 		this.firstName = "";

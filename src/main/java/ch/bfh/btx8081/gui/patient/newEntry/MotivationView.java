@@ -31,7 +31,7 @@ public class MotivationView extends VerticalLayout implements PatientViewInterfa
 	private NumberField motivationLevel;
 	private Label motivationLbl;
 	private Button nextBtn;
-
+	
 	public MotivationView(NewEntryPresenter patientPresenter, EntryViewController viewController) {
 		
 		this.patientPresenter = patientPresenter;

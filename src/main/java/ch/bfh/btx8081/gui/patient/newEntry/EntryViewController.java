@@ -61,7 +61,7 @@ public class EntryViewController extends VerticalLayout{
 	}
 
 
-	//TODO View nach confirm view ????
+	//View nach confirm view ????
 	public Component getNextView() {
 		String viewName = currentView.getName();
 		System.out.println(viewName);

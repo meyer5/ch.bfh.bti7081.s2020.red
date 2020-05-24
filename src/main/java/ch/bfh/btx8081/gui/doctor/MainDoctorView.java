@@ -11,37 +11,38 @@ import ch.bfh.btx8081.model.Patient;
 @Route(value = "main-doctor")
 public class MainDoctorView extends VerticalLayout {
 
+	/**
+	 * Idea: Based on the persistence should load over a presenter.class all saved
+	 * patients here
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
-    /**
-   * Idea: Based on the persistence should load over a presenter.class all saved patients here
-   * 
-   */
-  private static final long serialVersionUID = 1L;
-  
-  public static final String TITLE = "SearchByNameView";
-  
-    private Grid<Patient> grid = new Grid<>(Patient.class);
-    private TextField filterText = new TextField();
+	public static final String TITLE = "SearchByNameView";
 
-    public MainDoctorView() {
-        filterText.setPlaceholder("Filter by name...");
-        filterText.setClearButtonVisible(true);
-        filterText.setValueChangeMode(ValueChangeMode.EAGER);
-        filterText.addValueChangeListener(e -> updateList());
+	private DoctorPresenter presenter;
 
-        grid.setColumns("id", "firstName", "lastName");
+	private Grid<Patient> grid = new Grid<>(Patient.class);
+	private TextField filterText = new TextField();
 
-        add(filterText, grid);
+	public MainDoctorView(DoctorPresenter presenter) {
+		this.presenter = presenter;
+		filterText.setPlaceholder("Filter by name...");
+		filterText.setClearButtonVisible(true);
+		filterText.setValueChangeMode(ValueChangeMode.EAGER);
+		filterText.addValueChangeListener(e -> updateList());
 
-        setSizeFull();
+		grid.setColumns("id", "firstName", "lastName");
 
-        updateList();
-    }
+		add(filterText, grid);
 
-    public void updateList() {
+		setSizeFull();
+
+		updateList();
+	}
+
+	public void updateList() {
 //        grid.setItems(service.findAll(filterText.getValue()));
-    }
+	}
 
 }
-
-
