@@ -31,6 +31,11 @@ public class Doctor extends User{
 		this.patients = patients;
 	}
 	
+//	Constructor for database testing
+	public Doctor(String firstName, String lastName, String phoneNumber, String eMail, String userName, String password) {
+		super(firstName, lastName, phoneNumber, eMail, userName, password);
+	}
+	
 //	Constructor for new doctor
 	protected Doctor(long id, String firstName, String lastName, String phoneNumber, String eMail, String userName, String password) {
 		super(id, firstName, lastName, phoneNumber, eMail, userName, password);

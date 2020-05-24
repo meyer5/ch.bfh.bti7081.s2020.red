@@ -27,15 +27,12 @@ public class StrategiesView extends VerticalLayout {
 
 
   private Grid<AvoidanceStrategy> strategiesList = new Grid<>(AvoidanceStrategy.class);
-  private FormLayout blockQuestions;
+  private FormLayout layout;
   private final Button newStrategyButton;
   private final Button saveButton;
   private final Button deleteButton;
   private final Button cancelButton;
 
-  // Diary ---> addQuestion(question)/questionAnswered(question)/getUnansweredQuestions()
-  // getDiary() -???? ---> getDiary().getUnansweredQuestions()
-  // DoctorServer().getCurrentPatient().getDiary().getUnansweredQuestions();
 
   public StrategiesView() {
 
@@ -44,30 +41,29 @@ public class StrategiesView extends VerticalLayout {
     cancelButton = new Button("Cancel");
     deleteButton = new Button("Delete");
 
-    blockQuestions = new FormLayout();
-    // blockQuestions.setWidth("30%");
+    layout = new FormLayout();
+  
 
     newStrategyButton.addClickListener(event -> {
 
       FlexLayout questionLayout = new FlexLayout();
 
-      TextArea question = new TextArea();
+      TextArea newStrategy = new TextArea();
       Checkbox checkbox = new Checkbox();
 
-      questionLayout.add(question, checkbox);
-      questionLayout.expand(question);
+      questionLayout.add(newStrategy, checkbox);
+      questionLayout.expand(newStrategy);
 
-      blockQuestions.add(questionLayout);
+      layout.add(questionLayout);
 
-      // newQuestionButton.setEnabled(true);
-
+     
     });
-    // newQuestionButton.setDisableOnClick(true);
+  
 
     HorizontalLayout buttonLayout = new HorizontalLayout();
     buttonLayout.add(saveButton, deleteButton, cancelButton);
 
-    add(new H2("Strategies"), newStrategyButton, blockQuestions, buttonLayout, strategiesList);
+    add(new H2("Strategies"), newStrategyButton, layout, buttonLayout, strategiesList);
   }
 
 }

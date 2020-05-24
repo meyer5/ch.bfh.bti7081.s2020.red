@@ -88,6 +88,12 @@ public class Patient extends User {
 		this.doctor = doctor;
 		doctor.addPatient(this);
 	}
+	
+	public void setDoctorForTest(Doctor doctor) {
+		doctor.removePatient(this);
+		this.doctor = doctor;
+		doctor.addPatient(this);
+	}
 
 	public Diary getDiary() {
 		return diary;

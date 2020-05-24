@@ -30,12 +30,17 @@ public class PersistenceManager {
 		return patients;
 	}
 
-	public void saveUserData(User user) {
+	public void saveDoctor(Doctor doctor) {
 		em.getTransaction().begin();
-		em.persist(user);
+		em.persist(doctor);
 		em.getTransaction().commit();
 	}
-
+	
+	public void savePatient(Patient patient) {
+		em.getTransaction().begin();
+		em.persist(patient);
+		em.getTransaction().commit();
+	}
 	
 //	em.close();
 //	factory.close();

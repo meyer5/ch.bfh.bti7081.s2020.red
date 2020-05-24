@@ -19,24 +19,24 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 
 	private PersistenceManager persistenceManager;
 //	Solution until persistence is implemented
-	private List<Doctor> doctors = new ArrayList<Doctor>();
-	
-//	private List<Doctor> doctors;
-	
+//	private List<Doctor> doctors = new ArrayList<Doctor>();
+
+	private List<Doctor> doctors;
+
 //	Singleton
 	private DiaryManager() {
 		this.id = 1000;
 		this.setUp();
-//		this.doctors = getDoctorsFromDb();
-//		testDB();
+		this.doctors = getDoctorsFromDb();
+		testDB();
 	}
 
 	private void testDB() {
-	for (Doctor d : doctors) {
-		System.out.println(d.getUserName());
+		for (Doctor d : doctors) {
+			System.out.println(d.getUserName());
+		}
+
 	}
-	
-}
 
 	public static DiaryManager getInstance() {
 		if (instance == null) {
@@ -44,7 +44,7 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 		}
 		return instance;
 	}
-	
+
 	// get data from database
 	private List<Doctor> getDoctorsFromDb() {
 		return this.doctors = persistenceManager.getDoctors();
@@ -107,7 +107,7 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 		} catch (UserNotFoundException e) {
 			this.addDoctor(new Doctor(this.nextID(), firstName, lastName, phoneNumber, eMail, userName, password));
 		}
-		
+
 	}
 
 	@Override
@@ -178,11 +178,11 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 //	persistence
 
 	public void save(Doctor doctor) {
-		persistenceManager.saveUserData(doctor);
+		persistenceManager.saveDoctor(doctor);
 	}
 
 	public void save(Patient patient) {
-		persistenceManager.saveUserData(patient);
+		persistenceManager.savePatient(patient);
 	}
 
 //	adder & remover

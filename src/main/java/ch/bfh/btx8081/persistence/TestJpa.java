@@ -27,11 +27,11 @@ public class TestJpa {
 			// check if properties are set
 		//System.out.println(em.getProperties().toString());
 		
-		// use entities
-		em.getTransaction().begin();
-	    
-		Doctor doc2 = new Doctor();
+			    
+		Doctor doc2 = new Doctor("remo2", "meyer", "666666", "adasfdsa@b", "remom666", "1234");
 		Diary diary1 = new Diary();
+		Diary diary2 = new Diary();
+		Diary diary3 = new Diary();
 		List<Patient> patlist = new ArrayList<>();
 		
 		
@@ -40,17 +40,29 @@ public class TestJpa {
 		
 		Doctor doc1 = new Doctor("remo2", "meyer", "666666", "a@b", "remom2", "1234", (ArrayList<Patient>) patlist);
 		
+		Doctor doc3 = new Doctor("Hans", "Meier", "0777777777", "hans.meier@mail.ch", "hmeier", "123");
+
+		Doctor doc4 = new Doctor("Heidi", "Müller", "0700000000", "heidi.mueller@mail.ch", "hmueller", "asdf");
+		
+		Patient pat2 = new Patient("Natalya", "Dénervaud", "0700000003", "hans.meier@mail.ch", "natalya", "123", "Hero", "Kommentar",
+				doc3, diary2);
+	
+		Patient pat3 = new Patient("Kaurisanker", "Kirupananthan", "0700000002", "hans.meier@mail.ch", "kausi", "123", "Hero",
+				"Kommentar", doc4, diary3);
+	
+
+		// use entities
+		em.getTransaction().begin();
 	    
-//		List<Activity> res = new ArrayList<Activity>();
-//		res.add(new Activity("1", "1111"));
-//		res.add(new Activity("2", "1111"));
-//		
-//		em.persist(res);
-//		em.flush();
-	    em.persist(doc1);
-	    em.flush();
+		em.persist(doc1);
+		em.persist(doc2);
+		em.persist(doc3);
+		em.persist(doc4);
 	    em.persist(pat1);
-	    em.flush();
+	    em.persist(pat2);
+	    em.persist(pat3);
+	    
+	    
 	    em.getTransaction().commit();
 
 	    
