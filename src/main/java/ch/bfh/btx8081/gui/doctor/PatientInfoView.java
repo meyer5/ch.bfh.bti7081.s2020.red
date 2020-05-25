@@ -1,5 +1,7 @@
 package ch.bfh.btx8081.gui.doctor;
 
+import java.util.List;
+
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -13,6 +15,7 @@ import ch.bfh.btx8081.interfaces.Service;
 import ch.bfh.btx8081.interfaces.ServiceManager;
 import ch.bfh.btx8081.model.DiaryManager;
 import ch.bfh.btx8081.model.Patient;
+import ch.bfh.btx8081.persistence.PersistenceManager;
 
 @Route(value = "patient-info")
 public class PatientInfoView extends HorizontalLayout {
@@ -23,24 +26,36 @@ public class PatientInfoView extends HorizontalLayout {
 	private static final long serialVersionUID = 3407757504015724766L;
 
 	public static final String TITLE = "Patient Info";
+	List<Patient> patients = null;
+	Patient patient = null;
 	
 	private final VerticalLayout layout;
 	private DoctorService service = null;
+	private PersistenceManager persistenceManager = null; 
 	
 	public PatientInfoView() throws WrongPasswordException, UserNotFoundException {
+		
+		this.patient = new Patient();
+		this.persistenceManager = new PersistenceManager();
+		this.patients = persistenceManager.getPatients();
 		
 		final EditPatientView patientShowLayout = new EditPatientView();
         layout = new VerticalLayout();
                       
-        this.service = (DoctorService) ServiceManager.getService("hmeier", "123");
-        //service.selectPatient((Patient) DiaryManager.getInstance().searchUserByUsername("remo"));
+       
+        for(Patient p : patients) {
+        	System.out.println(p.getUserName());
+        	if(p.getUserName().equals("natalya"))
+        	{
+        		this.patient = p;
+        	}
+        }
         
-        patientShowLayout.setFirstName("Peter");
-        patientShowLayout.setLastName("Pops");
-        patientShowLayout.setPhoneNumber("0782344534");
-        patientShowLayout.setEMail("peter.pops@gmail.com");
-        patientShowLayout.setConsumedSubstance("alcohol");
-        ((EditPatientView) patientShowLayout).setDoctor(service.getDoctor().getFirstName());       
+        patientShowLayout.setFirstName(patient.getFirstName());
+        patientShowLayout.setLastName(patient.getLastName());
+        patientShowLayout.setPhoneNumber(patient.getPhoneNumber());
+        patientShowLayout.setEMail(patient.geteMail());
+        patientShowLayout.setDoctor(patient.getDoctor().getFirstName());   
  
         
         // Build a footer, add Save and Cancel buttons
