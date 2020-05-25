@@ -6,6 +6,7 @@ import ch.bfh.btx8081.interfaces.DoctorService;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.UI;
+import com.vaadin.flow.component.applayout.AppLayout;
 
 public class DoctorPresenter {
 
@@ -26,13 +27,13 @@ public class DoctorPresenter {
 //		view.setup(this);
 //		gui.ifPresent(ui -> ui.navigate(view.getClass()));
 		
-		gui.ifPresent(ui -> ui.navigate(new MainDoctorView(this).getClass()));
+//		gui.ifPresent(ui -> ui.navigate(new MainDoctorView().getClass()));
 		
-//		removeAll();
-//		Component nextView = getNextView();
-//		this.add(title, nextView);
+		MainDoctorView view = new MainDoctorView();
+//		ZZZ_del_DoctorMainUI test = new ZZZ_del_DoctorMainUI();
+		gui.ifPresent(ui -> ui.navigate(view.getClass()));
+//		test.setView(view);
 
-//    	this.view = view;
 		this.firstName = "";
 		this.lastName = "";
 		this.phoneNumber = "";

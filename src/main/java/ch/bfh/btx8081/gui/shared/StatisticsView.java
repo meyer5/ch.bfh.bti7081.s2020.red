@@ -1,16 +1,22 @@
 package ch.bfh.btx8081.gui.shared;
 
-import ch.bfh.btx8081.model.Entry;
-import ch.bfh.btx8081.model.Patient;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.List;
+
 import com.vaadin.flow.component.charts.Chart;
-import com.vaadin.flow.component.charts.model.*;
+import com.vaadin.flow.component.charts.model.AxisTitle;
+import com.vaadin.flow.component.charts.model.Configuration;
+import com.vaadin.flow.component.charts.model.DataSeries;
+import com.vaadin.flow.component.charts.model.PlotOptionsSpline;
+import com.vaadin.flow.component.charts.model.XAxis;
+import com.vaadin.flow.component.charts.model.YAxis;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.radiobutton.RadioButtonGroup;
 import com.vaadin.flow.router.Route;
 
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
-import java.util.List;
+import ch.bfh.btx8081.model.Entry;
+import ch.bfh.btx8081.model.Patient;
 
 
 @Route(value = "Statistics")
@@ -25,7 +31,7 @@ public class StatisticsView extends VerticalLayout
 
     public StatisticsView(Patient patient)
     {
-        entries = patient.getDiary().getEntries();
+    	entries = patient.getDiary().getEntries();
 
         RadioButtonGroup<String> radioGroup = new RadioButtonGroup<>();
         radioGroup.setLabel("Options");

@@ -12,12 +12,14 @@ import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.router.Route;
 
 import ch.bfh.btx8081.model.AvoidanceStrategy;
-import ch.bfh.btx8081.model.Patient;
 
 @Route(value = "stategies")
 public class StrategiesView extends VerticalLayout {
 
-  /**
+	private static final long serialVersionUID = 1L;
+
+
+/**
    * Idea: shows all available strategies of a specific patient 
    * and the possibility to create a new one
    * 

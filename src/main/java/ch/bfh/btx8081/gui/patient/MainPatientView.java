@@ -1,62 +1,102 @@
 package ch.bfh.btx8081.gui.patient;
 
+import java.util.ArrayList;
+
 import com.vaadin.flow.component.board.Board;
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.charts.Chart;
-import com.vaadin.flow.component.charts.model.*;
+import com.vaadin.flow.component.charts.model.Configuration;
+import com.vaadin.flow.component.charts.model.DataSeries;
+import com.vaadin.flow.component.charts.model.Dimension;
+import com.vaadin.flow.component.charts.model.Labels;
+import com.vaadin.flow.component.charts.model.PlotOptionsColumn;
+import com.vaadin.flow.component.charts.model.XAxis;
+import com.vaadin.flow.component.charts.model.YAxis;
 import com.vaadin.flow.component.html.Label;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.splitlayout.SplitLayout;
-import com.vaadin.flow.component.splitlayout.SplitLayoutVariant;
 import com.vaadin.flow.router.Route;
 
 // Overview of the addiction for the patient. Shows different data
 @Route(value = "main-patient")
-public class MainPatientView extends VerticalLayout {
+public class MainPatientView extends VerticalLayout implements MainPatientInterface {
 	private static final long serialVersionUID = 1L;
-
 	public static final String TITLE = "AddictionView";
 
-	private PatientPresenter presenter;
+	private ArrayList<MainPatientListener> listeners = new ArrayList<MainPatientListener>();
 
-	private SplitLayout vSplitLayout = new SplitLayout();
-	private VerticalLayout vLayoutLeft = new VerticalLayout();
-	private VerticalLayout vLayoutRight = new VerticalLayout();
+	private HorizontalLayout hLayout = new HorizontalLayout();
+	private VerticalLayout vLayout1 = new VerticalLayout();
+	private VerticalLayout vLayout2 = new VerticalLayout();
+	private VerticalLayout vLayout3 = new VerticalLayout();
+	private VerticalLayout vLayout4 = new VerticalLayout();
 
 	// Label left
 	Label fixPatientFName = new Label("First name");
 	Label fixPatientLName = new Label("Last name");
 	Label fixDoctorLbl = new Label("Doctor:");
 	Label fixAddictionLbl = new Label("Addiction:");
-	Label fixEntriesNumberLbl = new Label("Entries made");
 	// Label right
 	Label patientFName = new Label(".");
 	Label patientLName = new Label(".");
 	Label doctorLbl = new Label(".");
 	Label addictionLbl = new Label(".");
-	Label entriesNumberLbl = new Label(".");
 
 	public MainPatientView() {
-		// Fill left and right layout
-		vLayoutLeft.add(fixPatientFName, fixPatientLName, fixDoctorLbl, fixAddictionLbl, fixEntriesNumberLbl);
-		vLayoutRight.add(patientFName, patientLName, doctorLbl, addictionLbl, entriesNumberLbl);
 
-		vLayoutLeft.setDefaultHorizontalComponentAlignment(Alignment.STRETCH);
-		vLayoutRight.setDefaultHorizontalComponentAlignment(Alignment.STRETCH);
+		// Create Buttons
+		Button newEntryButton = new Button("Create new Entry", event -> {
+			listeners.forEach(listener -> listener.handleNewEntryClick());
+		});
 
-		vSplitLayout.addToPrimary(vLayoutLeft);
-		vSplitLayout.addToSecondary(vLayoutRight);
-		vSplitLayout.setOrientation(SplitLayout.Orientation.HORIZONTAL);
-		vSplitLayout.addThemeVariants(SplitLayoutVariant.LUMO_MINIMAL);
-		vSplitLayout.setPrimaryStyle("max-width", "30%");
-		vSplitLayout.setPrimaryStyle("min-width", "10%");
-		vSplitLayout.setWidthFull();
-		vSplitLayout.setHeight("50%");
+		Button activitiesButton = new Button("Activities settings", event -> {
+			listeners.forEach(listener -> listener.hadleActivitiesClick());
+		});
+
+		Button strategiesButton = new Button("Strategies settings", event -> {
+			listeners.forEach(listener -> listener.hadleStrategiesClick());
+		});
+
+		Button QuestionsButton = new Button("Questions for doctor", event -> {
+			listeners.forEach(listener -> listener.hadleQuestionsClick());
+		});
+
+		Button showStrategyButton = new Button("Show a strategy", event -> {
+			listeners.forEach(listener -> listener.hadleShowStrategyClick());
+		});
+
+		Button alarmButton = new Button("Alarm", event -> {
+			listeners.forEach(listener -> listener.hadleAlarmClick());
+		});
+
+		Button EntriesListButton = new Button("Show all entries", event -> {
+			listeners.forEach(listener -> listener.hadleEntriesListClick());
+		});
+
+		// Fill layout
+		vLayout1.add(fixPatientFName, fixPatientLName, fixDoctorLbl, fixAddictionLbl);
+		vLayout2.add(patientFName, patientLName, doctorLbl, addictionLbl);
+		vLayout3.add(newEntryButton, showStrategyButton, alarmButton, QuestionsButton);
+		vLayout4.add(activitiesButton, strategiesButton, EntriesListButton);
+
+		vLayout1.setDefaultHorizontalComponentAlignment(Alignment.STRETCH);
+		vLayout2.setDefaultHorizontalComponentAlignment(Alignment.STRETCH);
+		vLayout3.setDefaultHorizontalComponentAlignment(Alignment.STRETCH);
+		vLayout4.setDefaultHorizontalComponentAlignment(Alignment.STRETCH);
+
+		hLayout.setWidthFull();
+		hLayout.add(vLayout1, vLayout2, vLayout3, vLayout4);
 
 		Board board = new Board();
 		board.addRow(getEntryOverview());
 
-		add(vSplitLayout);
+		add(hLayout);
 		add(board);
+	}
+
+	@Override
+	public void addListener(MainPatientListener presenter) {
+		listeners.add(presenter);
 	}
 
 	// Returns a graph that shows, when a entry was made or not
@@ -100,10 +140,6 @@ public class MainPatientView extends VerticalLayout {
 		return chart;
 	}
 
-	public void setPresenter(PatientPresenter presenter) {
-		this.presenter = presenter;
-	}
-
 	public void setPatientFName(String patientFName) {
 		System.out.println(this.patientFName.getText());
 		this.patientFName.setText(patientFName);
@@ -122,7 +158,9 @@ public class MainPatientView extends VerticalLayout {
 		this.addictionLbl.setText(addictionLbl);
 	}
 
-	public void setEntriesNumberLbl(String entriesNumberLbl) {
-		this.entriesNumberLbl.setText(entriesNumberLbl);
+	@Override
+	public void setPatient() {
+		// TODO Auto-generated method stub
+
 	}
 }

@@ -1,25 +1,25 @@
 package ch.bfh.btx8081.gui.shared;
 
+import java.util.ArrayList;
+
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.H2;
+import com.vaadin.flow.component.orderedlayout.FlexLayout;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.orderedlayout.FlexLayout;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.router.Route;
 
 
 @Route(value = "questions")
-public class QuestionsView extends VerticalLayout {
+public class QuestionsView extends VerticalLayout implements QuestionsInterface {
 	
-	  /**
-	 * 
-	 */
 	private static final long serialVersionUID = -8224404080503821707L;
-
 	public static final String TITLE = "Open Questions";
+	
+	private ArrayList<QuestionsListener> listeners = new ArrayList<QuestionsListener>();
 	  
 	private FormLayout blockQuestions;
     private final Button newQuestionButton;
@@ -63,6 +63,17 @@ public class QuestionsView extends VerticalLayout {
 
 	        add(new H2("Open Questions"), newQuestionButton, blockQuestions, buttonLayout);
 	    }
+
+	@Override
+	public void setPatient() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addListener(QuestionsListener presenter) {
+		listeners.add(presenter);		
+	}
 	    
 
 

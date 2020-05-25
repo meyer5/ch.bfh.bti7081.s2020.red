@@ -21,14 +21,14 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 //	Solution until persistence is implemented
 //	private List<Doctor> doctors = new ArrayList<Doctor>();
 
-	private List<Doctor> doctors;
+	private List<Doctor> doctors = new ArrayList<Doctor>();
 
 //	Singleton
 	private DiaryManager() {
 		this.id = 1000;
 		this.setUp();
-		this.doctors = getDoctorsFromDb();
-		testDB();
+//		this.doctors = getDoctorsFromDb();
+//		testDB();
 	}
 
 	private void testDB() {
