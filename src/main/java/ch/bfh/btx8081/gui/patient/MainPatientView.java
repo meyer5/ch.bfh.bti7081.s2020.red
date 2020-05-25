@@ -9,6 +9,9 @@ import com.vaadin.flow.component.splitlayout.SplitLayout;
 import com.vaadin.flow.component.splitlayout.SplitLayoutVariant;
 import com.vaadin.flow.router.Route;
 
+import java.time.LocalDate;
+import java.util.Calendar;
+
 // Overview of the addiction for the patient. Shows different data
 @Route(value = "main-patient")
 public class MainPatientView extends VerticalLayout {
@@ -69,8 +72,12 @@ public class MainPatientView extends VerticalLayout {
 		conf.setTitle("Entry Overview");
 
 		XAxis x = new XAxis();
-		String[] days = new String[31];
-		for (int i = 0; i < 31; i++)
+		Calendar calendar = Calendar.getInstance();
+		LocalDate now = LocalDate.now();
+		calendar.set(now.getYear(), now.getMonthValue()-1, now.getDayOfMonth());
+		int totalDays = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+		String[] days = new String[totalDays];
+		for (int i = 0; i < totalDays; i++)
 			days[i] = String.valueOf(i + 1);
 		x.setCategories(days);
 		conf.addxAxis(x);
