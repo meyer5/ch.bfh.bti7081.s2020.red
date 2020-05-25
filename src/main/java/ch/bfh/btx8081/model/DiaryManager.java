@@ -26,6 +26,7 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 //	Singleton
 	private DiaryManager() {
 		this.id = 1000;
+		this.persistenceManager = new PersistenceManager();
 		this.setUp();
 //		this.doctors = getDoctorsFromDb();
 //		testDB();
