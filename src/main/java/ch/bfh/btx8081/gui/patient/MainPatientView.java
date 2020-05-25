@@ -1,5 +1,7 @@
 package ch.bfh.btx8081.gui.patient;
 
+import ch.bfh.btx8081.model.Entry;
+import ch.bfh.btx8081.model.Patient;
 import com.vaadin.flow.component.board.Board;
 import com.vaadin.flow.component.charts.Chart;
 import com.vaadin.flow.component.charts.model.*;
@@ -11,6 +13,7 @@ import com.vaadin.flow.router.Route;
 
 import java.time.LocalDate;
 import java.util.Calendar;
+import java.util.List;
 
 // Overview of the addiction for the patient. Shows different data
 @Route(value = "main-patient")
@@ -20,6 +23,7 @@ public class MainPatientView extends VerticalLayout {
 	public static final String TITLE = "AddictionView";
 
 	private PatientPresenter presenter;
+	private Patient patient;
 
 	private SplitLayout vSplitLayout = new SplitLayout();
 	private VerticalLayout vLayoutLeft = new VerticalLayout();
@@ -32,13 +36,14 @@ public class MainPatientView extends VerticalLayout {
 	Label fixAddictionLbl = new Label("Addiction:");
 	Label fixEntriesNumberLbl = new Label("Entries made");
 	// Label right
-	Label patientFName = new Label(".");
-	Label patientLName = new Label(".");
-	Label doctorLbl = new Label(".");
-	Label addictionLbl = new Label(".");
-	Label entriesNumberLbl = new Label(".");
+	Label patientFName = new Label(patient.getFirstName());
+	Label patientLName = new Label(patient.getLastName());
+	Label doctorLbl = new Label(patient.getDoctor().getFirstName() + " " + patient.getDoctor().getLastName());
+	Label addictionLbl = new Label(patient.getAddiction());
+	Label entriesNumberLbl = new Label(Integer.toString(patient.getDiary().getEntries().size()));
 
-	public MainPatientView() {
+	public MainPatientView()
+	{
 		// Fill left and right layout
 		vLayoutLeft.add(fixPatientFName, fixPatientLName, fixDoctorLbl, fixAddictionLbl, fixEntriesNumberLbl);
 		vLayoutRight.add(patientFName, patientLName, doctorLbl, addictionLbl, entriesNumberLbl);
@@ -100,8 +105,26 @@ public class MainPatientView extends VerticalLayout {
 		PlotOptionsColumn plotOptionsColumn = new PlotOptionsColumn();
 		series.setPlotOptions(plotOptionsColumn);
 		series.setName("Created Entries");
-		series.setyAxis(0);
-		series.setData(1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1);
+		// reset every day
+		for (int i = 0; i < totalDays; i++)
+		{
+			series.setyAxis(i);
+			series.setData(0);
+		}
+		// Fill up days
+		List<Entry> entries = patient.getDiary().getEntries();
+		int latestEntryIndex = entries.size()-1;
+		for (int i = latestEntryIndex; i > -1; i--)
+		{
+			LocalDate currentEntryDate = entries.get(i).getDate();
+			if(LocalDate.now().getMonth() == currentEntryDate.getMonth())
+			{
+				series.setyAxis(currentEntryDate.getDayOfMonth()-1);
+				series.setData(1);
+			}
+			else
+				break;
+		}
 		conf.addSeries(series);
 
 		return chart;
