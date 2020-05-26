@@ -221,9 +221,9 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 	private void setUp() {
 //		this.newDoctor(firstName, lastName, phoneNumber, eMail, userName, password);
 		try {
-			this.newDoctor("Hans", "Meier", "0777777777", "hans.meier@mail.ch", "hmeier", "123");
+			this.newDoctor("Hans", "Meier", "0777777777", "hans.meier@mail.ch", "doctor1", "123");
 			System.out.println("hmeier - created");
-			this.newDoctor("Heidi", "Müller", "0700000000", "heidi.mueller@mail.ch", "hmueller", "asdf");
+			this.newDoctor("Heidi", "Müller", "0700000000", "heidi.mueller@mail.ch", "doctor2", "123");
 			System.out.println("hmueller - created");
 //		this.newPatient(firstName, lastName, phoneNumber, eMail, userName, password, addiction, mainInfo, doctor, consumedSubstance, consumptionMetric, conditionAutomaticAlarm);
 			this.newPatient("Remo", "Meyer", "0700000001", "hans.meier@mail.ch", "remo", "123", "Hero", "Kommentar",

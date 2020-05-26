@@ -1,7 +1,5 @@
 package ch.bfh.btx8081.gui.shared;
 
-import java.text.SimpleDateFormat;
-
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -38,18 +36,20 @@ public class EntryView extends VerticalLayout implements EntryInterface {
 	Label commentLabel = new Label("");
 	Label questionForConsultationLabel = new Label("");
 	
-	private final Button backButton;
-
 	public EntryView() {
 		
-		backButton = new Button("Back", event3 -> {
-			presenter.hadleBackClick();
+		Button backToMain = new Button("Back to overview", event3 -> {
+			presenter.hadleBackToMainClick();
+		});
+		
+		Button backToList = new Button("Back to entries list", event3 -> {
+			presenter.hadleBackToListClick();
 		});
 
-		vLayoutLeft.add(dateTextLabel, consumptionTextLabel, pressureToConsumeTextLabel, motivationTextLabel, commentTextLabel, questionForConsultationTextLabel, activitiesTextLabel);
-		vLayoutRight.add(dateLabel, consumptionLabel, pressureToConsumeLabel, motivationLabel, commentLabel, questionForConsultationLabel);
+		vLayoutLeft.add(backToMain, dateTextLabel, consumptionTextLabel, pressureToConsumeTextLabel, motivationTextLabel, commentTextLabel, questionForConsultationTextLabel, activitiesTextLabel);
+		vLayoutRight.add(backToList, dateLabel, consumptionLabel, pressureToConsumeLabel, motivationLabel, commentLabel, questionForConsultationLabel);
 		hLayout.add(vLayoutLeft, vLayoutRight);
-		add(hLayout, backButton);
+		add(hLayout);
 	}
 
 	@Override

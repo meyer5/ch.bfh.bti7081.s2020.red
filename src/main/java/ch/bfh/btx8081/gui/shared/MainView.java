@@ -3,8 +3,6 @@ package ch.bfh.btx8081.gui.shared;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 
-import ch.bfh.btx8081.exceptions.UserNotFoundException;
-import ch.bfh.btx8081.exceptions.WrongPasswordException;
 import ch.bfh.btx8081.gui.doctor.CreatePatientPresenter;
 import ch.bfh.btx8081.gui.doctor.CreatePatientView;
 import ch.bfh.btx8081.gui.doctor.EditPatientPresenter;
@@ -109,9 +107,10 @@ public class MainView extends VerticalLayout {
 		this.add(view);
 	}
 
-	public void openPatientInfoView(DoctorService service) throws WrongPasswordException, UserNotFoundException {
+	public void openPatientInfoView(DoctorService service) {
 		removeAll();
-		PatientInfoView view = new PatientInfoView();
+		PatientInfoView view;
+		view = new PatientInfoView();
 		new PatientInfoPresenter(view, service, this);
 		this.add(view);
 	}
@@ -129,7 +128,7 @@ public class MainView extends VerticalLayout {
 		new CreatePatientPresenter(view, service, this);
 		this.add(view);
 	}
-	
+
 	public void openGraphView(DoctorService service) {
 		removeAll();
 		GraphView view = new GraphView();

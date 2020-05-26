@@ -10,7 +10,9 @@ public interface EntryInterface {
 
 	public interface EntryListener {
 
-		public void hadleBackClick();
+		public void hadleBackToMainClick();
+		
+		public void hadleBackToListClick();
 
 	}
 

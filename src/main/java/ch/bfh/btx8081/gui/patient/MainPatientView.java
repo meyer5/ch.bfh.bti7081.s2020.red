@@ -25,6 +25,7 @@ import ch.bfh.btx8081.model.Patient;
 // Overview of the addiction for the patient. Shows different data
 @Route(value = "main-patient")
 public class MainPatientView extends VerticalLayout implements MainPatientInterface {
+	
 	private static final long serialVersionUID = 1L;
 	public static final String TITLE = "AddictionView";
 
@@ -39,16 +40,16 @@ public class MainPatientView extends VerticalLayout implements MainPatientInterf
 	private VerticalLayout vLayout4 = new VerticalLayout();
 
 	// Label left
-	Label fixPatientFName = new Label("First name:");
-	Label fixPatientLName = new Label("Last name:");
-	Label fixDoctorLbl = new Label("Doctor:");
-	Label fixAddictionLbl = new Label("Addiction:");
+	private Label fixPatientFName = new Label("First name:");
+	private Label fixPatientLName = new Label("Last name:");
+	private Label fixDoctorLbl = new Label("Doctor:");
+	private Label fixAddictionLbl = new Label("Addiction:");
 	// Label right
 
-	Label patientFName = new Label("First name");
-	Label patientLName = new Label("Last name");
-	Label doctorLbl = new Label("Doctor");
-	Label addictionLbl = new Label("Addiction");
+	private Label patientFName = new Label("First name");
+	private Label patientLName = new Label("Last name");
+	private Label doctorLbl = new Label("Doctor");
+	private Label addictionLbl = new Label("Addiction");
 
 	public MainPatientView() {
 
@@ -65,7 +66,7 @@ public class MainPatientView extends VerticalLayout implements MainPatientInterf
 			presenter.hadleStrategiesClick();
 		});
 
-		Button QuestionsButton = new Button("Questions for doctor", event -> {
+		Button questionsButton = new Button("Questions for doctor", event -> {
 			presenter.hadleQuestionsClick();
 		});
 
@@ -77,19 +78,23 @@ public class MainPatientView extends VerticalLayout implements MainPatientInterf
 			presenter.hadleAlarmClick();
 		});
 
-		Button EntriesListButton = new Button("Show all entries", event -> {
+		Button entriesListButton = new Button("Show all entries", event -> {
 			presenter.hadleEntriesListClick();
 		});
 		
-		Button LogOutButton = new Button("Log out", event -> {
+		Button logOutButton = new Button("Log out", event -> {
 			presenter.hadleLogOutClick();
 		});
+		
+		// Board
+		Board board = new Board();
+		board.addRow(getEntryOverview());
 
 		// Fill layout
 		vLayout1.add(fixPatientFName, fixPatientLName, fixDoctorLbl, fixAddictionLbl);
 		vLayout2.add(patientFName, patientLName, doctorLbl, addictionLbl);
-		vLayout3.add(newEntryButton, showStrategyButton, alarmButton, QuestionsButton);
-		vLayout4.add(activitiesButton, strategiesButton, EntriesListButton, LogOutButton);
+		vLayout3.add(newEntryButton, showStrategyButton, alarmButton, questionsButton);
+		vLayout4.add(activitiesButton, strategiesButton, entriesListButton, logOutButton);
 
 		vLayout1.setDefaultHorizontalComponentAlignment(Alignment.STRETCH);
 		vLayout2.setDefaultHorizontalComponentAlignment(Alignment.STRETCH);
@@ -98,9 +103,6 @@ public class MainPatientView extends VerticalLayout implements MainPatientInterf
 
 		hLayout.setWidthFull();
 		hLayout.add(vLayout1, vLayout2, vLayout3, vLayout4);
-
-		Board board = new Board();
-		board.addRow(getEntryOverview());
 
 		add(new H2("Overview"), hLayout, board);
 	}

@@ -20,12 +20,16 @@ public class EntryPresenter implements EntryInterface.EntryListener {
 	}
 
 	@Override
-	public void hadleBackClick() {
+	public void hadleBackToMainClick() {
 		if (service instanceof DoctorService) {
 			main.openMainDoctorView((DoctorService) service);
 		} else if (service instanceof PatientService) {
 			main.openMainPatientView((PatientService) service);
 		}
+	}
+	
+	public void hadleBackToListClick() {
+		main.openEntriesListView(service);
 	}
 
 }

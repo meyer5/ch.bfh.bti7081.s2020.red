@@ -1,5 +1,6 @@
 package ch.bfh.btx8081.gui.shared;
 
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -19,12 +20,17 @@ public class EntriesListView extends VerticalLayout implements EntriesListInterf
 	private Grid<Entry> grid = new Grid<>(Entry.class);
 
 	public EntriesListView() {
+		
+		Button backButton = new Button("Back", event -> {
+			presenter.hadleBackClick();
+		});
+		
 		grid.addSelectionListener(event -> {
 			this.presenter.hadleOpenEntryClick((Entry) grid.getSelectedItems().toArray()[0]);
 		});
 		grid.setColumns("date", "pressureToConsume", "motivation", "consumption");
 		
-		add(new H1("Entries list"), grid);
+		add(new H1("Entries list"), backButton, grid);
 	}
 
 	@Override

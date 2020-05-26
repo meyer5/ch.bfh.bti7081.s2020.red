@@ -2,7 +2,7 @@ package ch.bfh.btx8081.gui.doctor;
 
 import ch.bfh.btx8081.gui.shared.MainView;
 import ch.bfh.btx8081.interfaces.DoctorService;
-import ch.bfh.btx8081.model.Patient;
+import ch.bfh.btx8081.model.Entry;
 
 public class PatientInfoPresenter implements PatientInfoInterface.PatientInfoListener {
 	
@@ -15,42 +15,47 @@ public class PatientInfoPresenter implements PatientInfoInterface.PatientInfoLis
 		this.service = service;
 		this.main = main;
 		view.addListener(this);
+		view.setPatient(service.getPatient());
 	}
 
 	@Override
 	public void hadleActivitiesClick() {
-		// TODO Auto-generated method stub
-		
+		main.openActivitiesView(service);
 	}
 
 	@Override
 	public void hadleStrategiesClick() {
-		// TODO Auto-generated method stub
-		
+		main.openStrategiesView(service);
 	}
 
 	@Override
 	public void hadleQuestionsClick() {
-		// TODO Auto-generated method stub
-		
+		main.openQuestionsView(service);
 	}
 
 	@Override
-	public void hadleOpenEntryClick() {
-		// TODO Auto-generated method stub
-		
+	public void hadleOpenEntryClick(Entry entry) {
+		main.openEntryView(service, entry);
 	}
 
 	@Override
 	public void hadleEntriesListClick() {
-		// TODO Auto-generated method stub
-		
+		main.openEntriesListView(service);
 	}
 
 	@Override
 	public void hadleBackClick() {
-		// TODO Auto-generated method stub
-		
+		main.openMainDoctorView(service);
+	}
+
+	@Override
+	public void hadleEditClick() {
+		main.openEditPatientView(service);
+	}
+
+	@Override
+	public void hadleLogOutClick() {
+		main.openLoginView();
 	}
 
 }

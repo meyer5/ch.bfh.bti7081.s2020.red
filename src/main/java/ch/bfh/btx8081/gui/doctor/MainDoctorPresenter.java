@@ -31,13 +31,7 @@ public class MainDoctorPresenter implements MainDoctorInterface.MainDoctorListen
 	@Override
 	public void hadleOpenPatientClick(Patient patient) {
 		service.selectPatient(patient);
-		try {
-			main.openPatientInfoView(service);
-		} catch (WrongPasswordException | UserNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+		main.openPatientInfoView(service);
 	}
 
 	@Override
