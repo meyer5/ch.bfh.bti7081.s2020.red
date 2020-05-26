@@ -9,21 +9,19 @@ import ch.bfh.btx8081.gui.doctor.CreatePatientPresenter;
 import ch.bfh.btx8081.gui.doctor.CreatePatientView;
 import ch.bfh.btx8081.gui.doctor.EditPatientPresenter;
 import ch.bfh.btx8081.gui.doctor.EditPatientView;
+import ch.bfh.btx8081.gui.doctor.GraphPresenter;
+import ch.bfh.btx8081.gui.doctor.GraphView;
 import ch.bfh.btx8081.gui.doctor.MainDoctorPresenter;
 import ch.bfh.btx8081.gui.doctor.MainDoctorView;
 import ch.bfh.btx8081.gui.doctor.PatientInfoPresenter;
 import ch.bfh.btx8081.gui.doctor.PatientInfoView;
-import ch.bfh.btx8081.gui.doctor.GraphPresenter;
-import ch.bfh.btx8081.gui.doctor.GraphView;
 import ch.bfh.btx8081.gui.patient.MainPatientPresenter;
 import ch.bfh.btx8081.gui.patient.MainPatientView;
 import ch.bfh.btx8081.gui.patient.newEntry.EntryViewController;
-import ch.bfh.btx8081.gui.patient.newEntry.NewEntryPresenter;
 import ch.bfh.btx8081.interfaces.DoctorService;
 import ch.bfh.btx8081.interfaces.PatientService;
 import ch.bfh.btx8081.interfaces.Service;
 import ch.bfh.btx8081.model.Entry;
-import ch.bfh.btx8081.model.Patient;
 
 @Route(value = "Main")
 public class MainView extends VerticalLayout {

@@ -1,9 +1,6 @@
 package ch.bfh.btx8081.gui.shared;
 
-import java.util.ArrayList;
-
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.Grid.SelectionMode;
@@ -14,8 +11,6 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.router.Route;
 
-import ch.bfh.btx8081.gui.shared.ActivitiesInterface.ActivitiesListener;
-import ch.bfh.btx8081.model.Activity;
 import ch.bfh.btx8081.model.AvoidanceStrategy;
 import ch.bfh.btx8081.model.Patient;
 

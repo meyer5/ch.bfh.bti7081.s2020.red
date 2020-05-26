@@ -3,17 +3,14 @@ package ch.bfh.btx8081.gui.doctor;
 import java.util.ArrayList;
 
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.splitlayout.SplitLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.Route;
 
 import ch.bfh.btx8081.model.Alarm;
-import ch.bfh.btx8081.model.Entry;
 import ch.bfh.btx8081.model.Patient;
 
 @Route(value = "main-doctor")
