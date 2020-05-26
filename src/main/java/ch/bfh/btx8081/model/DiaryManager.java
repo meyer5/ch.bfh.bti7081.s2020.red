@@ -17,7 +17,7 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 	private static DiaryManager instance = null;
 	private long id = 1000;
 
-	private PersistenceManager persistenceManager;
+	private PersistenceManager persistenceManager = null;
 //	Solution until persistence is implemented
 //	private List<Doctor> doctors = new ArrayList<Doctor>();
 
@@ -26,8 +26,8 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 //	Singleton
 	private DiaryManager() {
 		this.id = 1000;
-//		this.persistenceManager = new PersistenceManager();
-		this.setUp();
+		this.persistenceManager = new PersistenceManager();
+//		this.setUp();
 //		this.doctors = getDoctorsFromDb();
 //		testDB();
 	}

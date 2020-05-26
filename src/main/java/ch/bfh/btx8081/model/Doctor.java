@@ -12,12 +12,8 @@ import javax.persistence.OneToMany;
 public class Doctor extends User{
 	
 	// ArrayList geht nicht, Fehlermeldung
-	@OneToMany(
-			mappedBy = "doctor",
-			cascade = CascadeType.PERSIST
-//	        orphanRemoval = true
-	        )
-	private ArrayList<Patient> patients =  new ArrayList<Patient>();
+	@OneToMany(mappedBy = "doctor",	cascade = CascadeType.PERSIST)
+	private List<Patient> patients =  new ArrayList<Patient>();
 
 //	Constructor for JPA
 	public Doctor() {

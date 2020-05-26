@@ -1,5 +1,6 @@
 package ch.bfh.btx8081.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -12,8 +13,8 @@ public class Activity {
 	private String activity = "";
 	private String iconID = "";
 	
-	@ManyToOne
-	@JoinColumn(name = "diary_id")
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "DIARY_ID")
 	private Diary diary;
 	
 

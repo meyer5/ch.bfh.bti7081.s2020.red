@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -11,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
+import javax.persistence.ForeignKey;
 
 @Entity
 //@Table(name = "entry")
@@ -25,7 +27,7 @@ public class Entry {
 	private int pressureToConsume = 0;
 	private int motivation = 0;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "diary_id")
 	private Diary diary;
 	
@@ -34,7 +36,7 @@ public class Entry {
 	
 	private String comment = "";
 	
-	@OneToOne(mappedBy = "entry")
+	@OneToOne(/*mappedBy = "entry",*/ cascade = CascadeType.PERSIST)
 	private QuestionForConsultation questionForConsultation = null;
 	
 	
