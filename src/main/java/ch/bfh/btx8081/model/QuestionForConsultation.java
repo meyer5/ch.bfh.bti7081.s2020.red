@@ -13,9 +13,9 @@ public class QuestionForConsultation {
 	@Id
 	private String question = "";
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "entry_id")
-	private Entry entry;
+//	@OneToOne(cascade = CascadeType.ALL)
+//	@JoinColumn(name = "entry_id")
+//	private Entry entry;
 	
 	
 //	Constructor for JPA

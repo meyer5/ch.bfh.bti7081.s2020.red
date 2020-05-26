@@ -49,7 +49,7 @@ public class Doctor extends User{
 	
 //	getters & setters
 	
-	public ArrayList<Patient> getPatients() {
+	public List<Patient> getPatients() {
 		return patients;
 	}
 

@@ -84,12 +84,12 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 //	get lists
 
 	@Override
-	public ArrayList<Patient> getAllPatientsOfDoctor(Doctor doctor) {
+	public List<Patient> getAllPatientsOfDoctor(Doctor doctor) {
 		return doctor.getPatients();
 	}
 
 	@Override
-	public ArrayList<Entry> getDiaryEntries(Patient patient) {
+	public List<Entry> getDiaryEntries(Patient patient) {
 		return patient.getDiary().getEntries();
 	}
 
@@ -175,7 +175,7 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 
 	@Override
 	public void newEntry(Patient patient, long consumption, int pressureToConsume, int motivation,
-			ArrayList<Activity> activities, String comment, String questionForConsultation)
+			List<Activity> activities, String comment, String questionForConsultation)
 			throws ShowAvoidanceStrategyException {
 		patient.getDiary().newEntry(consumption, pressureToConsume, motivation, activities, comment,
 				questionForConsultation);

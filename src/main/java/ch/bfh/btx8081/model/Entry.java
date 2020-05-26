@@ -48,7 +48,7 @@ public class Entry {
 
 //	Constructor for diary
 
-	protected Entry(long consumption, int pressureToConsume, int motivation, ArrayList<Activity> activities,
+	protected Entry(long consumption, int pressureToConsume, int motivation, List<Activity> activities,
 			String comment, QuestionForConsultation questionForConsultation) {
 		super();
 		this.setDate(LocalDate.now());
@@ -63,7 +63,7 @@ public class Entry {
 //	Constructor for persistence
 	
 	public Entry(LocalDate date, long consumption, int pressureToConsume, int motivation,
-			ArrayList<Activity> activities, String comment, QuestionForConsultation questionForConsultation) {
+			List<Activity> activities, String comment, QuestionForConsultation questionForConsultation) {
 		super();
 		this.date = date;
 		this.consumption = consumption;

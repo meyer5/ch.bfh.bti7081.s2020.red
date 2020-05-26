@@ -1,6 +1,7 @@
 package ch.bfh.btx8081.gui.doctor;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
@@ -60,8 +61,8 @@ public class MainDoctorView extends VerticalLayout implements MainDoctorInterfac
 	}
 
 	@Override
-	public void setPatientList(ArrayList<Patient> patients) {
-		patientList.setItems(patients);
+	public void setPatientList(List<Patient> list) {
+		patientList.setItems(list);
 	}
 
 	@Override
