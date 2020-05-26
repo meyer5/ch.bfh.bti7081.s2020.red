@@ -19,7 +19,7 @@ import ch.bfh.btx8081.model.Entry;
 import ch.bfh.btx8081.model.Patient;
 
 
-@Route(value = "Statistics")
+@Route(value = "statistics")
 public class StatisticsView extends VerticalLayout
 {
     private static final long serialVersionUID = 4L;

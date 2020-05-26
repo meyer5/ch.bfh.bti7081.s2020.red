@@ -8,6 +8,7 @@ import ch.bfh.btx8081.model.Activity;
 import ch.bfh.btx8081.model.AvoidanceStrategy;
 import ch.bfh.btx8081.model.Entry;
 import ch.bfh.btx8081.model.Patient;
+import ch.bfh.btx8081.model.QuestionForConsultation;
 
 public interface PatientInterface {
 
@@ -24,5 +25,9 @@ public interface PatientInterface {
 	void newEntry(Patient patient, long consumption, int pressureToConsume, int motivation,
 			ArrayList<Activity> activities, String comment, String questionForConsultation)
 			throws ShowAvoidanceStrategyException;
+	
+	void createNewQuestionForConsultation(Patient patient, String questionForConsultation);
+
+	void removeNewQuestionForConsultation(Patient patient, QuestionForConsultation questionForConsultation);
 	
 }

@@ -3,20 +3,25 @@ package ch.bfh.btx8081.gui.shared;
 import ch.bfh.btx8081.interfaces.DoctorService;
 import ch.bfh.btx8081.interfaces.PatientService;
 import ch.bfh.btx8081.interfaces.Service;
-import ch.bfh.btx8081.model.AvoidanceStrategy;
+import ch.bfh.btx8081.model.Entry;
 
-public class StrategiesPresenter implements StrategiesInterface.StrategiesListener {
+public class EntriesListPresenter implements EntriesListInterface.EntriesListListener {
 	
-	private StrategiesView view;
+	private EntriesListView view;
 	private Service service;
 	private MainView main;
 	
-	public StrategiesPresenter(StrategiesView view, Service service, MainView main) {
+	public EntriesListPresenter(EntriesListView view, Service service, MainView main) {
 		this.view = view;
 		this.service = service;
 		this.main = main;
 		view.addListener(this);
 		view.setPatient(service.getPatient());
+	}
+
+	@Override
+	public void hadleOpenEntryClick(Entry entry) {
+		main.openEntryView(service, entry);
 	}
 
 	@Override
@@ -27,18 +32,5 @@ public class StrategiesPresenter implements StrategiesInterface.StrategiesListen
 			main.openMainPatientView((PatientService) service);
 		}
 	}
-
-	@Override
-	public void hadleDeleteStrategyClick(AvoidanceStrategy avoidanceStrategy) {
-		service.removeNewAvoidanceStrategy(avoidanceStrategy);
-		view.setPatient(service.getPatient());
-	}
-
-	@Override
-	public void hadleCreateStrategyClick(String avoidanceStrategy) {
-		service.createNewAvoidanceStrategy(avoidanceStrategy);;
-		view.setPatient(service.getPatient());
-	}
-
-
+	
 }

@@ -24,16 +24,16 @@ public class Diary {
 	private String conditionAutomaticAlarm = "";
 
 	@OneToMany(mappedBy = "diary", targetEntity=Activity.class)
-	private List<Activity> activities = new ArrayList<Activity>();
+	private ArrayList<Activity> activities = new ArrayList<Activity>();
 
 	@OneToMany(mappedBy = "diary")
-	private List<AvoidanceStrategy> avoidanceStrategies = new ArrayList<AvoidanceStrategy>();
+	private ArrayList<AvoidanceStrategy> avoidanceStrategies = new ArrayList<AvoidanceStrategy>();
 	
 	@Transient
-	private List<QuestionForConsultation> unansweredQuestions = new ArrayList<QuestionForConsultation>();
+	private ArrayList<QuestionForConsultation> unansweredQuestions = new ArrayList<QuestionForConsultation>();
 
 	@OneToMany(mappedBy = "diary")
-	private List<Entry> entries = new ArrayList<Entry>();
+	private ArrayList<Entry> entries = new ArrayList<Entry>();
 
 //	Constructor for JPA
 	public Diary() {
@@ -115,8 +115,8 @@ public class Diary {
 
 //	Default Diary
 
-	private List<AvoidanceStrategy> defaultAvoidanceStrategies() {
-		List<AvoidanceStrategy> res = new ArrayList<AvoidanceStrategy>();
+	private ArrayList<AvoidanceStrategy> defaultAvoidanceStrategies() {
+		ArrayList<AvoidanceStrategy> res = new ArrayList<AvoidanceStrategy>();
 		res.add(new AvoidanceStrategy("1"));
 		res.add(new AvoidanceStrategy("2"));
 		res.add(new AvoidanceStrategy("3"));
@@ -124,8 +124,8 @@ public class Diary {
 		return res;
 	}
 
-	private List<Activity> defaultActivities() {
-		List<Activity> res = new ArrayList<Activity>();
+	private ArrayList<Activity> defaultActivities() {
+		ArrayList<Activity> res = new ArrayList<Activity>();
 		res.add(new Activity("1", "1111"));
 		res.add(new Activity("2", "1111"));
 		res.add(new Activity("3", "1111"));
@@ -159,35 +159,35 @@ public class Diary {
 		this.conditionAutomaticAlarm = conditionAutomaticAlarm;
 	}
 
-	public List<Activity> getActivities() {
+	public ArrayList<Activity> getActivities() {
 		return activities;
 	}
 
-	protected void setActivities(List<Activity> activities) {
+	protected void setActivities(ArrayList<Activity> activities) {
 		this.activities = activities;
 	}
 
-	public List<AvoidanceStrategy> getAvoidanceStrategies() {
+	public ArrayList<AvoidanceStrategy> getAvoidanceStrategies() {
 		return avoidanceStrategies;
 	}
 
-	protected void setAvoidanceStrategies(List<AvoidanceStrategy> avoidanceStrategies) {
+	protected void setAvoidanceStrategies(ArrayList<AvoidanceStrategy> avoidanceStrategies) {
 		this.avoidanceStrategies = avoidanceStrategies;
 	}
 
-	public List<QuestionForConsultation> getUnansweredQuestions() {
+	public ArrayList<QuestionForConsultation> getUnansweredQuestions() {
 		return unansweredQuestions;
 	}
 
-	protected void setUnansweredQuestions(List<QuestionForConsultation> unansweredQuestions) {
+	protected void setUnansweredQuestions(ArrayList<QuestionForConsultation> unansweredQuestions) {
 		this.unansweredQuestions = unansweredQuestions;
 	}
 
-	public List<Entry> getEntries() {
+	public ArrayList<Entry> getEntries() {
 		return entries;
 	}
 
-	protected void setEntries(List<Entry> entries) {
+	protected void setEntries(ArrayList<Entry> entries) {
 		this.entries = entries;
 	}
 

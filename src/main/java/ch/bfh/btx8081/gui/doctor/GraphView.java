@@ -23,7 +23,7 @@ import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 
-@Route(value = "statistics")
+@Route(value = "graph")
 public class GraphView extends VerticalLayout implements GraphInterface {
 
 	private static final long serialVersionUID = 8567041458816914285L;

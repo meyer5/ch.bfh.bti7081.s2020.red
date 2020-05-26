@@ -12,9 +12,6 @@ import com.vaadin.flow.router.Route;
 import ch.bfh.btx8081.exceptions.UserNotFoundException;
 import ch.bfh.btx8081.exceptions.WrongPasswordException;
 import ch.bfh.btx8081.interfaces.DoctorService;
-import ch.bfh.btx8081.interfaces.ServiceManager;
-
-import ch.bfh.btx8081.model.DiaryManager;
 import ch.bfh.btx8081.model.Patient;
 import ch.bfh.btx8081.persistence.PersistenceManager;
 

@@ -1,15 +1,16 @@
 package ch.bfh.btx8081.gui.doctor;
 
 import ch.bfh.btx8081.gui.shared.MainView;
-import ch.bfh.btx8081.interfaces.PatientService;
+import ch.bfh.btx8081.interfaces.DoctorService;
+import ch.bfh.btx8081.model.Patient;
 
 public class PatientInfoPresenter implements PatientInfoInterface.PatientInfoListener {
 	
 	private PatientInfoView view;
-	private PatientService service;
+	private DoctorService service;
 	private MainView main;
 	
-	public PatientInfoPresenter(PatientInfoView view, PatientService service, MainView main) {
+	public PatientInfoPresenter(PatientInfoView view, DoctorService service, MainView main) {
 		this.view = view;
 		this.service = service;
 		this.main = main;

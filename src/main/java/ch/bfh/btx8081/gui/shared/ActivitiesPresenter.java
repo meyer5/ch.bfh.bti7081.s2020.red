@@ -3,15 +3,15 @@ package ch.bfh.btx8081.gui.shared;
 import ch.bfh.btx8081.interfaces.DoctorService;
 import ch.bfh.btx8081.interfaces.PatientService;
 import ch.bfh.btx8081.interfaces.Service;
-import ch.bfh.btx8081.model.QuestionForConsultation;
+import ch.bfh.btx8081.model.Activity;
 
-public class QuestionsPresenter implements QuestionsInterface.QuestionsListener {
-
-	private QuestionsView view;
+public class ActivitiesPresenter implements ActivitiesInterface.ActivitiesListener {
+	
+	private ActivitiesView view;
 	private Service service;
 	private MainView main;
 	
-	public QuestionsPresenter(QuestionsView view, Service service, MainView main) {
+	public ActivitiesPresenter(ActivitiesView view, Service service, MainView main) {
 		this.view = view;
 		this.service = service;
 		this.main = main;
@@ -29,15 +29,18 @@ public class QuestionsPresenter implements QuestionsInterface.QuestionsListener 
 	}
 
 	@Override
-	public void hadleQuestionDoneClick(QuestionForConsultation questionForConsultation) {
-		service.removeNewQuestionForConsultation(questionForConsultation);
+	public void hadleDeleteActivityClick(Activity activity) {
+		service.removeNewActivity(activity);
 		view.setPatient(service.getPatient());
+		
 	}
 
 	@Override
-	public void hadleCreateQuestionClick(String questionForConsultation) {
-		service.createNewQuestionForConsultation(questionForConsultation);
+	public void hadleSaveClick(String activity, String iconID) {
+		service.createNewActivity(activity, iconID);
 		view.setPatient(service.getPatient());
 	}
-	
+
+
+
 }

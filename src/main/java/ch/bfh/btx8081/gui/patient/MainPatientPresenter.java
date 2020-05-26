@@ -2,6 +2,7 @@ package ch.bfh.btx8081.gui.patient;
 
 import ch.bfh.btx8081.gui.shared.MainView;
 import ch.bfh.btx8081.interfaces.PatientService;
+import ch.bfh.btx8081.model.Entry;
 
 public class MainPatientPresenter implements MainPatientInterface.MainPatientListener {
 
@@ -13,12 +14,12 @@ public class MainPatientPresenter implements MainPatientInterface.MainPatientLis
 		this.view = view;
 		this.service = service;
 		this.main = main;
-		view.addListener(this);
+		view.setPresenter(this);
+		view.setPatient(service.getPatient());
 	}
 
 	@Override
 	public void handleNewEntryClick() {
-		// TODO Auto-generated method stub
 		main.openNewEntryView(service);
 	}
 
@@ -53,8 +54,8 @@ public class MainPatientPresenter implements MainPatientInterface.MainPatientLis
 	}
 
 	@Override
-	public void hadleOpenEntryClick() {
-		main.openEntryView(service);
+	public void hadleOpenEntryClick(Entry entry) {
+		main.openEntryView(service, entry);
 		
 	}
 
@@ -62,6 +63,11 @@ public class MainPatientPresenter implements MainPatientInterface.MainPatientLis
 	public void hadleEntriesListClick() {
 		main.openEntriesListView(service);
 		
+	}
+
+	@Override
+	public void hadleLogOutClick() {
+		main.openLoginView();
 	}
 	
 	

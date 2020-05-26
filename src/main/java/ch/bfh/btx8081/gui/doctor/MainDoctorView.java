@@ -5,12 +5,15 @@ import java.util.ArrayList;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.splitlayout.SplitLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.Route;
 
+import ch.bfh.btx8081.model.Alarm;
+import ch.bfh.btx8081.model.Entry;
 import ch.bfh.btx8081.model.Patient;
 
 @Route(value = "main-doctor")
@@ -23,51 +26,55 @@ public class MainDoctorView extends VerticalLayout implements MainDoctorInterfac
 	private static final long serialVersionUID = 1L;
 	public static final String TITLE = "SearchByNameView";
 
-	private ArrayList<MainDoctorListener> listeners = new ArrayList<MainDoctorListener>();
+	private MainDoctorListener presenter;
 
 	private Grid<Patient> patientList = new Grid<>(Patient.class);
-	private SplitLayout layout = new SplitLayout();
+	
+	
+	
 	private TextField filterText = new TextField();
-	private Button createPatientButton = new Button("create new patient");
+	private HorizontalLayout hLayout = new HorizontalLayout();
 
 	// just a place holder for alarms; will be changed after alarm is implemented
-	private VerticalLayout alarms = new VerticalLayout();
-	private Checkbox alarm = new Checkbox("Alarm1");
-	private Checkbox alarm2 = new Checkbox("Alarm2");
-	private Checkbox alarm3 = new Checkbox("Alarm3");
-	private Checkbox alarm4 = new Checkbox("Alarm4");
+	private Grid<Alarm> alarms = new Grid<>(Alarm.class);
 
 	public MainDoctorView() {
+		
+		Button LogOutButton = new Button("Log out", event -> {
+			presenter.hadleLogOutClick();
+		});
+		
+		Button createPatientButton = new Button("create new patient", event -> {
+			presenter.hadleCreateNewPatientClick();
+		});
 
 		filterText.setPlaceholder("Filter by name...");
 		filterText.setClearButtonVisible(true);
 		filterText.setValueChangeMode(ValueChangeMode.EAGER);
-		filterText.addValueChangeListener(e -> updateList());
+		filterText.addValueChangeListener(e -> presenter.hadleSearchPatientClick(filterText.getValue()));
 
-		patientList.setColumns("id", "firstName", "lastName");
+		patientList.setColumns("firstName", "lastName");
+		patientList.addSelectionListener(event -> {
+			this.presenter.hadleOpenPatientClick((Patient) patientList.getSelectedItems().toArray()[0]);
+		});
 
-		alarms.add(alarm, alarm2, alarm3, alarm4);
-
-		layout.addToPrimary(createPatientButton);
-		layout.addToSecondary(alarms);
-
-		add(filterText, patientList, layout);
-
-		updateList();
-	}
-
-	public void updateList() {
-		// grid.setItems(service.findAll(filterText.getValue()));
+		hLayout.add(filterText, createPatientButton, LogOutButton);
+		add(hLayout, patientList, alarms);
 	}
 
 	@Override
-	public void setDoctor() {
-		// TODO Auto-generated method stub
+	public void setPatientList(ArrayList<Patient> patients) {
+		patientList.setItems(patients);
+	}
+
+	@Override
+	public void setAlarms(ArrayList<Alarm> alarms) {
+		this.alarms.setItems(alarms);
 
 	}
 
 	@Override
 	public void addListener(MainDoctorListener presenter) {
-		listeners.add(presenter);
+		this.presenter = presenter;
 	}
 }

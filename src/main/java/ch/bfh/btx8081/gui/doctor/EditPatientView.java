@@ -1,5 +1,7 @@
 package ch.bfh.btx8081.gui.doctor;
 
+import java.util.ArrayList;
+
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.PasswordField;
@@ -7,14 +9,19 @@ import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 
+import ch.bfh.btx8081.gui.doctor.EditPatientInterface.EditPatientListener;
+import ch.bfh.btx8081.gui.doctor.PatientInfoInterface.PatientInfoListener;
+
 @Route(value = "edit-patient")
-public class EditPatientView extends VerticalLayout {
+public class EditPatientView extends VerticalLayout implements EditPatientInterface {
 
 	/**
 	 *  Patient Form to showing patient's information
 	 */
 	
 	private static final long serialVersionUID = -4993947004340633343L;
+	
+	private ArrayList<EditPatientListener> listeners = new ArrayList<EditPatientListener>();
 	
 	private FormLayout blockOne = new FormLayout();
 	private FormLayout blockTwo = new FormLayout();
@@ -142,6 +149,17 @@ public class EditPatientView extends VerticalLayout {
 	
 	public void setConsumedSubstance(String consumedSubstance) {
 		this.consumedSubstance.setValue(consumedSubstance);
+	}
+
+	@Override
+	public void setPatient() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addListener(EditPatientListener presenter) {
+		listeners.add(presenter);		
 	}
 
 }

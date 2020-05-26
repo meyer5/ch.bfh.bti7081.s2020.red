@@ -1,15 +1,16 @@
 package ch.bfh.btx8081.gui.doctor;
 
 import ch.bfh.btx8081.gui.shared.MainView;
+import ch.bfh.btx8081.interfaces.DoctorService;
 import ch.bfh.btx8081.interfaces.PatientService;
 
 public class CreatePatientPresenter implements CreatePatientInterface.CreatePatientListener {
 	
 	private CreatePatientView view;
-	private PatientService service;
+	private DoctorService service;
 	private MainView main;
 
-	public CreatePatientPresenter(CreatePatientView view, PatientService service, MainView main) {
+	public CreatePatientPresenter(CreatePatientView view, DoctorService service, MainView main) {
 		this.view = view;
 		this.service = service;
 		this.main = main;

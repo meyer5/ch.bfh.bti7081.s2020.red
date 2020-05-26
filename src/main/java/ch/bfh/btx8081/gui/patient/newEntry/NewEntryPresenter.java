@@ -3,6 +3,9 @@ package ch.bfh.btx8081.gui.patient.newEntry;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import ch.bfh.btx8081.gui.patient.MainPatientView;
+import ch.bfh.btx8081.gui.shared.LogInView;
+import ch.bfh.btx8081.gui.shared.MainView;
 import ch.bfh.btx8081.interfaces.PatientService;
 
 /**
@@ -14,6 +17,9 @@ import ch.bfh.btx8081.interfaces.PatientService;
 
 public class NewEntryPresenter implements ViewListenerInterface {
 	
+//	private EntryViewController view;
+//	private MainView main;
+//	private PatientService patientService;
 	
 	private BigDecimal consumption;
 	private double motivation;
@@ -24,16 +30,17 @@ public class NewEntryPresenter implements ViewListenerInterface {
 	private boolean confirmed;
 	private LocalDate date;
 	
-	private PatientService patientService;
+	
 	
 	// TODO Instanz von PatientService
 	
 	//TODO Input validation
 	// Fragen -> leerer String oder NULL
 	
-	public NewEntryPresenter(PatientService service) {
-		
-		this.patientService = service;
+	public NewEntryPresenter(/*EntryViewController view, */PatientService service/*, MainView main*/) {
+//		this.view = view;
+//		this.main = main;
+//		this.patientService = service;
 		this.consumption = new BigDecimal(0);
 		this.motivation = 0.0;
 		this.comment = "";

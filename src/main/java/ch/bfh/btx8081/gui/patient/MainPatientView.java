@@ -1,7 +1,5 @@
 package ch.bfh.btx8081.gui.patient;
 
-import java.util.ArrayList;
-
 import com.vaadin.flow.component.board.Board;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.charts.Chart;
@@ -12,10 +10,13 @@ import com.vaadin.flow.component.charts.model.Labels;
 import com.vaadin.flow.component.charts.model.PlotOptionsColumn;
 import com.vaadin.flow.component.charts.model.XAxis;
 import com.vaadin.flow.component.charts.model.YAxis;
+import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
+
+import ch.bfh.btx8081.model.Patient;
 
 // Overview of the addiction for the patient. Shows different data
 @Route(value = "main-patient")
@@ -23,7 +24,7 @@ public class MainPatientView extends VerticalLayout implements MainPatientInterf
 	private static final long serialVersionUID = 1L;
 	public static final String TITLE = "AddictionView";
 
-	private ArrayList<MainPatientListener> listeners = new ArrayList<MainPatientListener>();
+	private MainPatientListener presenter;
 
 	private HorizontalLayout hLayout = new HorizontalLayout();
 	private VerticalLayout vLayout1 = new VerticalLayout();
@@ -32,52 +33,56 @@ public class MainPatientView extends VerticalLayout implements MainPatientInterf
 	private VerticalLayout vLayout4 = new VerticalLayout();
 
 	// Label left
-	Label fixPatientFName = new Label("First name");
-	Label fixPatientLName = new Label("Last name");
+	Label fixPatientFName = new Label("First name:");
+	Label fixPatientLName = new Label("Last name:");
 	Label fixDoctorLbl = new Label("Doctor:");
 	Label fixAddictionLbl = new Label("Addiction:");
 	// Label right
-	Label patientFName = new Label(".");
-	Label patientLName = new Label(".");
-	Label doctorLbl = new Label(".");
-	Label addictionLbl = new Label(".");
+	Label patientFName = new Label("First name");
+	Label patientLName = new Label("Last name");
+	Label doctorLbl = new Label("Doctor");
+	Label addictionLbl = new Label("Addiction");
 
 	public MainPatientView() {
 
 		// Create Buttons
-		Button newEntryButton = new Button("Create new Entry", event -> {
-			listeners.forEach(listener -> listener.handleNewEntryClick());
+		Button newEntryButton = new Button("Create new entry", event -> {
+			presenter.handleNewEntryClick();
 		});
 
-		Button activitiesButton = new Button("Activities settings", event -> {
-			listeners.forEach(listener -> listener.hadleActivitiesClick());
+		Button activitiesButton = new Button("Activities", event -> {
+			presenter.hadleActivitiesClick();
 		});
 
-		Button strategiesButton = new Button("Strategies settings", event -> {
-			listeners.forEach(listener -> listener.hadleStrategiesClick());
+		Button strategiesButton = new Button("Strategies", event -> {
+			presenter.hadleStrategiesClick();
 		});
 
 		Button QuestionsButton = new Button("Questions for doctor", event -> {
-			listeners.forEach(listener -> listener.hadleQuestionsClick());
+			presenter.hadleQuestionsClick();
 		});
 
 		Button showStrategyButton = new Button("Show a strategy", event -> {
-			listeners.forEach(listener -> listener.hadleShowStrategyClick());
+			presenter.hadleShowStrategyClick();
 		});
 
 		Button alarmButton = new Button("Alarm", event -> {
-			listeners.forEach(listener -> listener.hadleAlarmClick());
+			presenter.hadleAlarmClick();
 		});
 
 		Button EntriesListButton = new Button("Show all entries", event -> {
-			listeners.forEach(listener -> listener.hadleEntriesListClick());
+			presenter.hadleEntriesListClick();
+		});
+		
+		Button LogOutButton = new Button("Log out", event -> {
+			presenter.hadleLogOutClick();
 		});
 
 		// Fill layout
 		vLayout1.add(fixPatientFName, fixPatientLName, fixDoctorLbl, fixAddictionLbl);
 		vLayout2.add(patientFName, patientLName, doctorLbl, addictionLbl);
 		vLayout3.add(newEntryButton, showStrategyButton, alarmButton, QuestionsButton);
-		vLayout4.add(activitiesButton, strategiesButton, EntriesListButton);
+		vLayout4.add(activitiesButton, strategiesButton, EntriesListButton, LogOutButton);
 
 		vLayout1.setDefaultHorizontalComponentAlignment(Alignment.STRETCH);
 		vLayout2.setDefaultHorizontalComponentAlignment(Alignment.STRETCH);
@@ -90,13 +95,13 @@ public class MainPatientView extends VerticalLayout implements MainPatientInterf
 		Board board = new Board();
 		board.addRow(getEntryOverview());
 
-		add(hLayout);
-		add(board);
+		add(new H2("Overview"), hLayout, board);
+//		add(board);
 	}
 
 	@Override
-	public void addListener(MainPatientListener presenter) {
-		listeners.add(presenter);
+	public void setPresenter(MainPatientListener presenter) {
+		this.presenter = presenter;
 	}
 
 	// Returns a graph that shows, when a entry was made or not
@@ -134,33 +139,18 @@ public class MainPatientView extends VerticalLayout implements MainPatientInterf
 		series.setPlotOptions(plotOptionsColumn);
 		series.setName("Created Entries");
 		series.setyAxis(0);
-		series.setData(1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1);
+		series.setData(1, 3, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 2, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1);
 		conf.addSeries(series);
 
 		return chart;
 	}
 
-	public void setPatientFName(String patientFName) {
-		System.out.println(this.patientFName.getText());
-		this.patientFName.setText(patientFName);
-		System.out.println(this.patientFName.getText());
-	}
-
-	public void setPatientLName(String patientLName) {
-		this.patientLName.setText(patientLName);
-	}
-
-	public void setDoctorLbl(String doctorLbl) {
-		this.doctorLbl.setText(doctorLbl);
-	}
-
-	public void setAddictionLbl(String addictionLbl) {
-		this.addictionLbl.setText(addictionLbl);
-	}
-
+//	Show the information of logged in patient
 	@Override
-	public void setPatient() {
-		// TODO Auto-generated method stub
-
+	public void setPatient(Patient patient) {
+		patientFName.setText(patient.getFirstName());
+		patientLName.setText(patient.getLastName());
+		doctorLbl.setText(patient.getDoctor().getFirstName());
+		addictionLbl.setText(patient.getAddiction());
 	}
 }

@@ -8,10 +8,10 @@ import ch.bfh.btx8081.interfaces.Service;
 import ch.bfh.btx8081.interfaces.ServiceManager;
 
 public class LogInPresenter implements LogInInterface.LogInViewListener {
-	
+
 	private LogInView view;
 	private MainView main;
-	
+
 	public LogInPresenter(LogInView view, MainView main) {
 		this.view = view;
 		this.main = main;
@@ -32,9 +32,7 @@ public class LogInPresenter implements LogInInterface.LogInViewListener {
 			System.out.println(userName + " - " + password);
 			e.printStackTrace();
 		}
-		
+
 	}
-	
-	
 
 }

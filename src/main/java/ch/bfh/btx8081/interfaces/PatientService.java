@@ -9,6 +9,7 @@ import ch.bfh.btx8081.model.AvoidanceStrategy;
 import ch.bfh.btx8081.model.DiaryManager;
 import ch.bfh.btx8081.model.Entry;
 import ch.bfh.btx8081.model.Patient;
+import ch.bfh.btx8081.model.QuestionForConsultation;
 
 public class PatientService implements Service {
 
@@ -22,24 +23,41 @@ public class PatientService implements Service {
 
 //	Interface
 
+	@Override
 	public List<Entry> getDiaryEntries() {
 		return patientInterface.getDiaryEntries(patient);
 	}
 
+	@Override
 	public void createNewActivity(String activity, String iconID) {
 		patientInterface.createNewActivity(patient, activity, iconID);
 	}
 
+	@Override
 	public void removeNewActivity(Activity activity) {
 		patientInterface.removeNewActivity(patient, activity);
 	}
 
+	@Override
 	public void createNewAvoidanceStrategy(String avoidanceStrategy) {
 		patientInterface.createNewAvoidanceStrategy(patient, avoidanceStrategy);
 	}
 
+	@Override
 	public void removeNewAvoidanceStrategy(AvoidanceStrategy avoidanceStrategy) {
 		patientInterface.removeNewAvoidanceStrategy(patient, avoidanceStrategy);
+	}
+	
+	@Override
+	public void createNewQuestionForConsultation(String questionForConsultation) {
+		patientInterface.createNewQuestionForConsultation(patient, questionForConsultation);
+		
+	}
+
+	@Override
+	public void removeNewQuestionForConsultation(QuestionForConsultation questionForConsultation) {
+		patientInterface.removeNewQuestionForConsultation(patient, questionForConsultation);
+		
 	}
 
 	public void newEntry(int mood, long consumption, int pressureToConsume, int motivation,

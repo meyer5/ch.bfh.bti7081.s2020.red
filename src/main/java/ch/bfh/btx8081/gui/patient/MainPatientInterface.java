@@ -1,10 +1,13 @@
 package ch.bfh.btx8081.gui.patient;
 
+import ch.bfh.btx8081.model.Entry;
+import ch.bfh.btx8081.model.Patient;
+
 public interface MainPatientInterface {
 	
-	public void setPatient();
+	public void setPatient(Patient patient);
 	
-	public void addListener(MainPatientListener presenter);
+	public void setPresenter(MainPatientListener presenter);
 	
 	public interface MainPatientListener {
 		
@@ -20,9 +23,11 @@ public interface MainPatientInterface {
 		
 		public void hadleAlarmClick();
 		
-		public void hadleOpenEntryClick();
+		public void hadleOpenEntryClick(Entry entry);
 		
 		public void hadleEntriesListClick();
+		
+		public void hadleLogOutClick();
 		
 	}
 

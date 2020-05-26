@@ -17,7 +17,7 @@ public class Doctor extends User{
 			cascade = CascadeType.PERSIST
 //	        orphanRemoval = true
 	        )
-	private List<Patient> patients =  new ArrayList<Patient>();
+	private ArrayList<Patient> patients =  new ArrayList<Patient>();
 
 //	Constructor for JPA
 	public Doctor() {
@@ -53,7 +53,7 @@ public class Doctor extends User{
 	
 //	getters & setters
 	
-	public List<Patient> getPatients() {
+	public ArrayList<Patient> getPatients() {
 		return patients;
 	}
 

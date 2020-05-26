@@ -1,5 +1,6 @@
 package ch.bfh.btx8081.interfaces;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ch.bfh.btx8081.exceptions.PatientNotFoundException;
@@ -9,14 +10,15 @@ import ch.bfh.btx8081.model.AvoidanceStrategy;
 import ch.bfh.btx8081.model.Doctor;
 import ch.bfh.btx8081.model.Entry;
 import ch.bfh.btx8081.model.Patient;
+import ch.bfh.btx8081.model.QuestionForConsultation;
 
 public interface DoctorInterface {
 
-	List<Patient> searchPatientOfDoctor(Doctor doctor, String searchQuery) throws PatientNotFoundException;
+	ArrayList<Patient> searchPatientOfDoctor(Doctor doctor, String searchQuery) throws PatientNotFoundException;
 
-	List<Patient> getAllPatientsOfDoctor(Doctor doctor);
+	ArrayList<Patient> getAllPatientsOfDoctor(Doctor doctor);
 
-	List<Entry> getDiaryEntries(Patient patient);
+	ArrayList<Entry> getDiaryEntries(Patient patient);
 
 	void newDoctor(String firstName, String lastName, String phoneNumber, String eMail, String userName,
 			String password) throws UsernameIsAlreadyTakenException;
@@ -36,6 +38,10 @@ public interface DoctorInterface {
 	void createNewAvoidanceStrategy(Patient patient, String avoidanceStrategy);
 
 	void removeNewAvoidanceStrategy(Patient patient, AvoidanceStrategy avoidanceStrategy);
+	
+	void createNewQuestionForConsultation(Patient patient, String questionForConsultation);
+
+	void removeNewQuestionForConsultation(Patient patient, QuestionForConsultation questionForConsultation);
 
 	void setConditionAutomaticAlarm(Patient patient, String conditionAutomaticAlarm);
 	

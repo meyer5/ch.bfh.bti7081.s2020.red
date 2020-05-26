@@ -1,5 +1,6 @@
 package ch.bfh.btx8081.interfaces;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ch.bfh.btx8081.exceptions.PatientNotFoundException;
@@ -10,6 +11,7 @@ import ch.bfh.btx8081.model.DiaryManager;
 import ch.bfh.btx8081.model.Doctor;
 import ch.bfh.btx8081.model.Entry;
 import ch.bfh.btx8081.model.Patient;
+import ch.bfh.btx8081.model.QuestionForConsultation;
 
 public class DoctorService implements Service {
 
@@ -28,15 +30,16 @@ public class DoctorService implements Service {
 		this.currentPatient = patient;
 	}
 
-	public List<Patient> searchPatientOfDoctor(String searchQuery) throws PatientNotFoundException {
+	public ArrayList<Patient> searchPatientOfDoctor(String searchQuery) throws PatientNotFoundException {
 		return doctorInterface.searchPatientOfDoctor(doctor, searchQuery);
 	}
 
-	public List<Patient> getAllPatientsOfDoctor() {
+	public ArrayList<Patient> getAllPatientsOfDoctor() {
 		return doctorInterface.getAllPatientsOfDoctor(doctor);
 	}
 
-	public List<Entry> getDiaryEntries() {
+	@Override
+	public ArrayList<Entry> getDiaryEntries() {
 		return doctorInterface.getDiaryEntries(currentPatient);
 	}
 
@@ -61,20 +64,35 @@ public class DoctorService implements Service {
 		doctorInterface.changeMainInfo(currentPatient, newMainInfo);
 	}
 
+	@Override
 	public void createNewActivity(String activity, String iconID) {
 		doctorInterface.createNewActivity(currentPatient, activity, iconID);
 	}
 
+	@Override
 	public void removeNewActivity(Activity activity) {
 		doctorInterface.removeNewActivity(currentPatient, activity);
 	}
 
+	@Override
 	public void createNewAvoidanceStrategy(String avoidanceStrategy) {
 		doctorInterface.createNewAvoidanceStrategy(currentPatient, avoidanceStrategy);
 	}
 
+	@Override
 	public void removeNewAvoidanceStrategy(AvoidanceStrategy avoidanceStrategy) {
 		doctorInterface.removeNewAvoidanceStrategy(currentPatient, avoidanceStrategy);
+	}
+	
+	@Override
+	public void createNewQuestionForConsultation(String questionForConsultation) {
+		doctorInterface.createNewQuestionForConsultation(currentPatient, questionForConsultation);
+		
+	}
+
+	@Override
+	public void removeNewQuestionForConsultation(QuestionForConsultation questionForConsultation) {
+		doctorInterface.removeNewQuestionForConsultation(currentPatient, questionForConsultation);
 	}
 
 	public void setConditionAutomaticAlarm(String conditionAutomaticAlarm) {
@@ -83,7 +101,7 @@ public class DoctorService implements Service {
 
 //	getters & setters
 
-	public Patient getCurrentPatient() {
+	public Patient getPatient() {
 		return currentPatient;
 	}
 
@@ -94,5 +112,7 @@ public class DoctorService implements Service {
 	public Doctor getDoctor() {
 		return doctor;
 	}
+
+	
 
 }

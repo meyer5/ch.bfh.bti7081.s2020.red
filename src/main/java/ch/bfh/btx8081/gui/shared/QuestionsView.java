@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.formlayout.FormLayout;
+import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.grid.Grid.SelectionMode;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.orderedlayout.FlexLayout;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -12,67 +14,88 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.router.Route;
 
+import ch.bfh.btx8081.gui.shared.StrategiesInterface.StrategiesListener;
+import ch.bfh.btx8081.model.AvoidanceStrategy;
+import ch.bfh.btx8081.model.Patient;
+import ch.bfh.btx8081.model.QuestionForConsultation;
+
 
 @Route(value = "questions")
 public class QuestionsView extends VerticalLayout implements QuestionsInterface {
 	
+	/**
+	 * Idea: shows all open questions of a specific patient and the
+	 * possibility to create a new one
+	 * 
+	 */
+	
 	private static final long serialVersionUID = -8224404080503821707L;
 	public static final String TITLE = "Open Questions";
 	
-	private ArrayList<QuestionsListener> listeners = new ArrayList<QuestionsListener>();
-	  
-	private FormLayout blockQuestions;
+	private QuestionsListener presenter;
+	
+	private Grid<QuestionForConsultation> questionsList = new Grid<>(QuestionForConsultation.class);
+	private FormLayout layout;
     private final Button newQuestionButton;
-    private final Button saveButton;
     private final Button deleteButton;
-    private final Button cancelButton;
+    private final Button backButton;
+	private boolean isOpen = false;
     
-    //Diary ---> addQuestion(question)/questionAnswered(question)/getUnansweredQuestions()
-    //getDiary() -???? ---> getDiary().getUnansweredQuestions()
-    //DoctorServer().getCurrentPatient().getDiary().getUnansweredQuestions();
-
 	    public QuestionsView() {
 	
-	    	newQuestionButton = new Button("Add New Question");
-	    	saveButton = new Button("Save");
-	    	cancelButton = new Button("Cancel");
-	    	deleteButton = new Button("Delete");
+	    	questionsList.setSelectionMode(SelectionMode.SINGLE);
 	    	
-	    	blockQuestions = new FormLayout();
-	    	//blockQuestions.setWidth("30%");
+	    	newQuestionButton = new Button("Add New Question");
+			backButton = new Button("Back", event3 -> {
+				presenter.hadleBackClick();
+			});
+			
+	    	deleteButton = new Button("Question answered", event4 -> {
+				if (questionsList.getSelectedItems().isEmpty()) {
+					
+				} else {
+				presenter.hadleQuestionDoneClick((QuestionForConsultation) questionsList.getSelectedItems().toArray()[0]);
+				}
+			});
+	    	
+	    	layout = new FormLayout();
 	    	
 	        newQuestionButton.addClickListener(event -> {
 	        	
-	        	FlexLayout questionLayout = new FlexLayout();
-
 	        	TextArea question = new TextArea();
-	        	Checkbox checkbox = new Checkbox();
+	        	Button saveButton = new Button("Save", event2 -> {
+					this.presenter.hadleCreateQuestionClick(question.getValue());
+				});
+	        	
+	        	FlexLayout questionLayout = new FlexLayout();
 	          
-	        	questionLayout.add(question, checkbox);
+	        	questionLayout.add(question, saveButton);
 	        	questionLayout.expand(question);
 	        	
-	        	blockQuestions.add(questionLayout);
-	        	  	
-	        	//newQuestionButton.setEnabled(true);
+	        	if (this.isOpen) {
+					layout.removeAll();
+					this.isOpen = false;
+				} else {
+					layout.add(questionLayout);
+					this.isOpen = true;
+				}
 	            		
 	        });
-	        //newQuestionButton.setDisableOnClick(true);
 	        
         	HorizontalLayout buttonLayout = new HorizontalLayout();
-        	buttonLayout.add(saveButton, deleteButton, cancelButton);
+        	buttonLayout.add(newQuestionButton, deleteButton, backButton);
 
-	        add(new H2("Open Questions"), newQuestionButton, blockQuestions, buttonLayout);
+	        add(new H2("Open Questions"), layout, buttonLayout, questionsList);
 	    }
 
 	@Override
-	public void setPatient() {
-		// TODO Auto-generated method stub
-		
+	public void setPatient(Patient patient) {
+		questionsList.setItems(patient.getDiary().getUnansweredQuestions());
 	}
 
 	@Override
 	public void addListener(QuestionsListener presenter) {
-		listeners.add(presenter);		
+		this.presenter = presenter;
 	}
 	    
 

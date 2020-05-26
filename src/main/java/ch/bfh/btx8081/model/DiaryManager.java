@@ -26,7 +26,7 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 //	Singleton
 	private DiaryManager() {
 		this.id = 1000;
-		this.persistenceManager = new PersistenceManager();
+//		this.persistenceManager = new PersistenceManager();
 		this.setUp();
 //		this.doctors = getDoctorsFromDb();
 //		testDB();
@@ -84,12 +84,12 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 //	get lists
 
 	@Override
-	public List<Patient> getAllPatientsOfDoctor(Doctor doctor) {
+	public ArrayList<Patient> getAllPatientsOfDoctor(Doctor doctor) {
 		return doctor.getPatients();
 	}
 
 	@Override
-	public List<Entry> getDiaryEntries(Patient patient) {
+	public ArrayList<Entry> getDiaryEntries(Patient patient) {
 		return patient.getDiary().getEntries();
 	}
 
@@ -155,6 +155,17 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 	@Override
 	public void removeNewAvoidanceStrategy(Patient patient, AvoidanceStrategy avoidanceStrategy) {
 		patient.getDiary().removeAvoidanceStrategy(avoidanceStrategy);
+	}
+	
+	@Override
+	public void createNewQuestionForConsultation(Patient patient, String questionForConsultation) {
+		patient.getDiary().addQuestion(new QuestionForConsultation(questionForConsultation));
+		
+	}
+
+	@Override
+	public void removeNewQuestionForConsultation(Patient patient, QuestionForConsultation questionForConsultation) {
+		patient.getDiary().questionAnswered(questionForConsultation);
 	}
 
 	@Override
@@ -230,10 +241,18 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 			this.newPatient("Julian", "Rodriguez", "0700000005", "hans.meier@mail.ch", "julian", "123", "Hero",
 					"Kommentar", (Doctor) this.searchUserByUsername("hmueller"), "Hero", "mg", "Nicht implementiert");
 			System.out.println("julian - created");
-		} catch (UsernameIsAlreadyTakenException | UserNotFoundException e) {
+			
+			Patient julian = (Patient) this.searchUserByUsername("julian");
+			this.newEntry(julian, Integer.toUnsignedLong(23) , 3, 3, julian.getDiary().getActivities(), "Test1", "Question1");
+			this.newEntry(julian, Integer.toUnsignedLong(23) , 3, 3, julian.getDiary().getActivities(), "Test2", "Question2");
+			this.newEntry(julian, Integer.toUnsignedLong(23) , 3, 3, julian.getDiary().getActivities(), "Test3", "Question3");
+			
+		} catch (UsernameIsAlreadyTakenException | UserNotFoundException | ShowAvoidanceStrategyException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+
+	
 
 }
