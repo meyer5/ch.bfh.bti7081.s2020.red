@@ -227,19 +227,19 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 			System.out.println("hmueller - created");
 //		this.newPatient(firstName, lastName, phoneNumber, eMail, userName, password, addiction, mainInfo, doctor, consumedSubstance, consumptionMetric, conditionAutomaticAlarm);
 			this.newPatient("Remo", "Meyer", "0700000001", "hans.meier@mail.ch", "remo", "123", "Hero", "Kommentar",
-					(Doctor) this.searchUserByUsername("hmeier"), "Hero", "mg", "Nicht implementiert");
+					(Doctor) this.searchUserByUsername("doctor1"), "Hero", "mg", "Nicht implementiert");
 			System.out.println("remo - created");
 			this.newPatient("Kaurisanker", "Kirupananthan", "0700000002", "hans.meier@mail.ch", "kausi", "123", "Hero",
-					"Kommentar", (Doctor) this.searchUserByUsername("hmeier"), "Hero", "mg", "Nicht implementiert");
+					"Kommentar", (Doctor) this.searchUserByUsername("doctor1"), "Hero", "mg", "Nicht implementiert");
 			System.out.println("kausi - created");
 			this.newPatient("Natalya", "Dénervaud", "0700000003", "hans.meier@mail.ch", "natalya", "123", "Hero",
-					"Kommentar", (Doctor) this.searchUserByUsername("hmeier"), "Hero", "mg", "Nicht implementiert");
+					"Kommentar", (Doctor) this.searchUserByUsername("doctor1"), "Hero", "mg", "Nicht implementiert");
 			System.out.println("natalya - created");
 			this.newPatient("Dmytriy", "Pelts", "0700000004", "hans.meier@mail.ch", "dmytriy", "123", "Hero",
-					"Kommentar", (Doctor) this.searchUserByUsername("hmueller"), "Hero", "mg", "Nicht implementiert");
+					"Kommentar", (Doctor) this.searchUserByUsername("doctor2"), "Hero", "mg", "Nicht implementiert");
 			System.out.println("dmytriy - created");
 			this.newPatient("Julian", "Rodriguez", "0700000005", "hans.meier@mail.ch", "julian", "123", "Hero",
-					"Kommentar", (Doctor) this.searchUserByUsername("hmueller"), "Hero", "mg", "Nicht implementiert");
+					"Kommentar", (Doctor) this.searchUserByUsername("doctor2"), "Hero", "mg", "Nicht implementiert");
 			System.out.println("julian - created");
 			
 			Patient julian = (Patient) this.searchUserByUsername("julian");
