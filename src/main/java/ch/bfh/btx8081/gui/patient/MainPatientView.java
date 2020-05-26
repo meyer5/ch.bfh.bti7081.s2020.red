@@ -1,5 +1,8 @@
 package ch.bfh.btx8081.gui.patient;
 
+import java.time.LocalDate;
+import java.util.Calendar;
+
 import com.vaadin.flow.component.board.Board;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.charts.Chart;
@@ -18,13 +21,16 @@ import com.vaadin.flow.router.Route;
 
 import ch.bfh.btx8081.model.Patient;
 
+
 // Overview of the addiction for the patient. Shows different data
 @Route(value = "main-patient")
 public class MainPatientView extends VerticalLayout implements MainPatientInterface {
 	private static final long serialVersionUID = 1L;
 	public static final String TITLE = "AddictionView";
 
+
 	private MainPatientListener presenter;
+
 
 	private HorizontalLayout hLayout = new HorizontalLayout();
 	private VerticalLayout vLayout1 = new VerticalLayout();
@@ -38,6 +44,7 @@ public class MainPatientView extends VerticalLayout implements MainPatientInterf
 	Label fixDoctorLbl = new Label("Doctor:");
 	Label fixAddictionLbl = new Label("Addiction:");
 	// Label right
+
 	Label patientFName = new Label("First name");
 	Label patientLName = new Label("Last name");
 	Label doctorLbl = new Label("Doctor");
@@ -96,7 +103,6 @@ public class MainPatientView extends VerticalLayout implements MainPatientInterf
 		board.addRow(getEntryOverview());
 
 		add(new H2("Overview"), hLayout, board);
-//		add(board);
 	}
 
 	@Override
@@ -114,8 +120,12 @@ public class MainPatientView extends VerticalLayout implements MainPatientInterf
 		conf.setTitle("Entry Overview");
 
 		XAxis x = new XAxis();
-		String[] days = new String[31];
-		for (int i = 0; i < 31; i++)
+		Calendar calendar = Calendar.getInstance();
+		LocalDate now = LocalDate.now();
+		calendar.set(now.getYear(), now.getMonthValue()-1, now.getDayOfMonth());
+		int totalDays = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+		String[] days = new String[totalDays];
+		for (int i = 0; i < totalDays; i++)
 			days[i] = String.valueOf(i + 1);
 		x.setCategories(days);
 		conf.addxAxis(x);
@@ -138,8 +148,10 @@ public class MainPatientView extends VerticalLayout implements MainPatientInterf
 		PlotOptionsColumn plotOptionsColumn = new PlotOptionsColumn();
 		series.setPlotOptions(plotOptionsColumn);
 		series.setName("Created Entries");
+
 		series.setyAxis(0);
 		series.setData(1, 3, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 2, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1);
+
 		conf.addSeries(series);
 
 		return chart;
