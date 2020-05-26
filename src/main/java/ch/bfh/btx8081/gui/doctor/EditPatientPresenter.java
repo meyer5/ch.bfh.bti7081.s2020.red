@@ -2,7 +2,6 @@ package ch.bfh.btx8081.gui.doctor;
 
 import ch.bfh.btx8081.gui.shared.MainView;
 import ch.bfh.btx8081.interfaces.DoctorService;
-import ch.bfh.btx8081.interfaces.PatientService;
 
 public class EditPatientPresenter implements EditPatientInterface.EditPatientListener {
 
@@ -15,17 +14,23 @@ public class EditPatientPresenter implements EditPatientInterface.EditPatientLis
 		this.service = service;
 		this.main = main;
 		view.addListener(this);
+		view.setPatient(service.getPatient());
 	}
 
 	@Override
-	public void hadleSaveClick() {
-		// TODO Auto-generated method stub
-		
+	public void handleSaveClick(String firstName, String lastName, String phoneNumber, String eMail,
+			String newMainInfo) {
+		if (firstName.isEmpty() || lastName.isEmpty() || phoneNumber.isEmpty() || eMail.isEmpty()) {
+			view.fillAllFields();
+		} else {
+			service.changeContactInfo(firstName, lastName, phoneNumber, eMail);
+			service.changeMainInfo(newMainInfo);
+			main.openPatientInfoView(service);
+		}
 	}
 
 	@Override
-	public void hadleBackClick() {
-		// TODO Auto-generated method stub
-		
+	public void handleCancelClick() {
+		main.openPatientInfoView(service);
 	}
 }

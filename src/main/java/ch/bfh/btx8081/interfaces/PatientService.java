@@ -66,6 +66,10 @@ public class PatientService implements Service {
 		patientInterface.newEntry(patient, consumption, pressureToConsume, motivation, activities, comment,
 				questionForConsultation);
 	}
+	
+	public AvoidanceStrategy getRandomAvoidanceStrategy() {
+		return patientInterface.getRandomAvoidanceStrategy(patient);
+	}
 
 //	getters & setters
 

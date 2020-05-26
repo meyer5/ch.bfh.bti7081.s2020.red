@@ -1,4 +1,4 @@
-package ch.bfh.btx8081.gui.doctor;
+package ch.bfh.btx8081.gui.shared;
 
 import java.util.ArrayList;
 

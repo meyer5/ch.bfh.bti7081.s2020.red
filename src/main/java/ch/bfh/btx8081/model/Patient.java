@@ -102,5 +102,9 @@ public class Patient extends User {
 	protected void setDiary(Diary diary) {
 		this.diary = diary;
 	}
+	
+	protected String searchString() {
+		return this.getFirstName() + " " + this.getLastName() + " " + this.getFirstName();
+	}
 
 }

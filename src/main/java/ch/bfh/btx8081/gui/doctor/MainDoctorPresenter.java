@@ -3,8 +3,6 @@ package ch.bfh.btx8081.gui.doctor;
 import java.util.ArrayList;
 
 import ch.bfh.btx8081.exceptions.PatientNotFoundException;
-import ch.bfh.btx8081.exceptions.UserNotFoundException;
-import ch.bfh.btx8081.exceptions.WrongPasswordException;
 import ch.bfh.btx8081.gui.shared.MainView;
 import ch.bfh.btx8081.interfaces.DoctorService;
 import ch.bfh.btx8081.model.Patient;

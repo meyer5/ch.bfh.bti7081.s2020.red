@@ -30,4 +30,6 @@ public interface PatientInterface {
 
 	void removeNewQuestionForConsultation(Patient patient, QuestionForConsultation questionForConsultation);
 	
+	AvoidanceStrategy getRandomAvoidanceStrategy(Patient patient);
+	
 }

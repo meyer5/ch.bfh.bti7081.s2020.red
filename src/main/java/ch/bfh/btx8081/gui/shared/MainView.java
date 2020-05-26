@@ -7,8 +7,6 @@ import ch.bfh.btx8081.gui.doctor.CreatePatientPresenter;
 import ch.bfh.btx8081.gui.doctor.CreatePatientView;
 import ch.bfh.btx8081.gui.doctor.EditPatientPresenter;
 import ch.bfh.btx8081.gui.doctor.EditPatientView;
-import ch.bfh.btx8081.gui.doctor.GraphPresenter;
-import ch.bfh.btx8081.gui.doctor.GraphView;
 import ch.bfh.btx8081.gui.doctor.MainDoctorPresenter;
 import ch.bfh.btx8081.gui.doctor.MainDoctorView;
 import ch.bfh.btx8081.gui.doctor.PatientInfoPresenter;
@@ -26,8 +24,11 @@ public class MainView extends VerticalLayout {
 
 	private static final long serialVersionUID = 1L;
 
+	
+	
 	public MainView() {
 		this.openLoginView();
+		
 	}
 
 	public void openLoginView() {
@@ -77,13 +78,6 @@ public class MainView extends VerticalLayout {
 		QuestionsView view = new QuestionsView();
 		new QuestionsPresenter(view, service, this);
 		this.add(view);
-	}
-
-	public void openShowStrategyView(PatientService service) {
-//		removeAll();
-//		MainPatientView view = new MainPatientView();
-//		new MainPatientPresenter(view, service, this);
-//		this.add(view);
 	}
 
 	public void openAlarmView(PatientService service) {

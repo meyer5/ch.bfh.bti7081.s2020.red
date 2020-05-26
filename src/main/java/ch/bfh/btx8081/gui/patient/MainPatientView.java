@@ -13,6 +13,7 @@ import com.vaadin.flow.component.charts.model.Labels;
 import com.vaadin.flow.component.charts.model.PlotOptionsColumn;
 import com.vaadin.flow.component.charts.model.XAxis;
 import com.vaadin.flow.component.charts.model.YAxis;
+import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -166,5 +167,22 @@ public class MainPatientView extends VerticalLayout implements MainPatientInterf
 		patientLName.setText(patient.getLastName());
 		doctorLbl.setText(patient.getDoctor().getFirstName());
 		addictionLbl.setText(patient.getAddiction());
+	}
+
+	@Override
+	public void showAvoidanceSrategy(String strategy) {
+		VerticalLayout layout = new VerticalLayout();
+		
+		Dialog dialog = new Dialog();
+		Button closeButton = new Button("OK", event -> {
+			dialog.close();
+		});
+		
+		layout.getMaxWidth();
+		layout.setAlignItems(Alignment.CENTER);
+		layout.add(new Label(strategy), closeButton);
+		
+		dialog.add(layout);
+		dialog.open();
 	}
 }

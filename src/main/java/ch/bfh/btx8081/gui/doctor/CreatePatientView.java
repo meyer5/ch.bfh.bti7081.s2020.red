@@ -1,11 +1,13 @@
 package ch.bfh.btx8081.gui.doctor;
 
-import java.util.ArrayList;
-
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.formlayout.FormLayout;
+import com.vaadin.flow.component.html.H2;
+import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.PasswordField;
+import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.dom.ElementFactory;
 import com.vaadin.flow.router.Route;
@@ -13,24 +15,19 @@ import com.vaadin.flow.router.Route;
 @Route(value = "create-patient")
 public class CreatePatientView extends VerticalLayout implements CreatePatientInterface {
 
+	/**
+	 * Form to create a patient
+	 */
+
 	private static final long serialVersionUID = 1L;
-	public static final String TITLE = "CreatePatientView";
-	
-	private ArrayList<CreatePatientListener> listeners = new ArrayList<CreatePatientListener>();
 
-	public DoctorPresenter presenter;
+	private CreatePatientListener presenter;
 
-	// public static final String TITLE = "createPatientView";
-
-	// private ViewController viewController;
-
-	public String patientData = "";
-
-	// BeanValidationBinder<Patient> binder = new
-	// BeanValidationBinder<>(Patient.class);
 	private FormLayout blockOne = new FormLayout();
 	private FormLayout blockTwo = new FormLayout();
 	private FormLayout blockThree = new FormLayout();
+	private FormLayout blockFour = new FormLayout();
+	private HorizontalLayout hLayout = new HorizontalLayout();
 
 	private TextField firstName = new TextField();
 	private TextField lastName = new TextField();
@@ -38,20 +35,24 @@ public class CreatePatientView extends VerticalLayout implements CreatePatientIn
 	private TextField eMail = new TextField();
 	private TextField userName = new TextField();
 	private PasswordField password = new PasswordField();
-	private PasswordField repeatPassword = new PasswordField();
 	private TextField addiction = new TextField();
-	private TextField mainInfo = new TextField();
-
-	// default doctor is the currently logged user
-	// private ComboBox<Doctor> docters = new ComboBox<Doctor>();
 	private TextField consumedSubstance = new TextField();
 	private TextField consumptionMetric = new TextField();
 	private TextField conditionAutomaticAlarm = new TextField();
-	private Button saveButton = new Button("Save Patient");
-	private Button cancelButton = new Button("cancel");
+
+	private TextArea mainInfo = new TextArea();
 
 	public CreatePatientView() {
-		setSizeFull();
+
+		Button saveButton = new Button("Save Patient", event -> {
+			presenter.handleSaveClick(firstName.getValue(), lastName.getValue(), phoneNumber.getValue(),
+					eMail.getValue(), userName.getValue(), password.getValue(), addiction.getValue(),
+					mainInfo.getValue(), consumedSubstance.getValue(), consumptionMetric.getValue(),
+					conditionAutomaticAlarm.getValue());
+		});
+		Button cancelButton = new Button("cancel", event -> {
+			presenter.hadleCancelClick();
+		});
 
 		// blockOne
 		firstName.setWidth("100%");
@@ -74,15 +75,9 @@ public class CreatePatientView extends VerticalLayout implements CreatePatientIn
 		blockTwo.addFormItem(password, "Password");
 		blockTwo.getElement().appendChild(ElementFactory.createBr());
 
-		repeatPassword.setWidth("100%");
-		blockTwo.addFormItem(repeatPassword, "Repeat Password");
-
 		// block Three
 		addiction.setWidth("100%");
 		blockThree.addFormItem(addiction, "Addiction");
-
-		mainInfo.setWidth("100%");
-		blockThree.addFormItem(mainInfo, "Main info");
 
 		consumedSubstance.setWidth("100%");
 		blockThree.addFormItem(consumedSubstance, "Consumed substance");
@@ -93,22 +88,30 @@ public class CreatePatientView extends VerticalLayout implements CreatePatientIn
 		conditionAutomaticAlarm.setWidth("100%");
 		blockThree.addFormItem(conditionAutomaticAlarm, "Condition automatic alarm");
 
-		add(blockOne, blockTwo, blockThree, saveButton, cancelButton);
+		// block four
+		mainInfo.setWidth("100%");
+		blockFour.addFormItem(mainInfo, "Main info");
 
-		// shouldn't be implemented here
-		saveButton.addClickListener(ClickEvent -> {
-			presenter.saveButton(
-					patientData = firstName.getValue() + ";" + lastName.getValue() + ";" + phoneNumber.getValue() + ";"
-							+ eMail.getValue() + ";" + userName.getValue() + ";" + password.getValue() + ";"
-							+ addiction.getValue() + ";" + mainInfo.getValue() + ";" + consumedSubstance.getValue()
-							+ ";" + consumptionMetric.getValue() + ";" + conditionAutomaticAlarm.getValue());
-		});
+		// add everything to layout
 
+		hLayout.add(saveButton, cancelButton);
+
+		add(new H2("Create new patient"), blockOne, blockTwo, blockThree, blockFour, hLayout);
 	}
 
 	@Override
 	public void addListener(CreatePatientListener presenter) {
-		listeners.add(presenter);
+		this.presenter = presenter;
+	}
+
+	@Override
+	public void userNameAlreadyTaken() {
+		Notification.show("The username already exists");
+	}
+
+	@Override
+	public void fillAllFields() {
+		Notification.show("Please fill all the required fields");
 	}
 
 }

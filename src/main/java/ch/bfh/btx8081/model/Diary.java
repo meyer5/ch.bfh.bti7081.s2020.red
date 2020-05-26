@@ -1,7 +1,7 @@
 package ch.bfh.btx8081.model;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -77,6 +77,10 @@ public class Diary {
 			throw new ShowAvoidanceStrategyException();
 		}
 //		TODO  show avoidance strategies & check automatic alarm
+	}
+	
+	protected AvoidanceStrategy getRandomAvoidanceStrategy() {
+		return this.avoidanceStrategies.get(ThreadLocalRandom.current().nextInt(0, avoidanceStrategies.size()));
 	}
 
 //	adder & remover

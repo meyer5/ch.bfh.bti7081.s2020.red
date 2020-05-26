@@ -15,14 +15,14 @@ public class EntryPresenter implements EntryInterface.EntryListener {
 		this.view = view;
 		this.service = service;
 		this.main = main;
-		view.addListener(this);
-		view.setEntry(entry);
+		this.view.addListener(this);
+		this.view.setEntry(entry);
 	}
 
 	@Override
 	public void hadleBackToMainClick() {
 		if (service instanceof DoctorService) {
-			main.openMainDoctorView((DoctorService) service);
+			main.openPatientInfoView((DoctorService) service);
 		} else if (service instanceof PatientService) {
 			main.openMainPatientView((PatientService) service);
 		}

@@ -1,6 +1,5 @@
-package ch.bfh.btx8081.gui.doctor;
+package ch.bfh.btx8081.gui.shared;
 
-import ch.bfh.btx8081.gui.shared.MainView;
 import ch.bfh.btx8081.interfaces.DoctorService;
 
 public class GraphPresenter implements GraphInterface.GraphListener {
@@ -13,13 +12,14 @@ public class GraphPresenter implements GraphInterface.GraphListener {
 		this.view = view;
 		this.service = service;
 		this.main = main;
-		view.addListener(this);
+		this.view.addListener(this);
 	}
 
 	@Override
 	public void hadleOpenEntryClick() {
 		// TODO Auto-generated method stub
-
+		this.main.getClass();
+		this.service.getClass();
 	}
 
 	@Override

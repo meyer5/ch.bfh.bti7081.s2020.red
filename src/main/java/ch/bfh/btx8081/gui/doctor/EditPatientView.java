@@ -1,165 +1,91 @@
 package ch.bfh.btx8081.gui.doctor;
 
-import java.util.ArrayList;
-
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.formlayout.FormLayout;
+import com.vaadin.flow.component.html.H2;
+import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 
-import ch.bfh.btx8081.gui.doctor.EditPatientInterface.EditPatientListener;
-import ch.bfh.btx8081.gui.doctor.PatientInfoInterface.PatientInfoListener;
+import ch.bfh.btx8081.model.Patient;
 
 @Route(value = "edit-patient")
 public class EditPatientView extends VerticalLayout implements EditPatientInterface {
 
 	/**
-	 *  Patient Form to showing patient's information
+	 *  Patient Form to edit patient information
 	 */
 	
 	private static final long serialVersionUID = -4993947004340633343L;
+	public static final String TITLE = "Edit patient";
 	
-	private ArrayList<EditPatientListener> listeners = new ArrayList<EditPatientListener>();
+	private EditPatientListener presenter;
 	
 	private FormLayout blockOne = new FormLayout();
 	private FormLayout blockTwo = new FormLayout();
-	private FormLayout blockThree = new FormLayout();
-	private FormLayout blockFour = new FormLayout();
-	
-	final private TextField firstName = new TextField(); 
-	final private TextField lastName = new TextField(); 
-	final private TextField phoneNumber = new TextField();
-	final private TextField eMail = new TextField();
-	final private TextField addiction = new TextField();
-	final private TextField userName = new TextField();
-	final private PasswordField password = new PasswordField();
-	
-	final private TextField doctor = new TextField();
-	final private TextArea mainInfo = new TextArea();
-	final private TextField consumedSubstance = new TextField();
-	final private TextField consumptionMetric = new TextField();
-	final private TextField conditionAutomaticAlarm = new TextField();
+	private HorizontalLayout hLayout = new HorizontalLayout();
+
+	private TextField firstName = new TextField();
+	private TextField lastName = new TextField();
+	private TextField phoneNumber = new TextField();
+	private TextField eMail = new TextField();
+
+	private TextArea mainInfo = new TextArea();
 	
 	public EditPatientView() {
 		
+		Button saveButton = new Button("Save Patient", event -> {
+			presenter.handleSaveClick(firstName.getValue(), lastName.getValue(), phoneNumber.getValue(),
+					eMail.getValue(), mainInfo.getValue());
+		});
+		Button cancelButton = new Button("cancel", event -> {
+			presenter.handleCancelClick();
+		});
+
+		// blockOne
 		firstName.setWidth("100%");
+		blockOne.addFormItem(firstName, "First name");
+
 		lastName.setWidth("100%");
-		phoneNumber.setWidth("100%");
-		eMail.setWidth("100%");
-		addiction.setWidth("100%");
-		userName.setWidth("100%");
-		password.setWidth("100%");
-		
-		doctor.setWidth("100%");
-		mainInfo.setWidth("100%");
-		consumedSubstance.setWidth("100%");
-		consumptionMetric.setWidth("100%");
-		conditionAutomaticAlarm.setWidth("100%");
-		
-		consumedSubstance.setReadOnly(true);
-		consumptionMetric.setReadOnly(true);
-		addiction.setReadOnly(true);
-		
-		blockOne.addFormItem(firstName, "First Name");
 		blockOne.addFormItem(lastName, "Last name");
+
+		phoneNumber.setWidth("100%");
 		blockOne.addFormItem(phoneNumber, "Phone number");
+
+		eMail.setWidth("100%");
 		blockOne.addFormItem(eMail, "Email");
-		blockOne.addFormItem(userName, "Username");	
-		blockOne.addFormItem(password, "Password");
-		
-		blockTwo.addFormItem(doctor, "Doctor");
-		
-		
-		blockThree.addFormItem(addiction, "Addiction");
-		blockThree.addFormItem(consumedSubstance, "Consumed substance");
-		blockThree.addFormItem(consumptionMetric, "Consumed metric");
-		blockThree.addFormItem(conditionAutomaticAlarm, "Condition automatic alarm");
-		
-		
-		blockFour.addFormItem(mainInfo, "Main info").getElement().setAttribute("colspan", "2");
-		
-		add(blockOne, blockTwo, blockThree, blockFour);
-	}
 
-	public TextField getFirstName() {
-		return firstName;
-	}
+		// block two
+		mainInfo.setWidth("100%");
+		blockTwo.addFormItem(mainInfo, "Main info");
 
-	public TextField getLastName() {
-		return lastName;
-	}
-	
-	public TextField getPhoneNumber() {
-		return phoneNumber;
-	}
-	
-	public TextField getEMail() {
-		return eMail;
-	}
+		// add everything to layout
 
-	public TextField getAddiction() {
-		return addiction;
-	}
+		hLayout.add(saveButton, cancelButton);
 
-	public TextField getDoctor() {
-		return doctor;
-	}
-	
-	public void setDoctor(String doctorFirstName) {
-		this.doctor.setValue(doctorFirstName);
-	}
-
-	public TextArea getMainInfo() {
-		return mainInfo;
-	}
-
-	public TextField getConsumedSubstance() {
-		return consumedSubstance;
-	}
-
-	public TextField getConsumptionMetric() {
-		return consumptionMetric;
-	}
-
-	public TextField getConditionAutomaticAlarm() {
-		return conditionAutomaticAlarm;
-	}
-
-	public TextField getUserName() {
-		return userName;
-	}
-	
-	public void setFirstName(String firstName) {
-		this.firstName.setValue(firstName);
-	}
-	
-	public void setLastName(String lastName) {
-		this.lastName.setValue(lastName);
-	}
-
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber.setValue(phoneNumber);
-	}
-	
-	public void setEMail(String eMail) {
-		this.eMail.setValue(eMail);
-	}
-	
-	public void setConsumedSubstance(String consumedSubstance) {
-		this.consumedSubstance.setValue(consumedSubstance);
+		add(new H2("Create new patient"), blockOne, blockTwo, hLayout);
 	}
 
 	@Override
-	public void setPatient() {
-		// TODO Auto-generated method stub
-		
+	public void setPatient(Patient patient) {
+		firstName.setValue(patient.getFirstName());
+		lastName.setValue(patient.getLastName());
+		phoneNumber.setValue(patient.getPhoneNumber());
+		eMail.setValue(patient.geteMail());
+		mainInfo.setValue(patient.getMainInfo());
 	}
 
 	@Override
 	public void addListener(EditPatientListener presenter) {
-		listeners.add(presenter);		
+		this.presenter = presenter;		
+	}
+
+	@Override
+	public void fillAllFields() {
+		Notification.show("Please fill all the required fields");
 	}
 
 }

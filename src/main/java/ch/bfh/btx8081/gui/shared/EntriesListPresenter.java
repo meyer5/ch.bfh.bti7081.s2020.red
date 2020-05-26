@@ -15,8 +15,8 @@ public class EntriesListPresenter implements EntriesListInterface.EntriesListLis
 		this.view = view;
 		this.service = service;
 		this.main = main;
-		view.addListener(this);
-		view.setPatient(service.getPatient());
+		this.view.addListener(this);
+		this.view.setPatient(service.getPatient());
 	}
 
 	@Override
@@ -27,7 +27,7 @@ public class EntriesListPresenter implements EntriesListInterface.EntriesListLis
 	@Override
 	public void hadleBackClick() {
 		if (service instanceof DoctorService) {
-			main.openMainDoctorView((DoctorService) service);
+			main.openPatientInfoView((DoctorService) service);
 		} else if (service instanceof PatientService) {
 			main.openMainPatientView((PatientService) service);
 		}

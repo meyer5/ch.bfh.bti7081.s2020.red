@@ -22,7 +22,7 @@ public class QuestionsPresenter implements QuestionsInterface.QuestionsListener 
 	@Override
 	public void hadleBackClick() {
 		if (service instanceof DoctorService) {
-			main.openMainDoctorView((DoctorService) service);
+			main.openPatientInfoView((DoctorService) service);
 		} else if (service instanceof PatientService) {
 			main.openMainPatientView((PatientService) service);
 		}

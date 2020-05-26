@@ -28,8 +28,8 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 		this.id = 1000;
 //		this.persistenceManager = new PersistenceManager();
 		this.setUp();
-//		this.doctors = getDoctorsFromDb();
-//		testDB();
+		this.doctors = getDoctorsFromDb();
+		testDB();
 	}
 
 	private void testDB() {
@@ -71,7 +71,7 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 	public ArrayList<Patient> searchPatientOfDoctor(Doctor doctor, String searchQuery) throws PatientNotFoundException {
 		ArrayList<Patient> res = new ArrayList<Patient>();
 		for (Patient a : doctor.getPatients()) {
-			if (a.toString().contains(searchQuery)) {
+			if (a.searchString().toLowerCase().contains(searchQuery.toLowerCase())) {
 				res.add(a);
 			}
 		}
@@ -122,6 +122,10 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 			new Patient(this.nextID(), firstName, lastName, phoneNumber, eMail, userName, password, addiction, mainInfo,
 					doctor, consumedSubstance, consumptionMetric, conditionAutomaticAlarm);
 		}
+	}
+	
+	public AvoidanceStrategy getRandomAvoidanceStrategy(Patient patient) {
+		return patient.getDiary().getRandomAvoidanceStrategy();
 	}
 
 //	Patient management

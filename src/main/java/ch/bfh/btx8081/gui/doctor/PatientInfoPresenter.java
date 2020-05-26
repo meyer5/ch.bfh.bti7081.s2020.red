@@ -14,8 +14,8 @@ public class PatientInfoPresenter implements PatientInfoInterface.PatientInfoLis
 		this.view = view;
 		this.service = service;
 		this.main = main;
-		view.addListener(this);
-		view.setPatient(service.getPatient());
+		this.view.addListener(this);
+		this.view.setPatient(service.getPatient());
 	}
 
 	@Override

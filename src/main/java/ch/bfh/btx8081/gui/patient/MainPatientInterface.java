@@ -9,6 +9,8 @@ public interface MainPatientInterface {
 	
 	public void setPresenter(MainPatientListener presenter);
 	
+	public void showAvoidanceSrategy(String strategy);
+	
 	public interface MainPatientListener {
 		
 		public void handleNewEntryClick();

@@ -43,8 +43,7 @@ public class MainPatientPresenter implements MainPatientInterface.MainPatientLis
 
 	@Override
 	public void hadleShowStrategyClick() {
-		main.openShowStrategyView(service);
-		
+		view.showAvoidanceSrategy(service.getRandomAvoidanceStrategy().getStrategy());
 	}
 
 	@Override
