@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -11,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
+import javax.persistence.ForeignKey;
 
 @Entity
 //@Table(name = "entry")
@@ -25,7 +27,7 @@ public class Entry {
 	private int pressureToConsume = 0;
 	private int motivation = 0;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "diary_id")
 	private Diary diary;
 	
@@ -34,7 +36,7 @@ public class Entry {
 	
 	private String comment = "";
 	
-	@OneToOne(mappedBy = "entry")
+	@OneToOne(/*mappedBy = "entry",*/ cascade = CascadeType.PERSIST)
 	private QuestionForConsultation questionForConsultation = null;
 	
 	
@@ -46,7 +48,7 @@ public class Entry {
 
 //	Constructor for diary
 
-	protected Entry(long consumption, int pressureToConsume, int motivation, ArrayList<Activity> activities,
+	protected Entry(long consumption, int pressureToConsume, int motivation, List<Activity> activities,
 			String comment, QuestionForConsultation questionForConsultation) {
 		super();
 		this.setDate(LocalDate.now());
@@ -61,7 +63,7 @@ public class Entry {
 //	Constructor for persistence
 	
 	public Entry(LocalDate date, long consumption, int pressureToConsume, int motivation,
-			ArrayList<Activity> activities, String comment, QuestionForConsultation questionForConsultation) {
+			List<Activity> activities, String comment, QuestionForConsultation questionForConsultation) {
 		super();
 		this.date = date;
 		this.consumption = consumption;

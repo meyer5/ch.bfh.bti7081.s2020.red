@@ -3,9 +3,11 @@ package ch.bfh.btx8081.model;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
@@ -23,17 +25,20 @@ public class Diary {
 	private String consumptionMeric = "";
 	private String conditionAutomaticAlarm = "";
 
-	@OneToMany(mappedBy = "diary", targetEntity=Activity.class)
-	private ArrayList<Activity> activities = new ArrayList<Activity>();
+	@OneToMany (/*mappedBy = "diary", targetEntity=Activity.class,*/ cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "diary_id")
+	private List<Activity> activities = new ArrayList<Activity>();
 
-	@OneToMany(mappedBy = "diary")
-	private ArrayList<AvoidanceStrategy> avoidanceStrategies = new ArrayList<AvoidanceStrategy>();
+	@OneToMany (/*mappedBy = "diary",*/ cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "diary_id")
+	private List<AvoidanceStrategy> avoidanceStrategies = new ArrayList<AvoidanceStrategy>();
 	
 	@Transient
 	private ArrayList<QuestionForConsultation> unansweredQuestions = new ArrayList<QuestionForConsultation>();
 
-	@OneToMany(mappedBy = "diary")
-	private ArrayList<Entry> entries = new ArrayList<Entry>();
+	@OneToMany (/*mappedBy = "diary",*/ cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "diary_id")
+	private List<Entry> entries = new ArrayList<Entry>();
 
 //	Constructor for JPA
 	public Diary() {
@@ -64,7 +69,7 @@ public class Diary {
 		this.avoidanceStrategies = defaultAvoidanceStrategies();
 	}
 
-	protected void newEntry(long consumption, int pressureToConsume, int motivation, ArrayList<Activity> activities,
+	protected void newEntry(long consumption, int pressureToConsume, int motivation, List<Activity> activities,
 			String comment, String questionForConsultation) throws ShowAvoidanceStrategyException {
 		QuestionForConsultation q = null;
 		if (questionForConsultation != null && !questionForConsultation.equals("")) {
@@ -163,7 +168,7 @@ public class Diary {
 		this.conditionAutomaticAlarm = conditionAutomaticAlarm;
 	}
 
-	public ArrayList<Activity> getActivities() {
+	public List<Activity> getActivities() {
 		return activities;
 	}
 
@@ -171,7 +176,7 @@ public class Diary {
 		this.activities = activities;
 	}
 
-	public ArrayList<AvoidanceStrategy> getAvoidanceStrategies() {
+	public List<AvoidanceStrategy> getAvoidanceStrategies() {
 		return avoidanceStrategies;
 	}
 
@@ -187,7 +192,7 @@ public class Diary {
 		this.unansweredQuestions = unansweredQuestions;
 	}
 
-	public ArrayList<Entry> getEntries() {
+	public List<Entry> getEntries() {
 		return entries;
 	}
 

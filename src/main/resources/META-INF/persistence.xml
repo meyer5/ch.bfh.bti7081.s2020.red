@@ -44,7 +44,7 @@
 				<!-- JPA creates schema -->
 			<!-- <property name="eclipselink.ddl-generation" value="create-table" /> -->
 			
-  			<!--property name="eclipselink.ddl-generation.output-mode" value="database" /-->
+  			<!-- <property name="eclipselink.ddl-generation.output-mode" value="database" /> -->
 			
 			<property name="eclipselink.target-database" value="Database" />
 			

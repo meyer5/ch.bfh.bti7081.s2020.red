@@ -1,7 +1,9 @@
 package ch.bfh.btx8081.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -11,8 +13,9 @@ public class QuestionForConsultation {
 	@Id
 	private String question = "";
 	
-	@OneToOne
-	private Entry entry;
+//	@OneToOne(cascade = CascadeType.ALL)
+//	@JoinColumn(name = "entry_id")
+//	private Entry entry;
 	
 	
 //	Constructor for JPA
