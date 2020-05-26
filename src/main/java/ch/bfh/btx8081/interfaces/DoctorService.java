@@ -1,6 +1,6 @@
 package ch.bfh.btx8081.interfaces;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import ch.bfh.btx8081.exceptions.PatientNotFoundException;
 import ch.bfh.btx8081.exceptions.UsernameIsAlreadyTakenException;

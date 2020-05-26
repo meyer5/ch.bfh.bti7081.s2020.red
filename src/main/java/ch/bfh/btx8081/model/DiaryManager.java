@@ -28,16 +28,16 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 		this.id = 1000;
 		this.persistenceManager = new PersistenceManager();
 //		this.setUp();
-//		this.doctors = getDoctorsFromDb();
+		this.doctors = getDoctorsFromDb();
 //		testDB();
 	}
 
-	private void testDB() {
-		for (Doctor d : doctors) {
-			System.out.println(d.getUserName());
-		}
-
-	}
+//	private void testDB() {
+//		for (Doctor d : doctors) {
+//			System.out.println(d.getUserName());
+//		}
+//
+//	}
 
 	public static DiaryManager getInstance() {
 		if (instance == null) {
@@ -71,7 +71,7 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 	public ArrayList<Patient> searchPatientOfDoctor(Doctor doctor, String searchQuery) throws PatientNotFoundException {
 		ArrayList<Patient> res = new ArrayList<Patient>();
 		for (Patient a : doctor.getPatients()) {
-			if (a.toString().contains(searchQuery)) {
+			if (a.searchString().toLowerCase().contains(searchQuery.toLowerCase())) {
 				res.add(a);
 			}
 		}
@@ -251,6 +251,11 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public AvoidanceStrategy getRandomAvoidanceStrategy(Patient patient) {
+		return patient.getDiary().getRandomAvoidanceStrategy();
 	}
 
 	

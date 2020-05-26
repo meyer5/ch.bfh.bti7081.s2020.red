@@ -1,10 +1,7 @@
 package ch.bfh.btx8081.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 
 @Entity
 //@Table(name = "question")
