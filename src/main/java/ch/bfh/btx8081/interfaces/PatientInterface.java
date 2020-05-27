@@ -1,5 +1,6 @@
 package ch.bfh.btx8081.interfaces;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import ch.bfh.btx8081.exceptions.ShowAvoidanceStrategyException;
@@ -21,7 +22,7 @@ public interface PatientInterface {
 
 	void removeNewAvoidanceStrategy(Patient patient, AvoidanceStrategy avoidanceStrategy);
 	
-	void newEntry(Patient patient, long consumption, int pressureToConsume, int motivation,
+	void newEntry(LocalDate date, Patient patient, long consumption, int pressureToConsume, int motivation,
 			List<Activity> activities, String comment, String questionForConsultation)
 			throws ShowAvoidanceStrategyException;
 	

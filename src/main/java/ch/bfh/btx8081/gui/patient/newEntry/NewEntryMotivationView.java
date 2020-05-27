@@ -14,26 +14,19 @@ import com.vaadin.flow.router.Route;
  */
 
 @Route(value = "entry-motivation")
-public class MotivationView extends VerticalLayout implements PatientViewInterface {
+public class NewEntryMotivationView extends VerticalLayout implements NewEntryInterface {
 
-	
-	private static final long serialVersionUID = -4974676408821678992L;
+	private static final long serialVersionUID = 1L;
 
-	public static final String VIEW_NAME = "Motivation";
-	
-	private NewEntryPresenter patientPresenter;
-	private EntryViewController viewController;
-	
+	private NewEntryListener presenter;
+
 	private Label title;
 	private NumberField motivationLevel;
 	private Label motivationLbl;
 	private Button nextBtn;
-	
-	public MotivationView(NewEntryPresenter patientPresenter, EntryViewController viewController) {
-		
-		this.patientPresenter = patientPresenter;
-		this.viewController = viewController;
-		
+
+	public NewEntryMotivationView() {
+
 		// Label with title
 		this.title = new Label("Motivation");
 		add(title);
@@ -52,30 +45,18 @@ public class MotivationView extends VerticalLayout implements PatientViewInterfa
 		// Next Button
 		nextBtn = new Button("Next");
 		// go to next view
-		nextBtn.addClickListener(e -> handleNextBtn());
-		// pass value to listener 
-		
+		nextBtn.addClickListener(e -> {
+			presenter.handleConfirmMotivation(motivationLevel.getValue().intValue());
+		});
+		// pass value to listener
+
 		add(nextBtn);
 
 	}
-
-		
-	public double getMotivationIndex() {
-		return motivationLevel.getValue();
-	}
-
-
+	
 	@Override
-	public String getName() {
-		return MotivationView.VIEW_NAME;
-	}
-
-
-	@Override
-	public void handleNextBtn() {
-		this.viewController.setView();
-		this.patientPresenter.nextBtnClicked(MotivationView.VIEW_NAME, getMotivationIndex() );
-		
+	public void setListener(NewEntryListener presenter) {
+		this.presenter = presenter;
 	}
 
 }

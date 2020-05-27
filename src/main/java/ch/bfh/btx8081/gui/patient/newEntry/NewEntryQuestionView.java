@@ -8,34 +8,29 @@ import com.vaadin.flow.router.Route;
 
 /**
  * View where patient can enter questions for the next session
+ * 
  * @author Remo
  *
  */
 
 @Route(value = "entry-question")
-public class QuestionView extends VerticalLayout implements PatientViewInterface {
+public class NewEntryQuestionView extends VerticalLayout implements NewEntryInterface {
 
-	private static final long serialVersionUID = 2232819652036225247L;
+	private static final long serialVersionUID = 1L;
 
-	public static final String VIEW_NAME = "Questions";
+	private NewEntryListener presenter;
 
-	private NewEntryPresenter patientPresenter;
-	private EntryViewController viewController;
-	
 	private Label title;
 	private Label commentLbl;
 	private Button nextBtn;
 	private TextArea textArea;
 
-	public QuestionView(NewEntryPresenter patientPresenter, EntryViewController viewController) {
-		
-		this.patientPresenter = patientPresenter;
-		this.viewController = viewController;
-		
+	public NewEntryQuestionView() {
+
 		// Label with title
 		this.title = new Label("Questions");
 		add(title);
-		
+
 		commentLbl = new Label("Questions");
 		add(commentLbl);
 
@@ -43,27 +38,16 @@ public class QuestionView extends VerticalLayout implements PatientViewInterface
 		textArea.setPlaceholder("Do you have any questions for your next session?");
 		add(textArea);
 
-
 		nextBtn = new Button("Next");
-		nextBtn.addClickListener(e -> handleNextBtn());
+		nextBtn.addClickListener(e -> {
+			presenter.handleConfirmQuestion(textArea.getValue());
+		});
 		add(nextBtn);
 	}
 	
-	public String getQuestions() {
-		return textArea.getValue();
-	}
-
 	@Override
-	public String getName() {
-		return QuestionView.VIEW_NAME;
+	public void setListener(NewEntryListener presenter) {
+		this.presenter = presenter;
 	}
 
-	@Override
-	public void handleNextBtn() {
-		viewController.setView();
-		this.patientPresenter.nextBtnClicked(QuestionView.VIEW_NAME, getQuestions());
-	}
-
-	
-	
 }

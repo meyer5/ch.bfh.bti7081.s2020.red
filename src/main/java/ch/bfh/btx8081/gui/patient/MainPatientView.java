@@ -28,8 +28,6 @@ import ch.bfh.btx8081.model.Patient;
 public class MainPatientView extends VerticalLayout implements MainPatientInterface {
 	
 	private static final long serialVersionUID = 1L;
-	public static final String TITLE = "AddictionView";
-
 
 	private MainPatientListener presenter;
 

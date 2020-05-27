@@ -1,18 +1,16 @@
 package ch.bfh.btx8081.persistence;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
 
-import ch.bfh.btx8081.model.Activity;
 import ch.bfh.btx8081.model.Diary;
 import ch.bfh.btx8081.model.DiaryManager;
 import ch.bfh.btx8081.model.Doctor;
-import ch.bfh.btx8081.model.Entry;
 import ch.bfh.btx8081.model.Patient;
 
 public class TestJpa {
@@ -51,7 +49,7 @@ public class TestJpa {
 				"Kommentar", doc4, diary3);
 		
 
-		diaryManager.newEntry(pat1, 1, 2, 3, null, "bvdjsak", "gbdsajk");
+		diaryManager.newEntry(LocalDate.of(2020, 04, 26), pat1, 1, 2, 3, null, "bvdjsak", "gbdsajk");
 		diaryManager.createNewActivity(pat1, "swimming", "1");
 		diaryManager.save(pat1);
 		

@@ -1,7 +1,5 @@
 package ch.bfh.btx8081.gui.shared;
 
-import java.util.List;
-
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.H1;

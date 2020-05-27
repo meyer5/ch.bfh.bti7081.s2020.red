@@ -1,5 +1,6 @@
 package ch.bfh.btx8081.interfaces;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,10 +61,10 @@ public class PatientService implements Service {
 		
 	}
 
-	public void newEntry(int mood, long consumption, int pressureToConsume, int motivation,
+	public void newEntry(LocalDate date, long consumption, int pressureToConsume, int motivation,
 			ArrayList<Activity> activities, String comment, String questionForConsultation)
 			throws ShowAvoidanceStrategyException {
-		patientInterface.newEntry(patient, consumption, pressureToConsume, motivation, activities, comment,
+		patientInterface.newEntry(date, patient, consumption, pressureToConsume, motivation, activities, comment,
 				questionForConsultation);
 	}
 	

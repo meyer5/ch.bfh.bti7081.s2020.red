@@ -1,5 +1,6 @@
 package ch.bfh.btx8081.model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -70,14 +71,14 @@ public class Diary {
 		this.avoidanceStrategies = defaultAvoidanceStrategies();
 	}
 
-	protected void newEntry(long consumption, int pressureToConsume, int motivation, List<Activity> activities,
+	protected void newEntry(LocalDate date, long consumption, int pressureToConsume, int motivation, List<Activity> activities,
 			String comment, String questionForConsultation) throws ShowAvoidanceStrategyException {
 		QuestionForConsultation q = null;
 		if (questionForConsultation != null && !questionForConsultation.equals("")) {
 			q = new QuestionForConsultation(questionForConsultation);
 			this.addQuestion(q);
 		}
-		this.addEntry(new Entry(consumption, pressureToConsume, motivation, activities, comment, q));
+		this.addEntry(new Entry(date, consumption, pressureToConsume, motivation, activities, comment, q));
 
 		if (pressureToConsume > 6) {
 			throw new ShowAvoidanceStrategyException();
@@ -127,19 +128,19 @@ public class Diary {
 
 	private ArrayList<AvoidanceStrategy> defaultAvoidanceStrategies() {
 		ArrayList<AvoidanceStrategy> res = new ArrayList<AvoidanceStrategy>();
-		res.add(new AvoidanceStrategy("1"));
-		res.add(new AvoidanceStrategy("2"));
-		res.add(new AvoidanceStrategy("3"));
-		res.add(new AvoidanceStrategy("4"));
+		res.add(new AvoidanceStrategy("Go for a walk!"));
+		res.add(new AvoidanceStrategy("Get a chewing gum!"));
+		res.add(new AvoidanceStrategy("Do sport!"));
+		res.add(new AvoidanceStrategy("Call a friend!"));
 		return res;
 	}
 
 	private ArrayList<Activity> defaultActivities() {
 		ArrayList<Activity> res = new ArrayList<Activity>();
-		res.add(new Activity("1", "1111"));
-		res.add(new Activity("2", "1111"));
-		res.add(new Activity("3", "1111"));
-		res.add(new Activity("4", "1111"));
+		res.add(new Activity("Eat healthy food", "1111"));
+		res.add(new Activity("Sport", "1111"));
+		res.add(new Activity("Work", "1111"));
+		res.add(new Activity("Watch TV", "1111"));
 		return res;
 	}
 

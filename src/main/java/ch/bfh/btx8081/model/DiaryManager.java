@@ -1,5 +1,6 @@
 package ch.bfh.btx8081.model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,9 +27,9 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 //	Singleton
 	private DiaryManager() {
 		this.id = 1000;
-		this.persistenceManager = new PersistenceManager();
-//		this.setUp();
-		this.doctors = getDoctorsFromDb();
+//		this.persistenceManager = new PersistenceManager();
+		this.setUp();
+//		this.doctors = getDoctorsFromDb();
 //		testDB();
 	}
 
@@ -174,10 +175,10 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 	}
 
 	@Override
-	public void newEntry(Patient patient, long consumption, int pressureToConsume, int motivation,
+	public void newEntry(LocalDate date, Patient patient, long consumption, int pressureToConsume, int motivation,
 			List<Activity> activities, String comment, String questionForConsultation)
 			throws ShowAvoidanceStrategyException {
-		patient.getDiary().newEntry(consumption, pressureToConsume, motivation, activities, comment,
+		patient.getDiary().newEntry(date, consumption, pressureToConsume, motivation, activities, comment,
 				questionForConsultation);
 	}
 
@@ -243,9 +244,9 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 			System.out.println("julian - created");
 			
 			Patient julian = (Patient) this.searchUserByUsername("julian");
-			this.newEntry(julian, Integer.toUnsignedLong(23) , 3, 3, julian.getDiary().getActivities(), "Test1", "Question1");
-			this.newEntry(julian, Integer.toUnsignedLong(23) , 3, 3, julian.getDiary().getActivities(), "Test2", "Question2");
-			this.newEntry(julian, Integer.toUnsignedLong(23) , 3, 3, julian.getDiary().getActivities(), "Test3", "Question3");
+			this.newEntry(LocalDate.of(2020, 04, 26), julian, Integer.toUnsignedLong(23) , 3, 3, julian.getDiary().getActivities(), "Test1", "Question1");
+			this.newEntry(LocalDate.of(2020, 04, 25), julian, Integer.toUnsignedLong(23) , 3, 3, julian.getDiary().getActivities(), "Test2", "Question2");
+			this.newEntry(LocalDate.of(2020, 04, 24), julian, Integer.toUnsignedLong(23) , 3, 3, julian.getDiary().getActivities(), "Test3", "Question3");
 			
 		} catch (UsernameIsAlreadyTakenException | UserNotFoundException | ShowAvoidanceStrategyException e) {
 			// TODO Auto-generated catch block

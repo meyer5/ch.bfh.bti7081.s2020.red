@@ -63,7 +63,6 @@ public class Entry {
 	
 	public Entry(LocalDate date, long consumption, int pressureToConsume, int motivation,
 			List<Activity> activities, String comment, QuestionForConsultation questionForConsultation) {
-		super();
 		this.date = date;
 		this.consumption = consumption;
 		this.pressureToConsume = pressureToConsume;
