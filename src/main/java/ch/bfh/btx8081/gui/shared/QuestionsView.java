@@ -36,52 +36,52 @@ public class QuestionsView extends VerticalLayout implements QuestionsInterface 
     private final Button backButton;
 	private boolean isOpen = false;
     
-	    public QuestionsView() {
+	public QuestionsView() {
 	
-	    	questionsList.setSelectionMode(SelectionMode.SINGLE);
+	    questionsList.setSelectionMode(SelectionMode.SINGLE);
 	    	
-	    	newQuestionButton = new Button("Add New Question");
-			backButton = new Button("Back", event3 -> {
-				presenter.hadleBackClick();
-			});
+	    newQuestionButton = new Button("Add New Question");
+		backButton = new Button("Back", event3 -> {
+			presenter.hadleBackClick();
+		});
 			
-	    	deleteButton = new Button("Question answered", event4 -> {
-				if (questionsList.getSelectedItems().isEmpty()) {
-					
-				} else {
-				presenter.hadleQuestionDoneClick((QuestionForConsultation) questionsList.getSelectedItems().toArray()[0]);
-				}
-			});
+	    deleteButton = new Button("Question answered", event4 -> {
+			if (questionsList.getSelectedItems().isEmpty()) {
+				
+			} else {
+			presenter.hadleQuestionDoneClick((QuestionForConsultation) questionsList.getSelectedItems().toArray()[0]);
+			}
+		});
 	    	
-	    	layout = new FormLayout();
+	    layout = new FormLayout();
 	    	
-	        newQuestionButton.addClickListener(event -> {
+	    newQuestionButton.addClickListener(event -> {
 	        	
-	        	TextArea question = new TextArea();
-	        	Button saveButton = new Button("Save", event2 -> {
-					this.presenter.hadleCreateQuestionClick(question.getValue());
-				});
+	    TextArea question = new TextArea();
+	    Button saveButton = new Button("Save", event2 -> {
+			this.presenter.hadleCreateQuestionClick(question.getValue());
+		});
 	        	
-	        	FlexLayout questionLayout = new FlexLayout();
+	    FlexLayout questionLayout = new FlexLayout();
 	          
-	        	questionLayout.add(question, saveButton);
-	        	questionLayout.expand(question);
+	        questionLayout.add(question, saveButton);
+	        questionLayout.expand(question);
 	        	
-	        	if (this.isOpen) {
-					layout.removeAll();
-					this.isOpen = false;
-				} else {
-					layout.add(questionLayout);
-					this.isOpen = true;
-				}
+	        if (this.isOpen) {
+				layout.removeAll();
+				this.isOpen = false;
+			} else {
+				layout.add(questionLayout);
+				this.isOpen = true;
+			}
 	            		
-	        });
+	    });
 	        
-        	HorizontalLayout buttonLayout = new HorizontalLayout();
-        	buttonLayout.add(newQuestionButton, deleteButton, backButton);
+        HorizontalLayout buttonLayout = new HorizontalLayout();
+        buttonLayout.add(newQuestionButton, deleteButton, backButton);
 
-	        add(new H2("Open Questions"), layout, buttonLayout, questionsList);
-	    }
+	    add(new H2("Open Questions"), layout, buttonLayout, questionsList);
+	}
 
 	@Override
 	public void setPatient(Patient patient) {

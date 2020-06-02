@@ -7,8 +7,8 @@ public interface MainPatientInterface {
 	
 	public void setPatient(Patient patient);
 	
-	public void setPresenter(MainPatientListener presenter);
-	
+    public void setPresenter(MainPatientListener presenter);
+    
 	public void showAvoidanceSrategy(String strategy);
 	
 	public interface MainPatientListener {

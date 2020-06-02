@@ -16,10 +16,13 @@ import com.vaadin.flow.component.charts.model.YAxis;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Label;
+import com.vaadin.flow.component.icon.Icon;
+import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 
+import ch.bfh.btx8081.gui.doctor.MenuView;
 import ch.bfh.btx8081.model.Patient;
 
 
@@ -49,39 +52,50 @@ public class MainPatientView extends VerticalLayout implements MainPatientInterf
 	private Label patientLName = new Label("Last name");
 	private Label doctorLbl = new Label("Doctor");
 	private Label addictionLbl = new Label("Addiction");
+	
+	// Icons
+	Icon iconNewEntry = VaadinIcon.FILE_ADD.create();
+	Icon iconOpenQuestions = VaadinIcon.QUESTION.create();
+	Icon iconAllEntries = VaadinIcon.NOTEBOOK.create();
+	Icon iconStrategies = VaadinIcon.MAGIC.create();
+	Icon iconActivities = VaadinIcon.HANDS_UP.create();
+	Icon iconLogOut = VaadinIcon.SIGN_OUT.create();
+	Icon iconBack = VaadinIcon.ARROW_FORWARD.create();
+	Icon iconAlarm = VaadinIcon.BELL_O.create();
+	Icon iconShowStrategy = VaadinIcon.FROWN_O.create();
 
 	public MainPatientView() {
 
 		// Create Buttons
-		Button newEntryButton = new Button("Create new entry", event -> {
+		Button newEntryButton = new Button("Create new entry", iconNewEntry, event -> {
 			presenter.handleNewEntryClick();
 		});
 
-		Button activitiesButton = new Button("Activities", event -> {
+		Button activitiesButton = new Button("Activities", iconActivities, event -> {
 			presenter.hadleActivitiesClick();
 		});
 
-		Button strategiesButton = new Button("Strategies", event -> {
+		Button strategiesButton = new Button("Strategies", iconStrategies, event -> {
 			presenter.hadleStrategiesClick();
 		});
 
-		Button questionsButton = new Button("Questions for doctor", event -> {
+		Button questionsButton = new Button("Questions for doctor", iconOpenQuestions, event -> {
 			presenter.hadleQuestionsClick();
 		});
 
-		Button showStrategyButton = new Button("Show a strategy", event -> {
+		Button showStrategyButton = new Button("Show a strategy", iconShowStrategy, event -> {
 			presenter.hadleShowStrategyClick();
 		});
 
-		Button alarmButton = new Button("Alarm", event -> {
+		Button alarmButton = new Button("Alarm", iconAlarm, event -> {
 			presenter.hadleAlarmClick();
 		});
 
-		Button entriesListButton = new Button("Show all entries", event -> {
+		Button entriesListButton = new Button("Show all entries", iconAllEntries, event -> {
 			presenter.hadleEntriesListClick();
 		});
 		
-		Button logOutButton = new Button("Log out", event -> {
+		Button logOutButton = new Button("Log out", iconLogOut, event -> {
 			presenter.hadleLogOutClick();
 		});
 		
@@ -183,4 +197,5 @@ public class MainPatientView extends VerticalLayout implements MainPatientInterf
 		dialog.add(layout);
 		dialog.open();
 	}
+
 }

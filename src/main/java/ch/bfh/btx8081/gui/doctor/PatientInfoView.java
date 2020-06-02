@@ -15,6 +15,8 @@ import com.vaadin.flow.component.charts.model.XAxis;
 import com.vaadin.flow.component.charts.model.YAxis;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Label;
+import com.vaadin.flow.component.icon.Icon;
+import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
@@ -50,36 +52,45 @@ public class PatientInfoView extends VerticalLayout implements PatientInfoInterf
 	// Label Info
 	private Label fixInfo = new Label("Info:");
 	private Label infoLbl = new Label("Info");
+	
+	// Icons
+	Icon iconEditInfo = VaadinIcon.USER_CARD.create();
+	Icon iconOpenQuestions = VaadinIcon.QUESTION.create();
+	Icon iconAllEntries = VaadinIcon.NOTEBOOK.create();
+	Icon iconStrategies = VaadinIcon.MAGIC.create();
+	Icon iconActivities = VaadinIcon.HANDS_UP.create();
+	Icon iconLogOut = VaadinIcon.SIGN_OUT.create();
+	Icon iconBack = VaadinIcon.ARROW_FORWARD.create();
 
 	public PatientInfoView() {
 
 		// Create Buttons
 
-		Button activitiesButton = new Button("Activities", event -> {
+		Button activitiesButton = new Button("Activities", iconActivities, event -> {
 			presenter.hadleActivitiesClick();
 		});
 
-		Button strategiesButton = new Button("Strategies", event -> {
+		Button strategiesButton = new Button("Strategies", iconStrategies, event -> {
 			presenter.hadleStrategiesClick();
 		});
 
-		Button questionsButton = new Button("Open questions", event -> {
+		Button questionsButton = new Button("Open questions", iconOpenQuestions, event -> {
 			presenter.hadleQuestionsClick();
 		});
 
-		Button editButton = new Button("Edit Info", event -> {
+		Button editButton = new Button("Edit Info", iconEditInfo, event -> {
 			presenter.hadleEditClick();
 		});
 
-		Button entriesListButton = new Button("Show all entries", event -> {
+		Button entriesListButton = new Button("Show all entries", iconAllEntries, event -> {
 			presenter.hadleEntriesListClick();
 		});
 
-		Button logOutButton = new Button("Log out", event -> {
+		Button logOutButton = new Button("Log out", iconLogOut, event -> {
 			presenter.hadleLogOutClick();
 		});
 
-		Button backButton = new Button("Back", event -> {
+		Button backButton = new Button("Back", iconBack, event -> {
 			presenter.hadleBackClick();
 		});
 

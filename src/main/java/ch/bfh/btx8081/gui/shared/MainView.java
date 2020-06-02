@@ -9,6 +9,7 @@ import ch.bfh.btx8081.gui.doctor.EditPatientPresenter;
 import ch.bfh.btx8081.gui.doctor.EditPatientView;
 import ch.bfh.btx8081.gui.doctor.MainDoctorPresenter;
 import ch.bfh.btx8081.gui.doctor.MainDoctorView;
+import ch.bfh.btx8081.gui.doctor.MenuView;
 import ch.bfh.btx8081.gui.doctor.PatientInfoPresenter;
 import ch.bfh.btx8081.gui.doctor.PatientInfoView;
 import ch.bfh.btx8081.gui.patient.MainPatientPresenter;
@@ -32,11 +33,10 @@ public class MainView extends VerticalLayout {
 
 	private static final long serialVersionUID = 1L;
 
-	
+	private MenuView menu;
 	
 	public MainView() {
 		this.openLoginView();
-		
 	}
 
 	public void openLoginView() {
@@ -55,9 +55,10 @@ public class MainView extends VerticalLayout {
 
 	public void openMainPatientView(PatientService service) {
 		removeAll();
+		menu = new MenuView(this, service);
 		MainPatientView view = new MainPatientView();
 		new MainPatientPresenter(view, service, this);
-		this.add(view);
+		this.add(menu, view);
 	}
 
 	public void openNewEntryView(PatientService service) {
@@ -66,23 +67,26 @@ public class MainView extends VerticalLayout {
 
 	public void openActivitiesView(Service service) {
 		removeAll();
+		menu = new MenuView(this, service);
 		ActivitiesView view = new ActivitiesView();
 		new ActivitiesPresenter(view, service, this);
-		this.add(view);
+		this.add(menu, view);
 	}
 
 	public void openStrategiesView(Service service) {
 		removeAll();
+		menu = new MenuView(this, service);
 		StrategiesView view = new StrategiesView();
 		new StrategiesPresenter(view, service, this);
-		this.add(view);
+		this.add(menu, view);
 	}
 
 	public void openQuestionsView(Service service) {
 		removeAll();
+		menu = new MenuView(this, service);
 		QuestionsView view = new QuestionsView();
 		new QuestionsPresenter(view, service, this);
-		this.add(view);
+		this.add(menu, view);
 	}
 
 	public void openAlarmView(PatientService service) {
@@ -94,31 +98,35 @@ public class MainView extends VerticalLayout {
 
 	public void openEntryView(Service service, Entry entry) {
 		removeAll();
+		menu = new MenuView(this, service);
 		EntryView view = new EntryView();
 		new EntryPresenter(view, service, this, entry);
-		this.add(view);
+		this.add(menu, view);
 	}
 
 	public void openEntriesListView(Service service) {
 		removeAll();
+		menu = new MenuView(this, service);
 		EntriesListView view = new EntriesListView();
 		new EntriesListPresenter(view, service, this);
-		this.add(view);
+		this.add(menu, view);
 	}
 
 	public void openPatientInfoView(DoctorService service) {
 		removeAll();
+		menu = new MenuView(this, service);
 		PatientInfoView view;
 		view = new PatientInfoView();
 		new PatientInfoPresenter(view, service, this);
-		this.add(view);
+		this.add(menu, view);
 	}
 
 	public void openEditPatientView(DoctorService service) {
 		removeAll();
+		menu = new MenuView(this, service);
 		EditPatientView view = new EditPatientView();
 		new EditPatientPresenter(view, service, this);
-		this.add(view);
+		this.add(menu, view);
 	}
 
 	public void openCreatePatientView(DoctorService service) {
