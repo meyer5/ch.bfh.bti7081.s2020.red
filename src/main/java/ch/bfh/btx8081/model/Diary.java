@@ -27,21 +27,21 @@ public class Diary {
 	private String consumptionMeric = "";
 	private String conditionAutomaticAlarm = "";
 
-	@OneToMany (/*mappedBy = "diary", targetEntity=Activity.class,*/ cascade = CascadeType.PERSIST)
+	@OneToMany (/*mappedBy = "diary", targetEntity=Activity.class,*/ cascade = CascadeType.ALL)
 	@JoinColumn(name = "diary_id")
 	private List<Activity> activities = new ArrayList<Activity>();
 
-	@OneToMany (/*mappedBy = "diary",*/ cascade = CascadeType.PERSIST)
+	@OneToMany (/*mappedBy = "diary",*/ cascade = CascadeType.ALL)
 	@JoinColumn(name = "diary_id")
 	private List<AvoidanceStrategy> avoidanceStrategies = new ArrayList<AvoidanceStrategy>();
 	
 	@Transient
 	private ArrayList<QuestionForConsultation> unansweredQuestions = new ArrayList<QuestionForConsultation>();
 
-	@OneToMany (/*mappedBy = "diary",*/ cascade = CascadeType.PERSIST)
+	@OneToMany (/*mappedBy = "diary",*/ cascade = CascadeType.ALL)
 	@JoinColumn(name = "diary_id")
 	private List<Entry> entries = new ArrayList<Entry>();
-
+	
 //	Constructor for JPA
 	public Diary() {
 
@@ -201,5 +201,11 @@ public class Diary {
 	protected void setEntries(ArrayList<Entry> entries) {
 		this.entries = entries;
 	}
+
+	public Long getId() {
+		return id;
+	}
+	
+	
 
 }

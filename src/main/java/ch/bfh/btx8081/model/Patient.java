@@ -7,7 +7,6 @@ import javax.persistence.OneToOne;
 
 
 @Entity
-//@Table(name = "patient")
 public class Patient extends User {
 	
 	private String addiction = "";
@@ -17,7 +16,7 @@ public class Patient extends User {
 	//@JoinColumn(name="DOCTOR_ID")
 	private Doctor doctor = null;
 	
-	@OneToOne(cascade = CascadeType.PERSIST)
+	@OneToOne(cascade = CascadeType.ALL)
 	private Diary diary = null;
 
 	// public constructor with no arguments for JPA
