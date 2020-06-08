@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import ch.bfh.btx8081.gui.shared.main.MenuView;
+import ch.bfh.btx8081.gui.patient.main.MainPatientInterface;
 import ch.bfh.btx8081.model.Entry;
 import com.vaadin.flow.component.board.Board;
 import com.vaadin.flow.component.button.Button;
@@ -77,7 +77,7 @@ public class MainPatientView extends VerticalLayout implements MainPatientInterf
       presenter.hadleActivitiesClick();
     });
 
-    Button newStrategyButton = new Button("Strategies", iconStrategies, event -> {
+    Button strategiesButton = new Button("Strategies", iconStrategies, event -> {
       presenter.hadleStrategiesClick();
     });
 
@@ -104,8 +104,8 @@ public class MainPatientView extends VerticalLayout implements MainPatientInterf
     // Fill layout
     vLayout1.add(fixPatientFName, fixPatientLName, fixDoctorLbl, fixAddictionLbl);
     vLayout2.add(patientFName, patientLName, doctorLbl, addictionLbl);
-    vLayout3.add(newEntryButton, alarmButton, activitiesButton, showStrategyButton);
-    vLayout4.add(entriesListButton, questionsButton, newStrategyButton, logOutButton);
+    vLayout3.add(newEntryButton, showStrategyButton, alarmButton, questionsButton);
+    vLayout4.add(activitiesButton, strategiesButton, entriesListButton, logOutButton);
 
     vLayout1.setDefaultHorizontalComponentAlignment(Alignment.STRETCH);
     vLayout2.setDefaultHorizontalComponentAlignment(Alignment.STRETCH);
@@ -134,7 +134,7 @@ public class MainPatientView extends VerticalLayout implements MainPatientInterf
 
     Calendar calendar = Calendar.getInstance();
     LocalDate now = LocalDate.now();
-    calendar.set(now.getYear(), now.getMonthValue() - 1, now.getDayOfMonth());
+    calendar.set(now.getYear(), now.getMonthValue()-1, now.getDayOfMonth());
     int totalDays = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
     String[] days = new String[totalDays];
     for (int i = 0; i < totalDays; i++)
@@ -152,7 +152,7 @@ public class MainPatientView extends VerticalLayout implements MainPatientInterf
     y1.setAllowDecimals(false);
     y1.setCeiling(1);
     y1.setOrdinal(true);
-    y1.setExtremes(0, 1);
+    y1.setExtremes(0,1);
     Labels yLabels = y1.getLabels();
     yLabels.setEnabled(false);
     y1.setClassName("y1");
@@ -163,38 +163,44 @@ public class MainPatientView extends VerticalLayout implements MainPatientInterf
     series.setPlotOptions(plotOptionsColumn);
     series.setName("Created Entries");
 
-    // series.setyAxis(0);
     ArrayList<DataSeriesItem> items = new ArrayList<>(totalDays);
-    // for (int i = 0; i < totalDays; i++)
-    // items.add(new DataSeriesItem(i, 1));
-    // series.setData(items);
     for (int i = 0; i < totalDays; i++)
       items.add(new DataSeriesItem(i, 0));
 
-    int latestEntryIndex = entries.size() - 1;
-    for (int i = latestEntryIndex; i > -1; i--) {
+    int latestEntryIndex = entries.size()-1;
+    for (int i = latestEntryIndex; i > -1; i--)
+    {
       LocalDate currentEntryDate = entries.get(i).getDate();
       System.out.println(currentEntryDate);
-      // TODO: Fix if
-      // if(LocalDate.of(2020, 4, 1).getMonth() == currentEntryDate.getMonth())
-      items.set(currentEntryDate.getDayOfMonth() - 1,
-          new DataSeriesItem(currentEntryDate.getDayOfMonth() - 1, 1));
+
+      if(LocalDate.now().getMonth() == currentEntryDate.getMonth())
+        items.set(currentEntryDate.getDayOfMonth()-1, new DataSeriesItem(currentEntryDate.getDayOfMonth()-1, 1));
+      else
+        break;
     }
     series.setData(items);
     // Fill up days
-    /*
-     * System.out.println(entries.size()); int latestEntryIndex = entries.size()-1; for (int i =
-     * latestEntryIndex; i > -1; i--) { LocalDate currentEntryDate = entries.get(i).getDate();
-     * if(LocalDate.now().getMonth() == currentEntryDate.getMonth()) {
-     * series.setyAxis(currentEntryDate.getDayOfMonth()-1); series.setData(1); } else break; }
-     */
+		/*
+		System.out.println(entries.size());
+		int latestEntryIndex = entries.size()-1;
+		for (int i = latestEntryIndex; i > -1; i--)
+		{
+			LocalDate currentEntryDate = entries.get(i).getDate();
+			if(LocalDate.now().getMonth() == currentEntryDate.getMonth())
+			{
+				series.setyAxis(currentEntryDate.getDayOfMonth()-1);
+				series.setData(1);
+			}
+			else
+				break;
+		}*/
 
     conf.addSeries(series);
 
     return chart;
   }
 
-  // Show the information of logged in patient
+  //	Show the information of logged in patient
   @Override
   public void setPatient(Patient patient) {
     patientFName.setText(patient.getFirstName());

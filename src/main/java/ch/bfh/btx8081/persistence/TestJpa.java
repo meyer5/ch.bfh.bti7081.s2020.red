@@ -13,7 +13,7 @@ public class TestJpa {
 
 //		TestJpaDriverAndConnection.checkConnection();
 
-		DiaryManager dm = DiaryManager.getInstance();
+//		DiaryManager dm = DiaryManager.getInstance();
 		PersistenceManager pm = new PersistenceManager();
 
 //		Set or remove data from database for test
@@ -23,20 +23,20 @@ public class TestJpa {
 
 //		Retreive data test
 
-		List<Doctor> docList = dm.getDoctorsFromDb();
-		for (Doctor d : docList) {
-			System.out.println("Doctor name = " + d.getUserName());
-			List<Patient> docPatList = dm.getAllPatientsOfDoctor(d);
-			for (Patient p : docPatList) {
-				System.out.println("Patient username =  " + p.getUserName());
-				System.out.println(p.getDiary().getConsumedSubstance());
-				List<Entry> entryList = dm.getDiaryEntries(p);
-				for (Entry e : entryList) {
-					System.out.println("Consumption: " + e.getConsumption());
-
-				}
-			}
-		}
+//		List<Doctor> docList = dm.getDoctorsFromDb();
+//		for (Doctor d : docList) {
+//			System.out.println("Doctor name = " + d.getUserName());
+//			List<Patient> docPatList = dm.getAllPatientsOfDoctor(d);
+//			for (Patient p : docPatList) {
+//				System.out.println("Patient username =  " + p.getUserName());
+//				System.out.println(p.getDiary().getConsumedSubstance());
+//				List<Entry> entryList = dm.getDiaryEntries(p);
+//				for (Entry e : entryList) {
+//					System.out.println("Consumption: " + e.getConsumption());
+//
+//				}
+//			}
+//		}
 
 //		Deletion test
 

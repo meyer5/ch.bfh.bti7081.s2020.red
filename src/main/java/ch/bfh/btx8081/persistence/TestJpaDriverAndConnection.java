@@ -5,8 +5,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
-import org.sqlite.SQLiteConfig;
-
 /**
  * This class checks if the JDBC DriverDriver for the SQLite Database can be
  * found and if a connection to the Database can be established.
