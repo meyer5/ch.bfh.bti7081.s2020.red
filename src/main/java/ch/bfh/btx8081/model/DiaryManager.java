@@ -310,15 +310,15 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 					natalya.getDiary().getActivities(), "Bla", "");
 			this.newEntry(LocalDate.of(2020, 05, 18), natalya, Integer.toUnsignedLong(3), 2, 3,
 					natalya.getDiary().getActivities(), "Bla", "Question3");
-			this.newEntry(LocalDate.of(2020, 05, 19), natalya, Integer.toUnsignedLong(2), 8, 7,
+			this.newEntry(LocalDate.of(2020, 05, 19), natalya, Integer.toUnsignedLong(2), 2, 7,
 					natalya.getDiary().getActivities(), "BlaBlaBla", "");
 			this.newEntry(LocalDate.of(2020, 05, 20), natalya, Integer.toUnsignedLong(1), 2, 6,
 					natalya.getDiary().getActivities(), "Bla", "blablabla");
 			this.newEntry(LocalDate.of(2020, 05, 23), natalya, Integer.toUnsignedLong(0), 1, 5,
 					natalya.getDiary().getActivities(), "Bla", "");
-			this.newEntry(LocalDate.of(2020, 05, 24), natalya, Integer.toUnsignedLong(6), 9, 4,
+			this.newEntry(LocalDate.of(2020, 05, 24), natalya, Integer.toUnsignedLong(4), 1, 4,
 					natalya.getDiary().getActivities(), "Bla", "Wo");
-			this.newEntry(LocalDate.of(2020, 05, 25), natalya, Integer.toUnsignedLong(5), 1, 4,
+			this.newEntry(LocalDate.of(2020, 05, 25), natalya, Integer.toUnsignedLong(4), 1, 4,
 					natalya.getDiary().getActivities(), "Bla", "");
 			this.newEntry(LocalDate.of(2020, 05, 26), natalya, Integer.toUnsignedLong(2), 2, 8,
 					natalya.getDiary().getActivities(), "BlaBlaBla", "Wann");

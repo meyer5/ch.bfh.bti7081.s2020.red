@@ -179,7 +179,7 @@ public class PatientInfoView extends VerticalLayout implements PatientInfoInterf
     legend.setAlign(HorizontalAlign.LEFT);
     legend.setX(120);
     legend.setVerticalAlign(VerticalAlign.TOP);
-    legend.setY(80);
+    legend.setY(0);
     legend.setFloating(true);
     conf.setLegend(legend);
 
