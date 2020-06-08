@@ -1,18 +1,16 @@
 package ch.bfh.btx8081.gui.doctor.patientInfo;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
+import ch.bfh.btx8081.gui.doctor.patientInfo.PatientInfoInterface;
+import ch.bfh.btx8081.model.Entry;
 import com.vaadin.flow.component.board.Board;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.charts.Chart;
-import com.vaadin.flow.component.charts.model.Configuration;
-import com.vaadin.flow.component.charts.model.DataSeries;
-import com.vaadin.flow.component.charts.model.Dimension;
-import com.vaadin.flow.component.charts.model.Labels;
-import com.vaadin.flow.component.charts.model.PlotOptionsColumn;
-import com.vaadin.flow.component.charts.model.XAxis;
-import com.vaadin.flow.component.charts.model.YAxis;
+import com.vaadin.flow.component.charts.model.*;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.icon.Icon;
@@ -23,7 +21,7 @@ import com.vaadin.flow.router.Route;
 
 import ch.bfh.btx8081.model.Patient;
 
-// Overview of the addiction for the patient. Shows different data
+//Overview of the addiction for the patient. Shows different data
 @Route(value = "patient-info")
 public class PatientInfoView extends VerticalLayout implements PatientInfoInterface {
 
@@ -60,7 +58,9 @@ public class PatientInfoView extends VerticalLayout implements PatientInfoInterf
   Icon iconStrategies = VaadinIcon.MAGIC.create();
   Icon iconActivities = VaadinIcon.HANDS_UP.create();
   Icon iconLogOut = VaadinIcon.SIGN_OUT.create();
-  Icon iconBack = VaadinIcon.BACKSPACE_A.create();
+  Icon iconBack = VaadinIcon.ARROW_FORWARD.create();
+
+  Board board = new Board();
 
   public PatientInfoView() {
 
@@ -90,19 +90,15 @@ public class PatientInfoView extends VerticalLayout implements PatientInfoInterf
       presenter.hadleLogOutClick();
     });
 
-    Button backMainViewButton = new Button("Back to patient list", iconBack, event -> {
+    Button backButton = new Button("Back", iconBack, event -> {
       presenter.hadleBackClick();
     });
-
-    // Board
-    Board board = new Board();
-    board.addRow(getEntryOverview());
 
     // Fill layout
     vLayout1.add(fixPatientFName, fixPatientLName, fixAddictionLbl, fixInfo);
     vLayout2.add(patientFName, patientLName, addictionLbl, infoLbl);
-    vLayout3.add(editButton, activitiesButton, strategiesButton);
-    vLayout4.add(entriesListButton, questionsButton, backMainViewButton, logOutButton);
+    vLayout3.add(activitiesButton, strategiesButton, questionsButton, editButton);
+    vLayout4.add(entriesListButton, backButton, logOutButton);
 
     vLayout1.setDefaultHorizontalComponentAlignment(Alignment.STRETCH);
     vLayout2.setDefaultHorizontalComponentAlignment(Alignment.STRETCH);
@@ -116,7 +112,7 @@ public class PatientInfoView extends VerticalLayout implements PatientInfoInterf
   }
 
   // Returns a graph that shows, when a entry was made or not
-  private Chart getEntryOverview() {
+  private Chart getEntryOverview(List<Entry> entries) {
     Chart chart = new Chart();
     chart.setHeight("10%");
     Configuration conf = chart.getConfiguration();
@@ -124,14 +120,15 @@ public class PatientInfoView extends VerticalLayout implements PatientInfoInterf
     conf.getChart().setZoomType(Dimension.XY);
     conf.setTitle("Entry Overview");
 
-    XAxis x = new XAxis();
     Calendar calendar = Calendar.getInstance();
     LocalDate now = LocalDate.now();
-    calendar.set(now.getYear(), now.getMonthValue() - 1, now.getDayOfMonth());
+    calendar.set(now.getYear(), now.getMonthValue()-1, now.getDayOfMonth());
     int totalDays = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
     String[] days = new String[totalDays];
     for (int i = 0; i < totalDays; i++)
       days[i] = String.valueOf(i + 1);
+
+    XAxis x = new XAxis();
     x.setCategories(days);
     conf.addxAxis(x);
 
@@ -143,7 +140,7 @@ public class PatientInfoView extends VerticalLayout implements PatientInfoInterf
     y1.setAllowDecimals(false);
     y1.setCeiling(1);
     y1.setOrdinal(true);
-    y1.setExtremes(1, 1);
+    y1.setExtremes(0,1);
     Labels yLabels = y1.getLabels();
     yLabels.setEnabled(false);
     y1.setClassName("y1");
@@ -154,9 +151,22 @@ public class PatientInfoView extends VerticalLayout implements PatientInfoInterf
     series.setPlotOptions(plotOptionsColumn);
     series.setName("Created Entries");
 
-    series.setyAxis(0);
-    series.setData(1, 3, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 2, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1,
-        1, 1, 1);
+    ArrayList<DataSeriesItem> items = new ArrayList<>(totalDays);
+    for (int i = 0; i < totalDays; i++)
+      items.add(new DataSeriesItem(i, 0));
+
+    int latestEntryIndex = entries.size()-1;
+    for (int i = latestEntryIndex; i > -1; i--)
+    {
+      LocalDate currentEntryDate = entries.get(i).getDate();
+      System.out.println(currentEntryDate);
+
+      if(LocalDate.now().getMonth() == currentEntryDate.getMonth())
+        items.set(currentEntryDate.getDayOfMonth()-1, new DataSeriesItem(currentEntryDate.getDayOfMonth()-1, 1));
+      else
+        break;
+    }
+    series.setData(items);
 
     conf.addSeries(series);
 
@@ -166,7 +176,6 @@ public class PatientInfoView extends VerticalLayout implements PatientInfoInterf
   @Override
   public void addListener(PatientInfoListener presenter) {
     this.presenter = presenter;
-
   }
 
   @Override
@@ -175,5 +184,7 @@ public class PatientInfoView extends VerticalLayout implements PatientInfoInterf
     patientLName.setText(patient.getLastName());
     addictionLbl.setText(patient.getAddiction());
     infoLbl.setText(patient.getMainInfo());
+
+    board.addRow(getEntryOverview(patient.getDiary().getEntries()));
   }
 }
