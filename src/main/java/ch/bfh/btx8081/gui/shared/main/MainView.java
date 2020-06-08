@@ -3,6 +3,8 @@ package ch.bfh.btx8081.gui.shared.main;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 
+import ch.bfh.btx8081.gui.doctor.automaticAlarm.AutomaticAlarmPresenter;
+import ch.bfh.btx8081.gui.doctor.automaticAlarm.AutomaticAlarmView;
 import ch.bfh.btx8081.gui.doctor.createPatient.CreatePatientPresenter;
 import ch.bfh.btx8081.gui.doctor.createPatient.CreatePatientView;
 import ch.bfh.btx8081.gui.doctor.editPatient.EditPatientPresenter;
@@ -155,7 +157,14 @@ public class MainView extends VerticalLayout {
 		removeAll();
 		GraphView view = new GraphView();
 		new GraphPresenter(view, service, this);
-		this.add(view);
+		this.add(menu, view);
+	}
+	
+	public void openAutomaticAlarmView(DoctorService service) {
+		removeAll();
+		AutomaticAlarmView view = new AutomaticAlarmView();
+		new AutomaticAlarmPresenter(view, service, this);
+		this.add(menu, view);
 	}
 	
 //	New Entry Views
@@ -216,5 +225,5 @@ public class MainView extends VerticalLayout {
 		presenter.setView(view);
 		this.add(menu, view);
 	}
-
+	
 }

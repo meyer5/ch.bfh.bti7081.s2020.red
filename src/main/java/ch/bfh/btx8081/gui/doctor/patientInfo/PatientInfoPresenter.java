@@ -58,4 +58,9 @@ public class PatientInfoPresenter implements PatientInfoInterface.PatientInfoLis
 		main.openLoginView();
 	}
 
+	@Override
+	public void hadleAutomaticAlarmClick() {
+		main.openAutomaticAlarmView(service);
+	}
+
 }

@@ -59,6 +59,7 @@ public class PatientInfoView extends VerticalLayout implements PatientInfoInterf
   Icon iconActivities = VaadinIcon.HANDS_UP.create();
   Icon iconLogOut = VaadinIcon.SIGN_OUT.create();
   Icon iconBack = VaadinIcon.ARROW_FORWARD.create();
+  Icon iconCondition = VaadinIcon.SLIDERS.create();
 
   Board board = new Board();
 
@@ -78,13 +79,17 @@ public class PatientInfoView extends VerticalLayout implements PatientInfoInterf
       presenter.hadleQuestionsClick();
     });
 
-    Button editButton = new Button("Edit Info", iconEditInfo, event -> {
-      presenter.hadleEditClick();
-    });
+    Button automaticAlarmButton = new Button("Edit automatic alarm condition", iconCondition, event -> {
+        presenter.hadleAutomaticAlarmClick();
+      });
 
     Button entriesListButton = new Button("Show all entries", iconAllEntries, event -> {
       presenter.hadleEntriesListClick();
     });
+    
+    Button editButton = new Button("Edit Info", iconEditInfo, event -> {
+        presenter.hadleEditClick();
+      });
 
     Button logOutButton = new Button("Log out", iconLogOut, event -> {
       presenter.hadleLogOutClick();
@@ -97,8 +102,8 @@ public class PatientInfoView extends VerticalLayout implements PatientInfoInterf
     // Fill layout
     vLayout1.add(fixPatientFName, fixPatientLName, fixAddictionLbl, fixInfo);
     vLayout2.add(patientFName, patientLName, addictionLbl, infoLbl);
-    vLayout3.add(activitiesButton, strategiesButton, questionsButton, editButton);
-    vLayout4.add(entriesListButton, backButton, logOutButton);
+    vLayout3.add(activitiesButton, strategiesButton, questionsButton, automaticAlarmButton);
+    vLayout4.add(entriesListButton, editButton, backButton, logOutButton);
 
     vLayout1.setDefaultHorizontalComponentAlignment(Alignment.STRETCH);
     vLayout2.setDefaultHorizontalComponentAlignment(Alignment.STRETCH);

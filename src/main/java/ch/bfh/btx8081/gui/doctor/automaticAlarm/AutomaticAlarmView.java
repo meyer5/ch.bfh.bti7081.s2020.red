@@ -14,6 +14,10 @@ public class AutomaticAlarmView extends VerticalLayout implements AutomaticAlarm
 	
 	private AutomaticAlarmListener presenter;
 	
+	public AutomaticAlarmView() {
+		
+	}
+	
 	@Override
 	public void setAlarm(Condition condition) {
 		// TODO Auto-generated method stub

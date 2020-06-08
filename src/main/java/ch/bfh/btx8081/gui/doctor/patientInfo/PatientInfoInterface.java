@@ -16,6 +16,8 @@ public interface PatientInfoInterface {
 		public void hadleStrategiesClick();
 
 		public void hadleQuestionsClick();
+		
+		public void hadleAutomaticAlarmClick();
 
 		public void hadleOpenEntryClick(Entry entry);
 
