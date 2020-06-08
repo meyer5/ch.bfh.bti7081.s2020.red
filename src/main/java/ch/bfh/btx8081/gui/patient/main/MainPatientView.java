@@ -1,19 +1,16 @@
 package ch.bfh.btx8081.gui.patient.main;
 
-import java.awt.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import ch.bfh.btx8081.gui.patient.main.MainPatientInterface;
 import ch.bfh.btx8081.model.Entry;
 import com.vaadin.flow.component.board.Board;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.charts.Chart;
 import com.vaadin.flow.component.charts.model.*;
 import com.vaadin.flow.component.charts.model.Dimension;
-import com.vaadin.flow.component.charts.model.style.Color;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Label;
@@ -171,7 +168,6 @@ public class MainPatientView extends VerticalLayout implements MainPatientInterf
     for (int i = latestEntryIndex; i > -1; i--)
     {
       LocalDate currentEntryDate = entries.get(i).getDate();
-      System.out.println(currentEntryDate);
 
       if(LocalDate.now().getMonth() == currentEntryDate.getMonth())
         items.set(currentEntryDate.getDayOfMonth()-1, new DataSeriesItem(currentEntryDate.getDayOfMonth()-1, 1));
@@ -179,22 +175,6 @@ public class MainPatientView extends VerticalLayout implements MainPatientInterf
         break;
     }
     series.setData(items);
-    // Fill up days
-		/*
-		System.out.println(entries.size());
-		int latestEntryIndex = entries.size()-1;
-		for (int i = latestEntryIndex; i > -1; i--)
-		{
-			LocalDate currentEntryDate = entries.get(i).getDate();
-			if(LocalDate.now().getMonth() == currentEntryDate.getMonth())
-			{
-				series.setyAxis(currentEntryDate.getDayOfMonth()-1);
-				series.setData(1);
-			}
-			else
-				break;
-		}*/
-
     conf.addSeries(series);
 
     return chart;

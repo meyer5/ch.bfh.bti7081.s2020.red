@@ -114,11 +114,11 @@ public class PatientInfoView extends VerticalLayout implements PatientInfoInterf
   // Returns a graph that shows, when a entry was made or not
   private Chart getEntryOverview(List<Entry> entries) {
     Chart chart = new Chart();
-    chart.setHeight("10%");
     Configuration conf = chart.getConfiguration();
 
     conf.getChart().setZoomType(Dimension.XY);
-    conf.setTitle("Entry Overview");
+    conf.setTitle("Statistic of patient's addiction");
+    // conf.setSubTitle("Source: WorldClimate.com");
 
     Calendar calendar = Calendar.getInstance();
     LocalDate now = LocalDate.now();
@@ -134,40 +134,94 @@ public class PatientInfoView extends VerticalLayout implements PatientInfoInterf
 
     YAxis y1 = new YAxis();
     y1.setShowEmpty(true);
-    y1.setOpposite(false);
-    y1.setShowFirstLabel(false);
-    y1.setShowLastLabel(false);
-    y1.setAllowDecimals(false);
-    y1.setCeiling(1);
-    y1.setOrdinal(true);
-    y1.setExtremes(0,1);
-    Labels yLabels = y1.getLabels();
-    yLabels.setEnabled(false);
+    y1.setTitle(new AxisTitle("Motivation"));
+    Labels labels = new Labels();
+    labels.setFormatter("return this.value");
+    y1.setLabels(labels);
+    y1.setOpposite(true);
     y1.setClassName("y1");
     conf.addyAxis(y1);
 
-    DataSeries series = new DataSeries();
-    PlotOptionsColumn plotOptionsColumn = new PlotOptionsColumn();
-    series.setPlotOptions(plotOptionsColumn);
-    series.setName("Created Entries");
+    YAxis y2 = new YAxis();
+    y2.setShowEmpty(true);
+    y2.setTitle(new AxisTitle("Consumption"));
+    labels = new Labels();
+    labels.setFormatter("return this.value +' mm'");
+    y2.setLabels(labels);
+    y2.setClassName("y2");
+    conf.addyAxis(y2);
 
-    ArrayList<DataSeriesItem> items = new ArrayList<>(totalDays);
+    YAxis y3 = new YAxis();
+    y3.setShowEmpty(true);
+    y3.setTitle(new AxisTitle("Max Level Consumption"));
+    labels = new Labels();
+    labels.setFormatter("return this.value +' mm'");
+    y3.setLabels(labels);
+    y3.setOpposite(true);
+    y3.setClassName("y3");
+    conf.addyAxis(y3);
+
+    Tooltip tooltip = new Tooltip();
+
+    tooltip.setFormatter("function() { "
+            + "var unit = { 'Consumption': 'mm', 'Motivation': ':)', 'Max Level': 'mm' }[this.series.name];"
+            + "return ''+ this.x +': '+ this.y +' '+ unit; }");
+
+    conf.setTooltip(tooltip);
+
+    Legend legend = new Legend();
+    legend.setLayout(LayoutDirection.VERTICAL);
+    legend.setAlign(HorizontalAlign.LEFT);
+    legend.setX(120);
+    legend.setVerticalAlign(VerticalAlign.TOP);
+    legend.setY(80);
+    legend.setFloating(true);
+    conf.setLegend(legend);
+
+    ArrayList<DataSeriesItem> itemsConsumtion = new ArrayList<>(totalDays);
+    ArrayList<DataSeriesItem> itemsMotivation = new ArrayList<>(totalDays);
+    ArrayList<DataSeriesItem> itemsMaxLevelConsumption = new ArrayList<>(totalDays);
     for (int i = 0; i < totalDays; i++)
-      items.add(new DataSeriesItem(i, 0));
+    {
+      itemsConsumtion.add(new DataSeriesItem(i, 0));
+      itemsMotivation.add(new DataSeriesItem(i, 0));
+      itemsMaxLevelConsumption.add(new DataSeriesItem(i, 0));
+    }
 
     int latestEntryIndex = entries.size()-1;
     for (int i = latestEntryIndex; i > -1; i--)
     {
       LocalDate currentEntryDate = entries.get(i).getDate();
-      System.out.println(currentEntryDate);
 
-      if(LocalDate.now().getMonth() == currentEntryDate.getMonth())
-        items.set(currentEntryDate.getDayOfMonth()-1, new DataSeriesItem(currentEntryDate.getDayOfMonth()-1, 1));
+      if(LocalDate.now().getMonth() == currentEntryDate.getMonth()) {
+        itemsConsumtion.set(currentEntryDate.getDayOfMonth() - 1, new DataSeriesItem(currentEntryDate.getDayOfMonth() - 1, entries.get(i).getConsumption()));
+        itemsMotivation.set(currentEntryDate.getDayOfMonth() - 1, new DataSeriesItem(currentEntryDate.getDayOfMonth() - 1, entries.get(i).getMotivation()));
+        itemsMaxLevelConsumption.set(currentEntryDate.getDayOfMonth() - 1, new DataSeriesItem(currentEntryDate.getDayOfMonth() - 1, entries.get(i).getPressureToConsume()));
+      }
       else
         break;
     }
-    series.setData(items);
 
+    DataSeries series = new DataSeries();
+    PlotOptionsColumn plotOptionsColumn = new PlotOptionsColumn();
+    series.setPlotOptions(plotOptionsColumn);
+    series.setName("Consumption");
+    series.setyAxis(1);
+    series.setData(itemsConsumtion);
+    conf.addSeries(series);
+
+    series = new DataSeries();
+    PlotOptionsSpline plotOptionsSpline = new PlotOptionsSpline();
+    series.setPlotOptions(plotOptionsSpline);
+    series.setName("Max Level Consumption");
+    series.setData(itemsMaxLevelConsumption);
+    conf.addSeries(series);
+
+    series = new DataSeries();
+    plotOptionsSpline = new PlotOptionsSpline();
+    series.setPlotOptions(plotOptionsSpline);
+    series.setName("Motivation");
+    series.setData(itemsMotivation);
     conf.addSeries(series);
 
     return chart;
