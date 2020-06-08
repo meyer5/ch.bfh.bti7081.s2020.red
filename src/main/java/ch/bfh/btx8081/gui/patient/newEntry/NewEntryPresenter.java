@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ch.bfh.btx8081.exceptions.ShowAvoidanceStrategyException;
-import ch.bfh.btx8081.gui.shared.MainView;
+import ch.bfh.btx8081.gui.shared.main.MainView;
 import ch.bfh.btx8081.interfaces.PatientService;
 import ch.bfh.btx8081.model.Activity;
 

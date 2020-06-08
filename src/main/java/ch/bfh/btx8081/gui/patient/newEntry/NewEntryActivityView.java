@@ -6,6 +6,7 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.Grid.SelectionMode;
 import com.vaadin.flow.component.html.Label;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 
@@ -55,5 +56,10 @@ public class NewEntryActivityView extends VerticalLayout implements NewEntryInte
 		this.presenter = presenter;
 		activitiesList.setItems(presenter.getActivities());
 	}
+
+  @Override
+  public void showNotification(String message) {
+    Notification.show(message);
+  }
 
 }

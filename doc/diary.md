@@ -560,6 +560,137 @@ To-do:
 
 Naechste Audiokonferenz: 11.05.2020 um 16:00 Uhr
 
+<br>
+<br>
+
+#### <p align="center">**11.05.2020 & 12.05.2020:**</p>
+Anwesenheit: alle
+
+- Besprechung ueber bisherige Implementierung
+
+
+
+To-do:  
+
+	   - siehe Scrum.xlsx im Teams
+	   
+
+Naechste Audiokonferenz: 18.05.2020 
+
+<br>
+<br>
+
+------
+	
+#### *Task 8*
+
+#### To do:
+ * Klassendiagramm mit Persistenz aktualisieren 
+   
+ **Deadline:** 24.05.2020, 23:59
+ 
+
+<br>
+<br>
+<br>
+
+#### <p align="center">**18.05.2020 & 19.05.2020:**</p>
+Anwesenheit: alle
+
+- Besprechung ueber bisherige Implementierung
+
+
+
+To-do:  
+
+	   - siehe Scrum.xlsx im Teams
+	   
+
+Naechste Audiokonferenz: 24.05.2020 um 15:00 Uhr
+
+<br>
+<br>
+
+#### <p align="center">**24.05.2020:**</p>
+Anwesenheit: alle
+
+- Besprechung ueber bisherige Implementierung
+
+
+
+To-do:  
+
+	   - siehe Scrum.xlsx im Teams
+	   
+
+Naechste Audiokonferenz: 25.05.2020
+
+<br>
+<br>
+
+#### <p align="center">**25.05.2020 & 26.05.2020:**</p>
+Anwesenheit: alle
+
+- Besprechung ueber bisherige Implementierung
+- Besprechung mit Dozenten Sprint 2
+- Feedback zu Task 8 (8/10 Pkt.)
+
+
+
+To-do:  
+
+	   - siehe Scrum.xlsx im Teams
+	   
+
+Naechste Audiokonferenz: 02.06.2020
+
+<br>
+<br>
+
+#### <p align="center">**02.06.2020:**</p>
+Anwesenheit: alle
+
+- Besprechung ueber bisherige Implementierung
+
+
+
+To-do:  
+
+	   - siehe Scrum.xlsx im Teams
+	   
+
+Naechste Audiokonferenz: 05.06.2020 um 17:00 Uhr
+
+------
+	
+#### *Task 9*
+
+#### To do:
+ * Final Praesentation
+ * Video Prototype
+   
+ **Deadline:** 09.06.2020
+ 
+
+<br>
+<br>
+<br>
+
+#### <p align="center">**05.06.2020:**</p>
+Anwesenheit: alle
+
+- Besprechung ueber bisherige Implementierung
+
+
+
+To-do:  
+
+	   - siehe Scrum.xlsx im Teams
+	   
+
+Naechste Audiokonferenz: 08.06.2020
+
+
 
 	    
 	   

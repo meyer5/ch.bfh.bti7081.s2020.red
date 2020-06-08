@@ -13,53 +13,55 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import ch.bfh.btx8081.model.Activity;
 
 /**
- * Marker Interface for Presenter makes sure every view has a method to handle
- * the "Next" button and to pass the name of the view
+ * Marker Interface for Presenter makes sure every view has a method to handle the "Next" button and
+ * to pass the name of the view
  * 
  * @author Remo
  */
 public interface NewEntryInterface {
 
-	public void setListener(NewEntryListener presenter);
-	
-	public default void showAvoidanceSrategy(String strategy) {
-		VerticalLayout layout = new VerticalLayout();
+  public void setListener(NewEntryListener presenter);
 
-		Dialog dialog = new Dialog();
-		Button closeButton = new Button("OK", event -> {
-			dialog.close();
-		});
+  public default void showAvoidanceSrategy(String strategy) {
+    VerticalLayout layout = new VerticalLayout();
 
-		layout.getMaxWidth();
-		layout.setAlignItems(Alignment.CENTER);
-		layout.add(new Label(strategy), closeButton);
+    Dialog dialog = new Dialog();
+    Button closeButton = new Button("OK", event -> {
+      dialog.close();
+    });
 
-		dialog.add(layout);
-		dialog.open();
-	}
+    layout.getMaxWidth();
+    layout.setAlignItems(Alignment.CENTER);
+    layout.add(new Label(strategy), closeButton);
 
-	public interface NewEntryListener {
-		
-		public void handleConfirmDate(LocalDate date);
-		
-		public void handleConfirmConsumption(long consumption);
-		
-		public void handleConfirmPressure(int pressure);
-		
-		public void handleConfirmMotivation(int motivation);
+    dialog.add(layout);
+    dialog.open();
+  }
 
-		public void handleConfirmActivities(ArrayList<Activity> activities);
+  public void showNotification(String message);
 
-		public void handleConfirmComment(String comment);
-		
-		public void handleConfirmQuestion(String question);
+  public interface NewEntryListener {
 
-		public void handleConfirmEntry();
-		
-		public List<Activity> getActivities();
-		
-		public void setView(NewEntryInterface view);
+    public void handleConfirmDate(LocalDate date);
 
-	}
+    public void handleConfirmConsumption(long consumption);
+
+    public void handleConfirmPressure(int pressure);
+
+    public void handleConfirmMotivation(int motivation);
+
+    public void handleConfirmActivities(ArrayList<Activity> activities);
+
+    public void handleConfirmComment(String comment);
+
+    public void handleConfirmQuestion(String question);
+
+    public void handleConfirmEntry();
+
+    public List<Activity> getActivities();
+
+    public void setView(NewEntryInterface view);
+
+  }
 
 }
