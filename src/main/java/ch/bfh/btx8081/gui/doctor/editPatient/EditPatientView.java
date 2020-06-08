@@ -66,7 +66,7 @@ public class EditPatientView extends VerticalLayout implements EditPatientInterf
 
 		hLayout.add(saveButton, cancelButton);
 
-		add(new H2("Create new patient"), blockOne, blockTwo, hLayout);
+		add(new H2("Edit patient"), blockOne, blockTwo, hLayout);
 	}
 
 	@Override
