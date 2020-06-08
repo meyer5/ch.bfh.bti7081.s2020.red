@@ -5,7 +5,9 @@ import java.util.List;
 import ch.bfh.btx8081.exceptions.PatientNotFoundException;
 import ch.bfh.btx8081.exceptions.UsernameIsAlreadyTakenException;
 import ch.bfh.btx8081.model.Activity;
+import ch.bfh.btx8081.model.Alarm;
 import ch.bfh.btx8081.model.AvoidanceStrategy;
+import ch.bfh.btx8081.model.Condition;
 import ch.bfh.btx8081.model.Doctor;
 import ch.bfh.btx8081.model.Entry;
 import ch.bfh.btx8081.model.Patient;
@@ -24,7 +26,7 @@ public interface DoctorInterface {
 
 	void newPatient(String firstName, String lastName, String phoneNumber, String eMail, String userName,
 			String password, String addiction, String mainInfo, Doctor doctor, String consumedSubstance,
-			String consumptionMetric, String conditionAutomaticAlarm) throws UsernameIsAlreadyTakenException;
+			String consumptionMetric) throws UsernameIsAlreadyTakenException;
 
 	void changeContactInfo(Patient patient, String firstName, String lastName, String phoneNumber, String eMail);
 
@@ -42,6 +44,10 @@ public interface DoctorInterface {
 
 	void removeNewQuestionForConsultation(Patient patient, QuestionForConsultation questionForConsultation);
 
-	void setConditionAutomaticAlarm(Patient patient, String conditionAutomaticAlarm);
+	void setConditionAutomaticAlarm(Patient patient, Condition conditionAutomaticAlarm);
+	
+	void removeConditionAutomaticAlarm(Patient patient);
+	
+	void removeAlarm(Doctor doctor, Alarm alarm);
 	
 }

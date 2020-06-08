@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import ch.bfh.btx8081.exceptions.AutomaticAlarmException;
 import ch.bfh.btx8081.exceptions.PatientNotFoundException;
 import ch.bfh.btx8081.exceptions.ShowAvoidanceStrategyException;
 import ch.bfh.btx8081.exceptions.UserNotFoundException;
@@ -115,13 +116,13 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 	@Override
 	public void newPatient(String firstName, String lastName, String phoneNumber, String eMail, String userName,
 			String password, String addiction, String mainInfo, Doctor doctor, String consumedSubstance,
-			String consumptionMetric, String conditionAutomaticAlarm) throws UsernameIsAlreadyTakenException {
+			String consumptionMetric) throws UsernameIsAlreadyTakenException {
 		try {
 			this.searchUserByUsername(userName);
 			throw new UsernameIsAlreadyTakenException();
 		} catch (UserNotFoundException e) {
 			new Patient(this.nextID(), firstName, lastName, phoneNumber, eMail, userName, password, addiction, mainInfo,
-					doctor, consumedSubstance, consumptionMetric, conditionAutomaticAlarm);
+					doctor, consumedSubstance, consumptionMetric);
 		}
 	}
 
@@ -170,16 +171,40 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 	}
 
 	@Override
-	public void setConditionAutomaticAlarm(Patient patient, String conditionAutomaticAlarm) {
+	public void setConditionAutomaticAlarm(Patient patient, Condition conditionAutomaticAlarm) {
 		patient.getDiary().setConditionAutomaticAlarm(conditionAutomaticAlarm);
+	}
+	
+	@Override
+	public void removeConditionAutomaticAlarm(Patient patient) {
+		patient.getDiary().removeConditionAutomaticAlarm(patient);
+	}
+	
+	@Override
+	public void sendUrgentCaseAlarm(Patient patient, String message) {
+		patient.sendUrgentCaseAlarm(message);
+	}
+
+	@Override
+	public void sendAppontmentAlarm(Patient patient, String message) {
+		patient.sendAppontmentAlarm(message);
+	}
+	
+	@Override
+	public void removeAlarm(Doctor doctor, Alarm alarm) {
+		doctor.removeAlarm(alarm);
 	}
 
 	@Override
 	public void newEntry(LocalDate date, Patient patient, long consumption, int pressureToConsume, int motivation,
 			List<Activity> activities, String comment, String questionForConsultation)
 			throws ShowAvoidanceStrategyException {
-		patient.getDiary().newEntry(date, consumption, pressureToConsume, motivation, activities, comment,
-				questionForConsultation);
+		try {
+			patient.getDiary().newEntry(date, consumption, pressureToConsume, motivation, activities, comment,
+					questionForConsultation);
+		} catch (AutomaticAlarmException e) {
+			new AutomaticAlarm(patient);
+		}
 	}
 
 //	ID management
@@ -228,19 +253,19 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 			System.out.println("hmueller - created");
 //		this.newPatient(firstName, lastName, phoneNumber, eMail, userName, password, addiction, mainInfo, doctor, consumedSubstance, consumptionMetric, conditionAutomaticAlarm);
 			this.newPatient("Remo", "Meyer", "0700000001", "hans.meier@mail.ch", "remo", "123", "Hero", "Kommentar",
-					(Doctor) this.searchUserByUsername("doctor1"), "Hero", "mg", "Nicht implementiert");
+					(Doctor) this.searchUserByUsername("doctor1"), "Hero", "mg");
 			System.out.println("remo - created");
 			this.newPatient("Kaurisanker", "Kirupananthan", "0700000002", "hans.meier@mail.ch", "kausi", "123", "Hero",
-					"Kommentar", (Doctor) this.searchUserByUsername("doctor1"), "Hero", "mg", "Nicht implementiert");
+					"Kommentar", (Doctor) this.searchUserByUsername("doctor1"), "Hero", "mg");
 			System.out.println("kausi - created");
 			this.newPatient("Natalya", "Dénervaud", "0700000003", "hans.meier@mail.ch", "natalya", "123", "Hero",
-					"Kommentar", (Doctor) this.searchUserByUsername("doctor1"), "Hero", "mg", "Nicht implementiert");
+					"Kommentar", (Doctor) this.searchUserByUsername("doctor1"), "Hero", "mg");
 			System.out.println("natalya - created");
 			this.newPatient("Dmytriy", "Pelts", "0700000004", "hans.meier@mail.ch", "dmytriy", "123", "Hero",
-					"Kommentar", (Doctor) this.searchUserByUsername("doctor2"), "Hero", "mg", "Nicht implementiert");
+					"Kommentar", (Doctor) this.searchUserByUsername("doctor2"), "Hero", "mg");
 			System.out.println("dmytriy - created");
 			this.newPatient("Julian", "Rodriguez", "0700000005", "hans.meier@mail.ch", "julian", "123", "Hero",
-					"Kommentar", (Doctor) this.searchUserByUsername("doctor2"), "Hero", "mg", "Nicht implementiert");
+					"Kommentar", (Doctor) this.searchUserByUsername("doctor2"), "Hero", "mg");
 			System.out.println("julian - created");
 			
 			Patient julian = (Patient) this.searchUserByUsername("julian");

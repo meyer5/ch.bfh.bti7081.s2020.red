@@ -38,27 +38,23 @@ public class Patient extends User {
 
 //	Constructor for new patient in Manager
 	protected Patient(long id, String firstName, String lastName, String phoneNumber, String eMail, String userName,
-               String password, String addiction, String mainInfo, Doctor doctor, String consumedSubstance, String consumptionMetric, String conditionAutomaticAlarm) {
+               String password, String addiction, String mainInfo, Doctor doctor, String consumedSubstance, String consumptionMetric) {
 		super(id, firstName, lastName, phoneNumber, eMail, userName, password);
 		this.addiction = addiction;
 		this.mainInfo = mainInfo;
 		this.doctor = doctor;
 		doctor.addPatient(this);
-		this.diary = new Diary(consumedSubstance, consumptionMetric, conditionAutomaticAlarm);
+		this.diary = new Diary(consumedSubstance, consumptionMetric);
 	}
 	
 //	Alarm
 	
-	protected void sendEmergenceAlarm() {
-//		TODO
+	protected void sendUrgentCaseAlarm(String message) {
+		new UrgentCaseAlarm(this, message);
 	}
 	
-	protected void sendUrgentCaseAlarm() {
-//		TODO
-	}
-	
-	protected void sendAppontmentAlarm() {
-//		TODO
+	protected void sendAppontmentAlarm(String message) {
+		new AppointmentAlarm(this, message);
 	}
 	
 //	getters & setters

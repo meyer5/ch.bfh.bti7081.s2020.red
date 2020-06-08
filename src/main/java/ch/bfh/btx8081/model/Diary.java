@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
+import ch.bfh.btx8081.exceptions.AutomaticAlarmException;
 import ch.bfh.btx8081.exceptions.ShowAvoidanceStrategyException;
 
 @Entity // (name = "Diary")
@@ -25,20 +26,20 @@ public class Diary {
 
 	private String consumedSubstance = "";
 	private String consumptionMeric = "";
-	private String conditionAutomaticAlarm = "";
+	private Condition conditionAutomaticAlarm;
 
-	@OneToMany (/*mappedBy = "diary", targetEntity=Activity.class,*/ cascade = CascadeType.PERSIST)
+	@OneToMany(/* mappedBy = "diary", targetEntity=Activity.class, */ cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "diary_id")
 	private List<Activity> activities = new ArrayList<Activity>();
 
-	@OneToMany (/*mappedBy = "diary",*/ cascade = CascadeType.PERSIST)
+	@OneToMany(/* mappedBy = "diary", */ cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "diary_id")
 	private List<AvoidanceStrategy> avoidanceStrategies = new ArrayList<AvoidanceStrategy>();
-	
+
 	@Transient
 	private ArrayList<QuestionForConsultation> unansweredQuestions = new ArrayList<QuestionForConsultation>();
 
-	@OneToMany (/*mappedBy = "diary",*/ cascade = CascadeType.PERSIST)
+	@OneToMany(/* mappedBy = "diary", */ cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "diary_id")
 	private List<Entry> entries = new ArrayList<Entry>();
 
@@ -47,13 +48,12 @@ public class Diary {
 
 	}
 
-	public Diary(String consumedSubstance, String consumptionMeric, String conditionAutomaticAlarm,
-			ArrayList<Activity> activities, ArrayList<AvoidanceStrategy> avoidanceStrategies,
-			ArrayList<QuestionForConsultation> unansweredQuestions, ArrayList<Entry> entries) {
+	public Diary(String consumedSubstance, String consumptionMeric, ArrayList<Activity> activities,
+			ArrayList<AvoidanceStrategy> avoidanceStrategies, ArrayList<QuestionForConsultation> unansweredQuestions,
+			ArrayList<Entry> entries) {
 		super();
 		this.consumedSubstance = consumedSubstance;
 		this.consumptionMeric = consumptionMeric;
-		this.conditionAutomaticAlarm = conditionAutomaticAlarm;
 		this.activities = activities;
 		this.avoidanceStrategies = avoidanceStrategies;
 		this.unansweredQuestions = unansweredQuestions;
@@ -62,17 +62,17 @@ public class Diary {
 
 //	Constructor for new diary in patient constructor
 
-	protected Diary(String consumedSubstance, String consumptionMeric, String conditionAutomaticAlarm) {
+	protected Diary(String consumedSubstance, String consumptionMeric) {
 		super();
 		this.consumptionMeric = consumptionMeric;
 		this.consumedSubstance = consumedSubstance;
-		this.conditionAutomaticAlarm = conditionAutomaticAlarm;
 		this.activities = defaultActivities();
 		this.avoidanceStrategies = defaultAvoidanceStrategies();
 	}
 
-	protected void newEntry(LocalDate date, long consumption, int pressureToConsume, int motivation, List<Activity> activities,
-			String comment, String questionForConsultation) throws ShowAvoidanceStrategyException {
+	protected void newEntry(LocalDate date, long consumption, int pressureToConsume, int motivation,
+			List<Activity> activities, String comment, String questionForConsultation)
+			throws ShowAvoidanceStrategyException, AutomaticAlarmException {
 		QuestionForConsultation q = null;
 		if (questionForConsultation != null && !questionForConsultation.equals("")) {
 			q = new QuestionForConsultation(questionForConsultation);
@@ -83,9 +83,15 @@ public class Diary {
 		if (pressureToConsume > 6) {
 			throw new ShowAvoidanceStrategyException();
 		}
-//		TODO  show avoidance strategies & check automatic alarm
+		if (conditionAutomaticAlarm != null) {
+			if (conditionAutomaticAlarm.isGiven(this.entries)) {
+				throw new AutomaticAlarmException();
+			}
+		}
 	}
-	
+
+//	Random avoidance strategy
+
 	protected AvoidanceStrategy getRandomAvoidanceStrategy() {
 		return this.avoidanceStrategies.get(ThreadLocalRandom.current().nextInt(0, avoidanceStrategies.size()));
 	}
@@ -162,14 +168,6 @@ public class Diary {
 		this.consumptionMeric = consumptionMeric;
 	}
 
-	public String getConditionAutomaticAlarm() {
-		return conditionAutomaticAlarm;
-	}
-
-	protected void setConditionAutomaticAlarm(String conditionAutomaticAlarm) {
-		this.conditionAutomaticAlarm = conditionAutomaticAlarm;
-	}
-
 	public List<Activity> getActivities() {
 		return activities;
 	}
@@ -200,6 +198,18 @@ public class Diary {
 
 	protected void setEntries(ArrayList<Entry> entries) {
 		this.entries = entries;
+	}
+
+	public Condition getConditionAutomaticAlarm() {
+		return conditionAutomaticAlarm;
+	}
+
+	protected void setConditionAutomaticAlarm(Condition condition) {
+		this.conditionAutomaticAlarm = condition;
+	}
+	
+	void removeConditionAutomaticAlarm(Patient patient) {
+		this.conditionAutomaticAlarm = null;
 	}
 
 }

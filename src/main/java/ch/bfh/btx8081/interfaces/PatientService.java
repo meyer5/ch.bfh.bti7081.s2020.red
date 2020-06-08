@@ -71,6 +71,15 @@ public class PatientService implements Service {
 	public AvoidanceStrategy getRandomAvoidanceStrategy() {
 		return patientInterface.getRandomAvoidanceStrategy(patient);
 	}
+	
+	public void sendUrgentCaseAlarm(String message) {
+		patientInterface.sendUrgentCaseAlarm(patient, message);
+	}
+
+	public void sendAppontmentAlarm(String message) {
+		patientInterface.sendAppontmentAlarm(patient, message);
+	}
+
 
 //	getters & setters
 

@@ -14,6 +14,8 @@ public class Doctor extends User{
 	// ArrayList geht nicht, Fehlermeldung
 	@OneToMany(mappedBy = "doctor",	cascade = CascadeType.PERSIST)
 	private List<Patient> patients =  new ArrayList<Patient>();
+	
+	private List<Alarm> alarms = new ArrayList<Alarm>();
 
 //	Constructor for JPA
 	public Doctor() {
@@ -47,6 +49,14 @@ public class Doctor extends User{
 		this.patients.remove(patient);
 	}
 	
+	protected void addAlarm(Alarm alarm) {
+		this.alarms.add(alarm);
+	}
+	
+	protected void removeAlarm(Alarm alarm) {
+		this.alarms.remove(alarm);
+	}
+	
 //	getters & setters
 	
 	public List<Patient> getPatients() {
@@ -56,5 +66,15 @@ public class Doctor extends User{
 	protected void setPatients(ArrayList<Patient> patients) {
 		this.patients = patients;
 	}
+
+	public List<Alarm> getAlarms() {
+		return alarms;
+	}
+
+	protected void setAlarms(ArrayList<Alarm> alarms) {
+		this.alarms = alarms;
+	}
+	
+	
 
 }

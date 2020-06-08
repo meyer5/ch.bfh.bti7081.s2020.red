@@ -5,7 +5,9 @@ import java.util.List;
 import ch.bfh.btx8081.exceptions.PatientNotFoundException;
 import ch.bfh.btx8081.exceptions.UsernameIsAlreadyTakenException;
 import ch.bfh.btx8081.model.Activity;
+import ch.bfh.btx8081.model.Alarm;
 import ch.bfh.btx8081.model.AvoidanceStrategy;
+import ch.bfh.btx8081.model.Condition;
 import ch.bfh.btx8081.model.DiaryManager;
 import ch.bfh.btx8081.model.Doctor;
 import ch.bfh.btx8081.model.Entry;
@@ -52,7 +54,7 @@ public class DoctorService implements Service {
 			String consumptionMetric, String conditionAutomaticAlarm) throws UsernameIsAlreadyTakenException {
 		doctorInterface.newPatient(firstName, lastName, phoneNumber, eMail, userName,
 				password, addiction, mainInfo, doctor, consumedSubstance,
-				consumptionMetric, conditionAutomaticAlarm);
+				consumptionMetric);
 	}
 
 	public void changeContactInfo(String firstName, String lastName, String phoneNumber, String eMail) {
@@ -94,8 +96,16 @@ public class DoctorService implements Service {
 		doctorInterface.removeNewQuestionForConsultation(currentPatient, questionForConsultation);
 	}
 
-	public void setConditionAutomaticAlarm(String conditionAutomaticAlarm) {
+	public void setConditionAutomaticAlarm(Condition conditionAutomaticAlarm) {
 		doctorInterface.setConditionAutomaticAlarm(currentPatient, conditionAutomaticAlarm);
+	}
+	
+	public void removeConditionAutomaticAlarm() {
+		doctorInterface.removeConditionAutomaticAlarm(currentPatient);
+	}
+	
+	public void removeAlarm(Alarm alarm) {
+		doctorInterface.removeAlarm(doctor, alarm);
 	}
 
 //	getters & setters

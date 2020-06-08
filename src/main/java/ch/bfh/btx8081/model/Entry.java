@@ -15,7 +15,7 @@ import javax.persistence.Transient;
 
 @Entity
 //@Table(name = "entry")
-public class Entry {
+public class Entry implements Comparable<Entry> {
 	
 	@Id
     @GeneratedValue 	//artificial ID
@@ -128,6 +128,12 @@ public class Entry {
 
 	protected void setQuestionsForConsultation(QuestionForConsultation questionsForConsultation) {
 		this.questionForConsultation = questionsForConsultation;
+	}
+
+
+	@Override
+	public int compareTo(Entry o) {
+		return this.getDate().compareTo(o.getDate());
 	}
 	
 }
