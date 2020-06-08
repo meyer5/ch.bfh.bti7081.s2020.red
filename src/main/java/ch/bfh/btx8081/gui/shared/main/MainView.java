@@ -22,6 +22,8 @@ import ch.bfh.btx8081.gui.patient.newEntry.NewEntryPresenter;
 import ch.bfh.btx8081.gui.patient.newEntry.NewEntryPressureView;
 import ch.bfh.btx8081.gui.patient.newEntry.NewEntryQuestionView;
 import ch.bfh.btx8081.gui.patient.newEntry.NewEntryStartView;
+import ch.bfh.btx8081.gui.patient.sendAlarm.SendAlarmPresenter;
+import ch.bfh.btx8081.gui.patient.sendAlarm.SendAlarmView;
 import ch.bfh.btx8081.gui.shared.activity.ActivitiesPresenter;
 import ch.bfh.btx8081.gui.shared.activity.ActivitiesView;
 import ch.bfh.btx8081.gui.shared.entry.EntryPresenter;
@@ -103,10 +105,10 @@ public class MainView extends VerticalLayout {
 	}
 
 	public void openAlarmView(PatientService service) {
-//		removeAll();
-//		MainPatientView view = new MainPatientView();
-//		new MainPatientPresenter(view, service, this);
-//		this.add(view);
+		removeAll();
+		SendAlarmView view = new SendAlarmView();
+		new SendAlarmPresenter(view, service, this);
+		this.add(menu, view);
 	}
 
 	public void openEntryView(Service service, Entry entry) {
@@ -146,7 +148,7 @@ public class MainView extends VerticalLayout {
 		removeAll();
 		CreatePatientView view = new CreatePatientView();
 		new CreatePatientPresenter(view, service, this);
-		this.add(view);
+		this.add(menu, view);
 	}
 
 	public void openGraphView(DoctorService service) {
@@ -163,56 +165,56 @@ public class MainView extends VerticalLayout {
 		NewEntryStartView view = new NewEntryStartView();
 		NewEntryPresenter presenter = new NewEntryPresenter(service, this);
 		presenter.setView(view);
-		this.add(view);
+		this.add(menu, view);
 	}
 	
 	public void openNewEntryConsumptionView(NewEntryPresenter presenter) {
 		removeAll();
 		NewEntryConsumptionView view = new NewEntryConsumptionView();
 		presenter.setView(view);
-		this.add(view);
+		this.add(menu, view);
 	}
 	
 	public void openNewEntryPressureView(NewEntryPresenter presenter) {
 		removeAll();
 		NewEntryPressureView view = new NewEntryPressureView();
 		presenter.setView(view);
-		this.add(view);
+		this.add(menu, view);
 	}
 	
 	public void openNewEntryMotivationView(NewEntryPresenter presenter) {
 		removeAll();
 		NewEntryMotivationView view = new NewEntryMotivationView();
 		presenter.setView(view);
-		this.add(view);
+		this.add(menu, view);
 	}
 	
 	public void openNewEntryActivityView(NewEntryPresenter presenter) {
 		removeAll();
 		NewEntryActivityView view = new NewEntryActivityView();
 		presenter.setView(view);
-		this.add(view);
+		this.add(menu, view);
 	}
 	
 	public void openNewEntryCommentView(NewEntryPresenter presenter) {
 		removeAll();
 		NewEntryCommentView view = new NewEntryCommentView();
 		presenter.setView(view);
-		this.add(view);
+		this.add(menu, view);
 	}
 	
 	public void openNewEntryQuestionView(NewEntryPresenter presenter) {
 		removeAll();
 		NewEntryQuestionView view = new NewEntryQuestionView();
 		presenter.setView(view);
-		this.add(view);
+		this.add(menu, view);
 	}
 	
 	public void openNewEntryConfirmView(NewEntryPresenter presenter) {
 		removeAll();
 		NewEntryConfirmView view = new NewEntryConfirmView();
 		presenter.setView(view);
-		this.add(view);
+		this.add(menu, view);
 	}
 
 }

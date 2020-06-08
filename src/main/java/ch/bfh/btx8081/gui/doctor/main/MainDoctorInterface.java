@@ -1,6 +1,5 @@
 package ch.bfh.btx8081.gui.doctor.main;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import ch.bfh.btx8081.model.Alarm;
@@ -12,7 +11,7 @@ public interface MainDoctorInterface {
 
 	public void addListener(MainDoctorListener presenter);
 	
-	public void setAlarms(ArrayList<Alarm> alarms);
+	public void setAlarms(List<Alarm> alarms);
 
 	public interface MainDoctorListener {
 
@@ -23,6 +22,8 @@ public interface MainDoctorInterface {
 		public void hadleSearchPatientClick(String search);
 		
 		public void hadleLogOutClick();
+		
+		public void handleAlarmDoneClick(Alarm alarm);
 
 	}
 

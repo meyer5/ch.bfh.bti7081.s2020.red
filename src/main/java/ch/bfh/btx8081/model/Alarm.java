@@ -54,5 +54,11 @@ public abstract class Alarm {
 		this.date = date;
 	}
 	
+	public String getFirstName() {
+		return patient.getFirstName();
+	}
 	
+	public String getLastName() {
+		return patient.getLastName();
+	}
 }

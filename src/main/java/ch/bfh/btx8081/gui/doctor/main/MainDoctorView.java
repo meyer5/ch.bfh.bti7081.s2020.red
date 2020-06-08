@@ -1,6 +1,5 @@
 package ch.bfh.btx8081.gui.doctor.main;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.vaadin.flow.component.button.Button;
@@ -28,8 +27,6 @@ public class MainDoctorView extends VerticalLayout implements MainDoctorInterfac
 
 	private Grid<Patient> patientList = new Grid<>(Patient.class);
 	
-	
-	
 	private TextField filterText = new TextField();
 	private HorizontalLayout hLayout = new HorizontalLayout();
 
@@ -55,9 +52,19 @@ public class MainDoctorView extends VerticalLayout implements MainDoctorInterfac
 		patientList.addSelectionListener(event -> {
 			this.presenter.hadleOpenPatientClick((Patient) patientList.getSelectedItems().toArray()[0]);
 		});
+		
+		Button alarmDoneButton = new Button("Alarm done", event -> {
+			if (alarms.getSelectedItems().isEmpty()) {
+				
+			} else {
+			presenter.handleAlarmDoneClick((Alarm) alarms.getSelectedItems().toArray()[0]);
+			}
+		});
+		
+		alarms.setColumns("date", "type", "firstName", "lastName", "message");
 
 		hLayout.add(filterText, createPatientButton, LogOutButton);
-		add(hLayout, patientList, alarms);
+		add(hLayout, patientList, alarmDoneButton, alarms);
 	}
 
 	@Override
@@ -66,7 +73,7 @@ public class MainDoctorView extends VerticalLayout implements MainDoctorInterfac
 	}
 
 	@Override
-	public void setAlarms(ArrayList<Alarm> alarms) {
+	public void setAlarms(List<Alarm> alarms) {
 		this.alarms.setItems(alarms);
 
 	}

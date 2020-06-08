@@ -11,7 +11,7 @@ public class UrgentCaseAlarm extends Alarm {
 
 //	Constructor for application
 	public UrgentCaseAlarm(Patient patient, String message) {
-		super(patient, "Uregent case", message, LocalDate.now());
+		super(patient, "Urgent case", message, LocalDate.now());
 		super.send();
 	}
 }

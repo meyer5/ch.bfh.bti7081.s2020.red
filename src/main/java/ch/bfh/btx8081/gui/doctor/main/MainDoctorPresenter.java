@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import ch.bfh.btx8081.exceptions.PatientNotFoundException;
 import ch.bfh.btx8081.gui.shared.main.MainView;
 import ch.bfh.btx8081.interfaces.DoctorService;
+import ch.bfh.btx8081.model.Alarm;
 import ch.bfh.btx8081.model.Patient;
 
 public class MainDoctorPresenter implements MainDoctorInterface.MainDoctorListener {
@@ -19,6 +20,7 @@ public class MainDoctorPresenter implements MainDoctorInterface.MainDoctorListen
 		this.main = main;
 		view.addListener(this);
 		view.setPatientList(service.getAllPatientsOfDoctor());
+		view.setAlarms(service.getDoctor().getAlarms());
 	}
 
 	@Override
@@ -45,6 +47,12 @@ public class MainDoctorPresenter implements MainDoctorInterface.MainDoctorListen
 	@Override
 	public void hadleLogOutClick() {
 		main.openLoginView();
+	}
+
+	@Override
+	public void handleAlarmDoneClick(Alarm alarm) {
+		service.removeAlarm(alarm);
+		view.setAlarms(service.getDoctor().getAlarms());
 	}
 
 }
