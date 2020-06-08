@@ -10,7 +10,7 @@ public interface CreatePatientInterface {
 
 	public interface CreatePatientListener {
 
-		public void handleSaveClick(String firstName, String lastName, String phoneNumber, String eMail, String userName, String password, String addiction, String mainInfo, String consumedSubstance, String consumptionMetric, String conditionAutomaticAlarm);
+		public void handleSaveClick(String firstName, String lastName, String phoneNumber, String eMail, String userName, String password, String addiction, String mainInfo, String consumedSubstance, String consumptionMetric);
 
 		public void hadleCancelClick();
 

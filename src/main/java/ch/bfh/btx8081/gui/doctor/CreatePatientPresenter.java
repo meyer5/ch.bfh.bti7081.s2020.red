@@ -19,16 +19,15 @@ public class CreatePatientPresenter implements CreatePatientInterface.CreatePati
 
 	@Override
 	public void handleSaveClick(String firstName, String lastName, String phoneNumber, String eMail, String userName,
-			String password, String addiction, String mainInfo, String consumedSubstance, String consumptionMetric,
-			String conditionAutomaticAlarm) {
+			String password, String addiction, String mainInfo, String consumedSubstance, String consumptionMetric) {
 		if (firstName.isEmpty() || lastName.isEmpty() || phoneNumber.isEmpty() || eMail.isEmpty() || userName.isEmpty()
 				|| password.isEmpty() || addiction.isEmpty() || consumedSubstance.isEmpty()
-				|| consumptionMetric.isEmpty() || conditionAutomaticAlarm.isEmpty()) {
+				|| consumptionMetric.isEmpty()) {
 			view.fillAllFields();
 		} else {
 			try {
 				service.newPatient(firstName, lastName, phoneNumber, eMail, userName, password, addiction, mainInfo,
-						consumedSubstance, consumptionMetric, conditionAutomaticAlarm);
+						consumedSubstance, consumptionMetric);
 				main.openMainDoctorView(service);
 			} catch (UsernameIsAlreadyTakenException e) {
 				view.userNameAlreadyTaken();

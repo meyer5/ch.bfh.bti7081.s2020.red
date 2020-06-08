@@ -38,7 +38,6 @@ public class CreatePatientView extends VerticalLayout implements CreatePatientIn
 	private TextField addiction = new TextField();
 	private TextField consumedSubstance = new TextField();
 	private TextField consumptionMetric = new TextField();
-	private TextField conditionAutomaticAlarm = new TextField();
 
 	private TextArea mainInfo = new TextArea();
 
@@ -47,8 +46,7 @@ public class CreatePatientView extends VerticalLayout implements CreatePatientIn
 		Button saveButton = new Button("Save Patient", event -> {
 			presenter.handleSaveClick(firstName.getValue(), lastName.getValue(), phoneNumber.getValue(),
 					eMail.getValue(), userName.getValue(), password.getValue(), addiction.getValue(),
-					mainInfo.getValue(), consumedSubstance.getValue(), consumptionMetric.getValue(),
-					conditionAutomaticAlarm.getValue());
+					mainInfo.getValue(), consumedSubstance.getValue(), consumptionMetric.getValue());
 		});
 		Button cancelButton = new Button("cancel", event -> {
 			presenter.hadleCancelClick();
@@ -84,9 +82,6 @@ public class CreatePatientView extends VerticalLayout implements CreatePatientIn
 
 		consumptionMetric.setWidth("100%");
 		blockThree.addFormItem(consumptionMetric, "Consumed metric");
-
-		conditionAutomaticAlarm.setWidth("100%");
-		blockThree.addFormItem(conditionAutomaticAlarm, "Condition automatic alarm");
 
 		// block four
 		mainInfo.setWidth("100%");

@@ -37,9 +37,9 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 //	Singleton
 	private DiaryManager() {
 		this.id = 1000;
-		this.persistenceManager = new PersistenceManager();
-//		this.setUp();
-		this.doctors = getDoctorsFromDb();
+//		this.persistenceManager = new PersistenceManager();
+		this.setUp();
+//		this.doctors = getDoctorsFromDb();
 
 	}
 
@@ -236,7 +236,7 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 
 	public void addDoctor(Doctor doctor) {
 		this.doctors.add(doctor);
-		save(doctor);
+//		save(doctor);
 	}
 
 	public void removeDoctor(Doctor doctor) {
@@ -288,15 +288,15 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 					julian.getDiary().getActivities(), "Test3", "Question3");
 
 //			persist set up in database
-			List<Doctor> docs = this.getDoctors();
-			List<Patient> pats = null;
-			for (Doctor d : docs) {
-				save(d);
-				pats = d.getPatients();
-				for (Patient p : pats) {
-					save(p);
-				}
-			}
+//			List<Doctor> docs = this.getDoctors();
+//			List<Patient> pats = null;
+//			for (Doctor d : docs) {
+//				save(d);
+//				pats = d.getPatients();
+//				for (Patient p : pats) {
+//					save(p);
+//				}
+//			}
 
 		} catch (UsernameIsAlreadyTakenException | UserNotFoundException | ShowAvoidanceStrategyException e) {
 			// TODO Auto-generated catch block

@@ -51,7 +51,7 @@ public class DoctorService implements Service {
 
 	public void newPatient(String firstName, String lastName, String phoneNumber, String eMail, String userName,
 			String password, String addiction, String mainInfo, String consumedSubstance,
-			String consumptionMetric, String conditionAutomaticAlarm) throws UsernameIsAlreadyTakenException {
+			String consumptionMetric) throws UsernameIsAlreadyTakenException {
 		doctorInterface.newPatient(firstName, lastName, phoneNumber, eMail, userName,
 				password, addiction, mainInfo, doctor, consumedSubstance,
 				consumptionMetric);
