@@ -1,18 +1,18 @@
 package ch.bfh.btx8081.gui.patient;
 
+import java.awt.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
+import ch.bfh.btx8081.model.Entry;
 import com.vaadin.flow.component.board.Board;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.charts.Chart;
-import com.vaadin.flow.component.charts.model.Configuration;
-import com.vaadin.flow.component.charts.model.DataSeries;
+import com.vaadin.flow.component.charts.model.*;
 import com.vaadin.flow.component.charts.model.Dimension;
-import com.vaadin.flow.component.charts.model.Labels;
-import com.vaadin.flow.component.charts.model.PlotOptionsColumn;
-import com.vaadin.flow.component.charts.model.XAxis;
-import com.vaadin.flow.component.charts.model.YAxis;
+import com.vaadin.flow.component.charts.model.style.Color;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Label;
@@ -64,6 +64,8 @@ public class MainPatientView extends VerticalLayout implements MainPatientInterf
 	Icon iconAlarm = VaadinIcon.BELL_O.create();
 	Icon iconShowStrategy = VaadinIcon.FROWN_O.create();
 
+	Board board = new Board();
+
 	public MainPatientView() {
 
 		// Create Buttons
@@ -98,10 +100,6 @@ public class MainPatientView extends VerticalLayout implements MainPatientInterf
 		Button logOutButton = new Button("Log out", iconLogOut, event -> {
 			presenter.hadleLogOutClick();
 		});
-		
-		// Board
-		Board board = new Board();
-		board.addRow(getEntryOverview());
 
 		// Fill layout
 		vLayout1.add(fixPatientFName, fixPatientLName, fixDoctorLbl, fixAddictionLbl);
@@ -126,7 +124,7 @@ public class MainPatientView extends VerticalLayout implements MainPatientInterf
 	}
 
 	// Returns a graph that shows, when a entry was made or not
-	private Chart getEntryOverview() {
+	private Chart getEntryOverview(List<Entry> entries) {
 		Chart chart = new Chart();
 		chart.setHeight("10%");
 		Configuration conf = chart.getConfiguration();
@@ -134,7 +132,6 @@ public class MainPatientView extends VerticalLayout implements MainPatientInterf
 		conf.getChart().setZoomType(Dimension.XY);
 		conf.setTitle("Entry Overview");
 
-		XAxis x = new XAxis();
 		Calendar calendar = Calendar.getInstance();
 		LocalDate now = LocalDate.now();
 		calendar.set(now.getYear(), now.getMonthValue()-1, now.getDayOfMonth());
@@ -142,6 +139,8 @@ public class MainPatientView extends VerticalLayout implements MainPatientInterf
 		String[] days = new String[totalDays];
 		for (int i = 0; i < totalDays; i++)
 			days[i] = String.valueOf(i + 1);
+
+		XAxis x = new XAxis();
 		x.setCategories(days);
 		conf.addxAxis(x);
 
@@ -153,7 +152,7 @@ public class MainPatientView extends VerticalLayout implements MainPatientInterf
 		y1.setAllowDecimals(false);
 		y1.setCeiling(1);
 		y1.setOrdinal(true);
-		y1.setExtremes(1, 1);
+		y1.setExtremes(0,1);
 		Labels yLabels = y1.getLabels();
 		yLabels.setEnabled(false);
 		y1.setClassName("y1");
@@ -164,8 +163,39 @@ public class MainPatientView extends VerticalLayout implements MainPatientInterf
 		series.setPlotOptions(plotOptionsColumn);
 		series.setName("Created Entries");
 
-		series.setyAxis(0);
-		series.setData(1, 3, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 2, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1);
+		// series.setyAxis(0);
+		ArrayList<DataSeriesItem> items = new ArrayList<>(totalDays);
+		// for (int i = 0; i < totalDays; i++)
+		// 	items.add(new DataSeriesItem(i, 1));
+		// series.setData(items);
+		 for (int i = 0; i < totalDays; i++)
+		 	items.add(new DataSeriesItem(i, 0));
+
+		int latestEntryIndex = entries.size()-1;
+		for (int i = latestEntryIndex; i > -1; i--)
+		{
+			LocalDate currentEntryDate = entries.get(i).getDate();
+			System.out.println(currentEntryDate);
+			// TODO: Fix if
+			// if(LocalDate.of(2020, 4, 1).getMonth() == currentEntryDate.getMonth())
+				items.set(currentEntryDate.getDayOfMonth()-1, new DataSeriesItem(currentEntryDate.getDayOfMonth()-1, 1));
+		}
+		series.setData(items);
+		// Fill up days
+		/*
+		System.out.println(entries.size());
+		int latestEntryIndex = entries.size()-1;
+		for (int i = latestEntryIndex; i > -1; i--)
+		{
+			LocalDate currentEntryDate = entries.get(i).getDate();
+			if(LocalDate.now().getMonth() == currentEntryDate.getMonth())
+			{
+				series.setyAxis(currentEntryDate.getDayOfMonth()-1);
+				series.setData(1);
+			}
+			else
+				break;
+		}*/
 
 		conf.addSeries(series);
 
@@ -179,6 +209,8 @@ public class MainPatientView extends VerticalLayout implements MainPatientInterf
 		patientLName.setText(patient.getLastName());
 		doctorLbl.setText(patient.getDoctor().getFirstName());
 		addictionLbl.setText(patient.getAddiction());
+
+		board.addRow(getEntryOverview(patient.getDiary().getEntries()));
 	}
 
 	@Override
@@ -197,5 +229,4 @@ public class MainPatientView extends VerticalLayout implements MainPatientInterf
 		dialog.add(layout);
 		dialog.open();
 	}
-
 }

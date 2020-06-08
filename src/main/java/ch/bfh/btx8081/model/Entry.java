@@ -30,12 +30,12 @@ public class Entry implements Comparable<Entry> {
 	@JoinColumn(name = "diary_id")
 	private Diary diary;
 	
-	@Transient		//
+	@Transient
 	private List<Activity> activities =  new ArrayList<Activity>();
 	
 	private String comment = "";
 	
-	@OneToOne(/*mappedBy = "entry",*/ cascade = CascadeType.PERSIST)
+	@OneToOne(/*mappedBy = "entry",*/ cascade = CascadeType.ALL)
 	private QuestionForConsultation questionForConsultation = null;
 	
 	

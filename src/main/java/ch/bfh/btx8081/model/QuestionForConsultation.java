@@ -1,6 +1,7 @@
 package ch.bfh.btx8081.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
@@ -8,6 +9,8 @@ import javax.persistence.Id;
 public class QuestionForConsultation {
 	
 	@Id
+	@GeneratedValue
+	private Long id;
 	private String question = "";
 	
 //	@OneToOne(cascade = CascadeType.ALL)

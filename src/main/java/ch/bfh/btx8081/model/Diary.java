@@ -28,6 +28,7 @@ public class Diary {
 	private String consumptionMeric = "";
 	private Condition conditionAutomaticAlarm;
 
+
 	@OneToMany(/* mappedBy = "diary", targetEntity=Activity.class, */ cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "diary_id")
 	private List<Activity> activities = new ArrayList<Activity>();
@@ -39,10 +40,11 @@ public class Diary {
 	@Transient
 	private ArrayList<QuestionForConsultation> unansweredQuestions = new ArrayList<QuestionForConsultation>();
 
+
 	@OneToMany(/* mappedBy = "diary", */ cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "diary_id")
 	private List<Entry> entries = new ArrayList<Entry>();
-
+	
 //	Constructor for JPA
 	public Diary() {
 
@@ -210,6 +212,10 @@ public class Diary {
 	
 	void removeConditionAutomaticAlarm(Patient patient) {
 		this.conditionAutomaticAlarm = null;
+	}
+
+	public Long getId() {
+		return id;
 	}
 
 }

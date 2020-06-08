@@ -14,6 +14,14 @@ import ch.bfh.btx8081.interfaces.DoctorInterface;
 import ch.bfh.btx8081.interfaces.PatientInterface;
 import ch.bfh.btx8081.persistence.PersistenceManager;
 
+
+
+
+/**
+ * Class that manages model data in and output.
+ *
+ */
+
 public class DiaryManager implements PatientInterface, DoctorInterface {
 
 	private static DiaryManager instance = null;
@@ -21,25 +29,19 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 
 	private PersistenceManager persistenceManager = null;
 //	Solution until persistence is implemented
-//	private List<Doctor> doctors = new ArrayList<Doctor>();
 
 	private List<Doctor> doctors = new ArrayList<Doctor>();
+
+
 
 //	Singleton
 	private DiaryManager() {
 		this.id = 1000;
-//		this.persistenceManager = new PersistenceManager();
-		this.setUp();
-//		this.doctors = getDoctorsFromDb();
-//		testDB();
-	}
+		this.persistenceManager = new PersistenceManager();
+//		this.setUp();
+		this.doctors = getDoctorsFromDb();
 
-//	private void testDB() {
-//		for (Doctor d : doctors) {
-//			System.out.println(d.getUserName());
-//		}
-//
-//	}
+	}
 
 	public static DiaryManager getInstance() {
 		if (instance == null) {
@@ -49,7 +51,7 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 	}
 
 	// get data from database
-	private List<Doctor> getDoctorsFromDb() {
+	public List<Doctor> getDoctorsFromDb() {
 		return this.doctors = persistenceManager.getDoctors();
 	}
 
@@ -88,11 +90,13 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 	@Override
 	public List<Patient> getAllPatientsOfDoctor(Doctor doctor) {
 		return doctor.getPatients();
+//		return persistenceManager.getPatientsOfDoctor(doctor);
 	}
 
 	@Override
 	public List<Entry> getDiaryEntries(Patient patient) {
 		return patient.getDiary().getEntries();
+//		return persistenceManager.getDiaryEntries(patient);
 	}
 
 //	User management
@@ -137,6 +141,7 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 	@Override
 	public void changeMainInfo(Patient patient, String newMainInfo) {
 		patient.setMainInfo(newMainInfo);
+		
 	}
 
 	@Override
@@ -158,11 +163,11 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 	public void removeNewAvoidanceStrategy(Patient patient, AvoidanceStrategy avoidanceStrategy) {
 		patient.getDiary().removeAvoidanceStrategy(avoidanceStrategy);
 	}
-	
+
 	@Override
 	public void createNewQuestionForConsultation(Patient patient, String questionForConsultation) {
 		patient.getDiary().addQuestion(new QuestionForConsultation(questionForConsultation));
-		
+
 	}
 
 	@Override
@@ -222,15 +227,21 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 	public void save(Patient patient) {
 		persistenceManager.savePatient(patient);
 	}
+	
+	public void saveEntry(Entry entry) {
+		persistenceManager.saveEntry(entry);
+	}
 
 //	adder & remover
 
 	public void addDoctor(Doctor doctor) {
 		this.doctors.add(doctor);
+		save(doctor);
 	}
 
 	public void removeDoctor(Doctor doctor) {
 		this.doctors.remove(doctor);
+		persistenceManager.removeDoctorFromDb(doctor);
 	}
 
 //	getters & setters
@@ -244,7 +255,7 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 	}
 
 //	Testing
-	private void setUp() {
+	public void setUp() {
 //		this.newDoctor(firstName, lastName, phoneNumber, eMail, userName, password);
 		try {
 			this.newDoctor("Hans", "Meier", "0777777777", "hans.meier@mail.ch", "doctor1", "123");
@@ -267,12 +278,26 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 			this.newPatient("Julian", "Rodriguez", "0700000005", "hans.meier@mail.ch", "julian", "123", "Hero",
 					"Kommentar", (Doctor) this.searchUserByUsername("doctor2"), "Hero", "mg");
 			System.out.println("julian - created");
-			
+
 			Patient julian = (Patient) this.searchUserByUsername("julian");
-			this.newEntry(LocalDate.of(2020, 04, 26), julian, Integer.toUnsignedLong(23) , 3, 3, julian.getDiary().getActivities(), "Test1", "Question1");
-			this.newEntry(LocalDate.of(2020, 04, 25), julian, Integer.toUnsignedLong(23) , 3, 3, julian.getDiary().getActivities(), "Test2", "Question2");
-			this.newEntry(LocalDate.of(2020, 04, 24), julian, Integer.toUnsignedLong(23) , 3, 3, julian.getDiary().getActivities(), "Test3", "Question3");
-			
+			this.newEntry(LocalDate.of(2020, 04, 26), julian, Integer.toUnsignedLong(23), 3, 3,
+					julian.getDiary().getActivities(), "Test1", "Question1");
+			this.newEntry(LocalDate.of(2020, 04, 25), julian, Integer.toUnsignedLong(23), 3, 3,
+					julian.getDiary().getActivities(), "Test2", "Question2");
+			this.newEntry(LocalDate.of(2020, 04, 24), julian, Integer.toUnsignedLong(23), 3, 3,
+					julian.getDiary().getActivities(), "Test3", "Question3");
+
+//			persist set up in database
+			List<Doctor> docs = this.getDoctors();
+			List<Patient> pats = null;
+			for (Doctor d : docs) {
+				save(d);
+				pats = d.getPatients();
+				for (Patient p : pats) {
+					save(p);
+				}
+			}
+
 		} catch (UsernameIsAlreadyTakenException | UserNotFoundException | ShowAvoidanceStrategyException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -283,7 +308,5 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 	public AvoidanceStrategy getRandomAvoidanceStrategy(Patient patient) {
 		return patient.getDiary().getRandomAvoidanceStrategy();
 	}
-
-	
 
 }
