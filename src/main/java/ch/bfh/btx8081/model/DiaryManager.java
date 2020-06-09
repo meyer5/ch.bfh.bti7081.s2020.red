@@ -276,7 +276,7 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 					"Kommentar", (Doctor) this.searchUserByUsername("doctorMeier"), "Heroin", "mg");
 			System.out.println("kausi - created");
 			
-			this.newPatient("Natalya", "Dénervaud", "0700000003", "hans.meier@mail.ch", "natalya", "123", "Alkohol",
+			this.newPatient("Natalya", "Dénervaud", "0700000003", "hans.meier@mail.ch", "natalya", "123", "Alcohol",
 					"Had control over her addiction for 3 years. Relapse on january 2020", (Doctor) this.searchUserByUsername("doctorMeier"), "Alkohol", "dl");
 			System.out.println("natalya - created");
 			
@@ -344,11 +344,11 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 			this.newEntry(LocalDate.of(2020, 06, 02), natalya, Integer.toUnsignedLong(0), 5, 6,
 					natalya.getDiary().getActivities(), "Stress at work", "");
 			this.newEntry(LocalDate.of(2020, 06, 03), natalya, Integer.toUnsignedLong(0), 4, 5,
-					natalya.getDiary().getActivities(), "had to deal with customer complaint", "could't sleep well. ask for sleeping pill");
+					natalya.getDiary().getActivities(), "had to deal with customer complaint", "");
 			this.newEntry(LocalDate.of(2020, 06, 04), natalya, Integer.toUnsignedLong(6), 3, 5,
 					natalya.getDiary().getActivities(), "Spent time with close friends", "");
 			this.newEntry(LocalDate.of(2020, 06, 05), natalya, Integer.toUnsignedLong(5), 2, 3,
-					natalya.getDiary().getActivities(), "finally start reading my favorite book", "had headache because of slepping pill");
+					natalya.getDiary().getActivities(), "finally start reading my favorite book", "Had headache because of slepping pill. Maybe try another pill?");
 			this.newEntry(LocalDate.of(2020, 06, 06), natalya, Integer.toUnsignedLong(4), 1, 3,
 					natalya.getDiary().getActivities(), "", "");
 			this.newEntry(LocalDate.of(2020, 06, 07), natalya, Integer.toUnsignedLong(2), 1, 3,

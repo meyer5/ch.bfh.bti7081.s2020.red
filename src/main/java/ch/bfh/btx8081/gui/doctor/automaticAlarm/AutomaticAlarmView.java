@@ -124,7 +124,7 @@ public class AutomaticAlarmView extends VerticalLayout implements AutomaticAlarm
 			operand.setItems("higher", "equal or higher", "equal", "equal or lower", "lower");
 			operand.setPlaceholder("higher or lower");
 
-			thresholdValue.setItems("1", "2", "3", "3", "4", "5", "6", "7", "8", "9", "10");
+			thresholdValue.setItems("1", "2", "3", "4", "5", "6", "7", "8", "9", "10");
 			thresholdValue.setValue("5");
 
 			thresholdDays.setValue(1d);
