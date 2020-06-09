@@ -24,10 +24,10 @@ public class EntryView extends VerticalLayout implements EntryInterface {
 	Label dateTextLabel = new Label("Date:");
 	Label consumptionTextLabel = new Label("Consumption:");
 	Label pressureToConsumeTextLabel = new Label("Pressure to consume:");
-	Label motivationTextLabel = new Label("motivation:");
+	Label motivationTextLabel = new Label("Motivation:");
 	Label commentTextLabel = new Label("Comment:");
-	Label questionForConsultationTextLabel = new Label("QuestionForConsultation:");
-	Label activitiesTextLabel = new Label("Activites:");
+	Label questionForConsultationTextLabel = new Label("Question for consultation:");
+	Label activitiesTextLabel = new Label("Activities:");
 	
 	Label dateLabel = new Label("");
 	Label consumptionLabel = new Label("");

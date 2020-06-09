@@ -260,27 +260,32 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 
 //	Testing
 	public void setUp() {
-//		this.newDoctor(firstName, lastName, phoneNumber, eMail, userName, password);
+
 		try {
-			this.newDoctor("Hans", "Meier", "0777777777", "hans.meier@mail.ch", "doctor1", "123");
+			this.newDoctor("Hans", "Meier", "0777777777", "hans.meier@mail.ch", "doctorMeier", "123");
 			System.out.println("hmeier - created");
-			this.newDoctor("Heidi", "Müller", "0700000000", "heidi.mueller@mail.ch", "doctor2", "123");
+			
+			this.newDoctor("Heidi", "Müller", "0700000000", "heidi.mueller@mail.ch", "doctorMueller", "123");
 			System.out.println("hmueller - created");
-//		this.newPatient(firstName, lastName, phoneNumber, eMail, userName, password, addiction, mainInfo, doctor, consumedSubstance, consumptionMetric, conditionAutomaticAlarm);
+
 			this.newPatient("Remo", "Meyer", "0700000001", "hans.meier@mail.ch", "remo", "123", "Hero", "Kommentar",
-					(Doctor) this.searchUserByUsername("doctor1"), "Kokain", "kg");
+					(Doctor) this.searchUserByUsername("doctorMeier"), "Kokain", "kg");
 			System.out.println("remo - created");
+			
 			this.newPatient("Kaurisanker", "Kirupananthan", "0700000002", "hans.meier@mail.ch", "kausi", "123", "Heroin",
-					"Kommentar", (Doctor) this.searchUserByUsername("doctor1"), "Heroin", "mg");
+					"Kommentar", (Doctor) this.searchUserByUsername("doctorMeier"), "Heroin", "mg");
 			System.out.println("kausi - created");
+			
 			this.newPatient("Natalya", "Dénervaud", "0700000003", "hans.meier@mail.ch", "natalya", "123", "Alkohol",
-					"Kommentar", (Doctor) this.searchUserByUsername("doctor1"), "Alkohol", "dl");
+					"Had control over her addiction for 3 years. Relapse on january 2020", (Doctor) this.searchUserByUsername("doctorMeier"), "Alkohol", "dl");
 			System.out.println("natalya - created");
+			
 			this.newPatient("Dmytriy", "Pelts", "0700000004", "hans.meier@mail.ch", "dmytriy", "123", "Heroin",
-					"Kommentar", (Doctor) this.searchUserByUsername("doctor2"), "Heroin", "mg");
+					"Kommentar", (Doctor) this.searchUserByUsername("doctorMueller"), "Heroin", "mg");
 			System.out.println("dmytriy - created");
+			
 			this.newPatient("Julian", "Rodriguez", "0790000005", "hans.meier@mail.ch", "julian", "123", "Heroin",
-					"Kommentar", (Doctor) this.searchUserByUsername("doctor2"), "Heroin", "mg");
+					"Kommentar", (Doctor) this.searchUserByUsername("doctorMueller"), "Heroin", "mg");
 			System.out.println("julian - created");
 
 			Patient julian = (Patient) this.searchUserByUsername("julian");
@@ -304,28 +309,28 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 			Patient natalya = (Patient) this.searchUserByUsername("natalya");
 			this.newEntry(LocalDate.of(2020, 05, 13), natalya, Integer.toUnsignedLong(0), 1, 9,
 					natalya.getDiary().getActivities(), "Bla", "");
-			this.newEntry(LocalDate.of(2020, 05, 14), natalya, Integer.toUnsignedLong(0), 2, 1,
-					natalya.getDiary().getActivities(), "BlaBlaBla", "Question3");
-			this.newEntry(LocalDate.of(2020, 05, 15), natalya, Integer.toUnsignedLong(0), 4, 1,
+			this.newEntry(LocalDate.of(2020, 05, 14), natalya, Integer.toUnsignedLong(0), 2, 9,
 					natalya.getDiary().getActivities(), "Bla", "");
-			this.newEntry(LocalDate.of(2020, 05, 16), natalya, Integer.toUnsignedLong(0), 5, 1,
-					natalya.getDiary().getActivities(), "BlaBlaBla", "Question3");
-			this.newEntry(LocalDate.of(2020, 05, 17), natalya, Integer.toUnsignedLong(0), 1, 1,
+			this.newEntry(LocalDate.of(2020, 05, 15), natalya, Integer.toUnsignedLong(3), 4, 5,
+					natalya.getDiary().getActivities(), "Bla", "");
+			this.newEntry(LocalDate.of(2020, 05, 16), natalya, Integer.toUnsignedLong(0), 2, 10,
+					natalya.getDiary().getActivities(), "", "");
+			this.newEntry(LocalDate.of(2020, 05, 17), natalya, Integer.toUnsignedLong(0), 1, 8,
 					natalya.getDiary().getActivities(), "Bla", "");
 			this.newEntry(LocalDate.of(2020, 05, 18), natalya, Integer.toUnsignedLong(3), 2, 3,
-					natalya.getDiary().getActivities(), "Bla", "Question3");
+					natalya.getDiary().getActivities(), "Bla", "");
 			this.newEntry(LocalDate.of(2020, 05, 19), natalya, Integer.toUnsignedLong(2), 2, 7,
 					natalya.getDiary().getActivities(), "BlaBlaBla", "");
 			this.newEntry(LocalDate.of(2020, 05, 20), natalya, Integer.toUnsignedLong(1), 2, 6,
-					natalya.getDiary().getActivities(), "Bla", "blablabla");
+					natalya.getDiary().getActivities(), "Bla", "");
 			this.newEntry(LocalDate.of(2020, 05, 23), natalya, Integer.toUnsignedLong(0), 1, 5,
 					natalya.getDiary().getActivities(), "Bla", "");
 			this.newEntry(LocalDate.of(2020, 05, 24), natalya, Integer.toUnsignedLong(4), 1, 4,
-					natalya.getDiary().getActivities(), "Bla", "Wo");
+					natalya.getDiary().getActivities(), "Bla", "");
 			this.newEntry(LocalDate.of(2020, 05, 25), natalya, Integer.toUnsignedLong(4), 1, 4,
 					natalya.getDiary().getActivities(), "Bla", "");
 			this.newEntry(LocalDate.of(2020, 05, 26), natalya, Integer.toUnsignedLong(2), 2, 8,
-					natalya.getDiary().getActivities(), "BlaBlaBla", "Wann");
+					natalya.getDiary().getActivities(), "BlaBlaBla", "");
 			this.newEntry(LocalDate.of(2020, 05, 27), natalya, Integer.toUnsignedLong(2), 1, 9,
 					natalya.getDiary().getActivities(), "Bla", "");
 			this.newEntry(LocalDate.of(2020, 05, 28), natalya, Integer.toUnsignedLong(2), 2, 8,
@@ -335,19 +340,21 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 			this.newEntry(LocalDate.of(2020, 05, 30), natalya, Integer.toUnsignedLong(0), 2, 8,
 					natalya.getDiary().getActivities(), "Bla", "");
 			this.newEntry(LocalDate.of(2020, 06, 01), natalya, Integer.toUnsignedLong(0), 3, 7,
-					natalya.getDiary().getActivities(), "Bla", "");
+					natalya.getDiary().getActivities(), "slept well last night", "");
 			this.newEntry(LocalDate.of(2020, 06, 02), natalya, Integer.toUnsignedLong(0), 5, 6,
-					natalya.getDiary().getActivities(), "Bla", "Wer?");
+					natalya.getDiary().getActivities(), "Stress at work", "");
 			this.newEntry(LocalDate.of(2020, 06, 03), natalya, Integer.toUnsignedLong(0), 4, 5,
-					natalya.getDiary().getActivities(), "Bla", "Was?");
+					natalya.getDiary().getActivities(), "had to deal with customer complaint", "could't sleep well. ask for sleeping pill");
 			this.newEntry(LocalDate.of(2020, 06, 04), natalya, Integer.toUnsignedLong(6), 3, 5,
-					natalya.getDiary().getActivities(), "Sport lenkt ab", "Wo?");
+					natalya.getDiary().getActivities(), "Spent time with close friends", "");
 			this.newEntry(LocalDate.of(2020, 06, 05), natalya, Integer.toUnsignedLong(5), 2, 3,
-					natalya.getDiary().getActivities(), "OK", "Wie?");
+					natalya.getDiary().getActivities(), "finally start reading my favorite book", "had headache because of slepping pill");
 			this.newEntry(LocalDate.of(2020, 06, 06), natalya, Integer.toUnsignedLong(4), 1, 3,
-					natalya.getDiary().getActivities(), "", "Warum?");
+					natalya.getDiary().getActivities(), "", "");
 			this.newEntry(LocalDate.of(2020, 06, 07), natalya, Integer.toUnsignedLong(2), 1, 3,
-					natalya.getDiary().getActivities(), "Bla", "Warum?");
+					natalya.getDiary().getActivities(), "", "");
+			this.newEntry(LocalDate.of(2020, 06, 8), natalya, Integer.toUnsignedLong(2), 1, 3,
+                natalya.getDiary().getActivities(), "", "");
 			
 			
 

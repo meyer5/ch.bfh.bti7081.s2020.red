@@ -101,8 +101,8 @@ public class MainPatientView extends VerticalLayout implements MainPatientInterf
     // Fill layout
     vLayout1.add(fixPatientFName, fixPatientLName, fixDoctorLbl, fixAddictionLbl);
     vLayout2.add(patientFName, patientLName, doctorLbl, addictionLbl);
-    vLayout3.add(newEntryButton, showStrategyButton, alarmButton, questionsButton);
-    vLayout4.add(activitiesButton, strategiesButton, entriesListButton, logOutButton);
+    vLayout3.add(newEntryButton, alarmButton, activitiesButton, strategiesButton);
+    vLayout4.add(entriesListButton, questionsButton, showStrategyButton, logOutButton);
 
     vLayout1.setDefaultHorizontalComponentAlignment(Alignment.STRETCH);
     vLayout2.setDefaultHorizontalComponentAlignment(Alignment.STRETCH);
@@ -185,7 +185,7 @@ public class MainPatientView extends VerticalLayout implements MainPatientInterf
   public void setPatient(Patient patient) {
     patientFName.setText(patient.getFirstName());
     patientLName.setText(patient.getLastName());
-    doctorLbl.setText(patient.getDoctor().getFirstName());
+    doctorLbl.setText(patient.getDoctor().getFirstName()+" "+patient.getDoctor().getLastName());
     addictionLbl.setText(patient.getAddiction());
 
     board.addRow(getEntryOverview(patient.getDiary().getEntries()));

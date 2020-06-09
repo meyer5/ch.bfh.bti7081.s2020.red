@@ -13,205 +13,215 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
+import com.vaadin.flow.component.icon.VaadinIcon;
+
 import ch.bfh.btx8081.exceptions.AutomaticAlarmException;
 
 @Entity // (name = "Diary")
-//@Table(name = "diary")
+// @Table(name = "diary")
 public class Diary {
 
-	@Id
-	@GeneratedValue
-	private Long id;
+  @Id
+  @GeneratedValue
+  private Long id;
 
-	private String consumedSubstance = "";
-	private String consumptionMeric = "";
-	private Condition conditionAutomaticAlarm;
-
-
-	@OneToMany(/* mappedBy = "diary", targetEntity=Activity.class, */ cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "diary_id")
-	private List<Activity> activities = new ArrayList<Activity>();
-
-	@OneToMany(/* mappedBy = "diary", */ cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "diary_id")
-	private List<AvoidanceStrategy> avoidanceStrategies = new ArrayList<AvoidanceStrategy>();
-
-	@Transient
-	private ArrayList<QuestionForConsultation> unansweredQuestions = new ArrayList<QuestionForConsultation>();
+  private String consumedSubstance = "";
+  private String consumptionMeric = "";
+  private Condition conditionAutomaticAlarm;
 
 
-	@OneToMany(/* mappedBy = "diary", */ cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "diary_id")
-	private List<Entry> entries = new ArrayList<Entry>();
-	
-//	Constructor for JPA
-	public Diary() {
+  @OneToMany(/* mappedBy = "diary", targetEntity=Activity.class, */ cascade = CascadeType.PERSIST)
+  @JoinColumn(name = "diary_id")
+  private List<Activity> activities = new ArrayList<Activity>();
 
-	}
+  @OneToMany(/* mappedBy = "diary", */ cascade = CascadeType.PERSIST)
+  @JoinColumn(name = "diary_id")
+  private List<AvoidanceStrategy> avoidanceStrategies = new ArrayList<AvoidanceStrategy>();
 
-	public Diary(String consumedSubstance, String consumptionMeric, ArrayList<Activity> activities,
-			ArrayList<AvoidanceStrategy> avoidanceStrategies, ArrayList<QuestionForConsultation> unansweredQuestions,
-			ArrayList<Entry> entries) {
-		super();
-		this.consumedSubstance = consumedSubstance;
-		this.consumptionMeric = consumptionMeric;
-		this.activities = activities;
-		this.avoidanceStrategies = avoidanceStrategies;
-		this.unansweredQuestions = unansweredQuestions;
-		this.entries = entries;
-	}
+  @Transient
+  private ArrayList<QuestionForConsultation> unansweredQuestions =
+      new ArrayList<QuestionForConsultation>();
 
-//	Constructor for new diary in patient constructor
 
-	protected Diary(String consumedSubstance, String consumptionMeric) {
-		super();
-		this.consumptionMeric = consumptionMeric;
-		this.consumedSubstance = consumedSubstance;
-		this.activities = defaultActivities();
-		this.avoidanceStrategies = defaultAvoidanceStrategies();
-	}
+  @OneToMany(/* mappedBy = "diary", */ cascade = CascadeType.PERSIST)
+  @JoinColumn(name = "diary_id")
+  private List<Entry> entries = new ArrayList<Entry>();
 
-	protected void newEntry(LocalDate date, long consumption, int pressureToConsume, int motivation,
-			List<Activity> activities, String comment, String questionForConsultation)
-			throws AutomaticAlarmException {
-		QuestionForConsultation q = null;
-		if (questionForConsultation != null && !questionForConsultation.equals("")) {
-			q = new QuestionForConsultation(questionForConsultation);
-			this.addQuestion(q);
-		}
-		this.addEntry(new Entry(date, consumption, pressureToConsume, motivation, activities, comment, q));
-		if (conditionAutomaticAlarm != null) {
-			System.out.println("autoalarm check");
-			if (conditionAutomaticAlarm.isGiven(this.entries)) {
-				throw new AutomaticAlarmException();
-			}
-		}
-	}
+  // Constructor for JPA
+  public Diary() {
 
-//	Random avoidance strategy
+  }
 
-	protected AvoidanceStrategy getRandomAvoidanceStrategy() {
-		return this.avoidanceStrategies.get(ThreadLocalRandom.current().nextInt(0, avoidanceStrategies.size()));
-	}
+  public Diary(String consumedSubstance, String consumptionMeric, ArrayList<Activity> activities,
+      ArrayList<AvoidanceStrategy> avoidanceStrategies,
+      ArrayList<QuestionForConsultation> unansweredQuestions, ArrayList<Entry> entries) {
+    super();
+    this.consumedSubstance = consumedSubstance;
+    this.consumptionMeric = consumptionMeric;
+    this.activities = activities;
+    this.avoidanceStrategies = avoidanceStrategies;
+    this.unansweredQuestions = unansweredQuestions;
+    this.entries = entries;
+  }
 
-//	adder & remover
+  // Constructor for new diary in patient constructor
 
-	protected void addAvoidanceStrategy(AvoidanceStrategy avoidanceStrategy) {
-		this.avoidanceStrategies.add(avoidanceStrategy);
-	}
+  protected Diary(String consumedSubstance, String consumptionMeric) {
+    super();
+    this.consumptionMeric = consumptionMeric;
+    this.consumedSubstance = consumedSubstance;
+    this.activities = defaultActivities();
+    this.avoidanceStrategies = defaultAvoidanceStrategies();
+  }
 
-	protected void removeAvoidanceStrategy(AvoidanceStrategy avoidanceStrategy) {
-		this.avoidanceStrategies.remove(avoidanceStrategy);
-	}
+  protected void newEntry(LocalDate date, long consumption, int pressureToConsume, int motivation,
+      List<Activity> activities, String comment, String questionForConsultation)
+      throws AutomaticAlarmException {
+    QuestionForConsultation q = null;
+    if (questionForConsultation != null && !questionForConsultation.equals("")) {
+      q = new QuestionForConsultation(questionForConsultation);
+      this.addQuestion(q);
+    }
+    this.addEntry(
+        new Entry(date, consumption, pressureToConsume, motivation, activities, comment, q));
+    if (conditionAutomaticAlarm != null) {
+      System.out.println("autoalarm check");
+      if (conditionAutomaticAlarm.isGiven(this.entries)) {
+        throw new AutomaticAlarmException();
+      }
+    }
+  }
 
-	protected void addQuestion(QuestionForConsultation questionForConsultation) {
-		this.unansweredQuestions.add(questionForConsultation);
-	}
+  // Random avoidance strategy
 
-	protected void questionAnswered(QuestionForConsultation questionForConsultation) {
-		this.unansweredQuestions.remove(questionForConsultation);
-	}
+  protected AvoidanceStrategy getRandomAvoidanceStrategy() {
+    return this.avoidanceStrategies
+        .get(ThreadLocalRandom.current().nextInt(0, avoidanceStrategies.size()));
+  }
 
-	protected void addActivity(Activity activity) {
-		this.activities.add(activity);
-	}
+  // adder & remover
 
-	protected void removeActivity(Activity activity) {
-		this.activities.remove(activity);
-	}
+  protected void addAvoidanceStrategy(AvoidanceStrategy avoidanceStrategy) {
+    this.avoidanceStrategies.add(avoidanceStrategy);
+  }
 
-	protected void addEntry(Entry entry) {
-		this.entries.add(entry);
-	}
+  protected void removeAvoidanceStrategy(AvoidanceStrategy avoidanceStrategy) {
+    this.avoidanceStrategies.remove(avoidanceStrategy);
+  }
 
-	protected void removeEntry(Entry entry) {
-		this.entries.remove(entry);
-	}
+  protected void addQuestion(QuestionForConsultation questionForConsultation) {
+    this.unansweredQuestions.add(questionForConsultation);
+  }
 
-//	Default Diary
+  protected void questionAnswered(QuestionForConsultation questionForConsultation) {
+    this.unansweredQuestions.remove(questionForConsultation);
+  }
 
-	private ArrayList<AvoidanceStrategy> defaultAvoidanceStrategies() {
-		ArrayList<AvoidanceStrategy> res = new ArrayList<AvoidanceStrategy>();
-		res.add(new AvoidanceStrategy("Go for a walk!"));
-		res.add(new AvoidanceStrategy("Get a chewing gum!"));
-		res.add(new AvoidanceStrategy("Do sport!"));
-		res.add(new AvoidanceStrategy("Call a friend!"));
-		return res;
-	}
+  protected void addActivity(Activity activity) {
+    this.activities.add(activity);
+  }
 
-	private ArrayList<Activity> defaultActivities() {
-		ArrayList<Activity> res = new ArrayList<Activity>();
-		res.add(new Activity("Eat healthy food", "1111"));
-		res.add(new Activity("Sport", "1111"));
-		res.add(new Activity("Work", "1111"));
-		res.add(new Activity("Watch TV", "1111"));
-		return res;
-	}
+  protected void removeActivity(Activity activity) {
+    this.activities.remove(activity);
+  }
 
-//	getters & setters
+  protected void addEntry(Entry entry) {
+    this.entries.add(entry);
+  }
 
-	public String getConsumedSubstance() {
-		return consumedSubstance;
-	}
+  protected void removeEntry(Entry entry) {
+    this.entries.remove(entry);
+  }
 
-	protected void setConsumedSubstance(String consumedSubstance) {
-		this.consumedSubstance = consumedSubstance;
-	}
+  // Default Diary
 
-	public String getConsumptionMeric() {
-		return consumptionMeric;
-	}
+  private ArrayList<AvoidanceStrategy> defaultAvoidanceStrategies() {
+    ArrayList<AvoidanceStrategy> res = new ArrayList<AvoidanceStrategy>();
+    res.add(new AvoidanceStrategy("Go for a walk!"));
+    res.add(new AvoidanceStrategy("Get a chewing gum!"));
+    res.add(new AvoidanceStrategy("Do sport!"));
+    res.add(new AvoidanceStrategy("Call a friend!"));
+    res.add(new AvoidanceStrategy("Do breath excercise"));
+    res.add(new AvoidanceStrategy("Play candy crush"));
+    return res;
+  }
 
-	protected void setConsumptionMeric(String consumptionMeric) {
-		this.consumptionMeric = consumptionMeric;
-	}
+  private ArrayList<Activity> defaultActivities() {
+    ArrayList<Activity> res = new ArrayList<Activity>();
+    res.add(new Activity("Eat healthy food", "1111"));
+    res.add(new Activity("Sport", "1112"));
+    res.add(new Activity("Work", "1113"));
+    res.add(new Activity("Watch TV", "1114"));
+    res.add(new Activity("Spend time with family", "1115"));
+    res.add(new Activity("Read a book", "1116"));
+    res.add(new Activity("Medidate", "1117"));
+    return res;
+  }
 
-	public List<Activity> getActivities() {
-		return activities;
-	}
+  // getters & setters
 
-	protected void setActivities(ArrayList<Activity> activities) {
-		this.activities = activities;
-	}
+  public String getConsumedSubstance() {
+    return consumedSubstance;
+  }
 
-	public List<AvoidanceStrategy> getAvoidanceStrategies() {
-		return avoidanceStrategies;
-	}
+  protected void setConsumedSubstance(String consumedSubstance) {
+    this.consumedSubstance = consumedSubstance;
+  }
 
-	protected void setAvoidanceStrategies(ArrayList<AvoidanceStrategy> avoidanceStrategies) {
-		this.avoidanceStrategies = avoidanceStrategies;
-	}
+  public String getConsumptionMeric() {
+    return consumptionMeric;
+  }
 
-	public ArrayList<QuestionForConsultation> getUnansweredQuestions() {
-		return unansweredQuestions;
-	}
+  protected void setConsumptionMeric(String consumptionMeric) {
+    this.consumptionMeric = consumptionMeric;
+  }
 
-	protected void setUnansweredQuestions(ArrayList<QuestionForConsultation> unansweredQuestions) {
-		this.unansweredQuestions = unansweredQuestions;
-	}
+  public List<Activity> getActivities() {
+    return activities;
+  }
 
-	public List<Entry> getEntries() {
-		return entries;
-	}
+  protected void setActivities(ArrayList<Activity> activities) {
+    this.activities = activities;
+  }
 
-	protected void setEntries(ArrayList<Entry> entries) {
-		this.entries = entries;
-	}
+  public List<AvoidanceStrategy> getAvoidanceStrategies() {
+    return avoidanceStrategies;
+  }
 
-	public Condition getConditionAutomaticAlarm() {
-		return conditionAutomaticAlarm;
-	}
+  protected void setAvoidanceStrategies(ArrayList<AvoidanceStrategy> avoidanceStrategies) {
+    this.avoidanceStrategies = avoidanceStrategies;
+  }
 
-	protected void setConditionAutomaticAlarm(Condition condition) {
-		this.conditionAutomaticAlarm = condition;
-	}
-	
-	void removeConditionAutomaticAlarm(Patient patient) {
-		this.conditionAutomaticAlarm = null;
-	}
+  public ArrayList<QuestionForConsultation> getUnansweredQuestions() {
+    return unansweredQuestions;
+  }
 
-	public Long getId() {
-		return id;
-	}
+  protected void setUnansweredQuestions(ArrayList<QuestionForConsultation> unansweredQuestions) {
+    this.unansweredQuestions = unansweredQuestions;
+  }
+
+  public List<Entry> getEntries() {
+    return entries;
+  }
+
+  protected void setEntries(ArrayList<Entry> entries) {
+    this.entries = entries;
+  }
+
+  public Condition getConditionAutomaticAlarm() {
+    return conditionAutomaticAlarm;
+  }
+
+  protected void setConditionAutomaticAlarm(Condition condition) {
+    this.conditionAutomaticAlarm = condition;
+  }
+
+  void removeConditionAutomaticAlarm(Patient patient) {
+    this.conditionAutomaticAlarm = null;
+  }
+
+  public Long getId() {
+    return id;
+  }
 
 }
