@@ -12,7 +12,7 @@ public class Condition {
 	private int thresholdDays;
 	private int amountOfDays;
 
-	NextCondition nextCondition = NextCondition.NONE;
+	private NextCondition nextCondition = NextCondition.NONE;
 
 	Condition condition;
 
@@ -24,20 +24,23 @@ public class Condition {
 		this.amountOfDays = amountOfDays;
 	}
 
-	protected Condition decorateAnd(Condition condition) {
+	public Condition decorateAnd(Condition condition) {
 		this.nextCondition = NextCondition.AND;
 		this.condition = condition;
-		return this.condition;
+		return this;
 	}
 
-	protected Condition decorateOr(Condition condition) {
+	public Condition decorateOr(Condition condition) {
 		this.nextCondition = NextCondition.OR;
 		this.condition = condition;
-		return this.condition;
+		return this;
 	}
 
 	protected boolean isGiven(List<Entry> entries) {
 		Collections.sort(entries);
+		for (Entry i :  entries) {
+			System.out.println(i.getDate());
+		}
 		switch (this.isGiven(ConditionState.UNKNOWN, entries)) {
 		case FALSE:
 			return false;
@@ -159,5 +162,63 @@ public class Condition {
 		}
 		return res;
 	}
+
+	public Metric getMetric() {
+		return metric;
+	}
+
+	protected void setMetric(Metric metric) {
+		this.metric = metric;
+	}
+
+	public Operand getOperand() {
+		return operand;
+	}
+
+	protected void setOperand(Operand operand) {
+		this.operand = operand;
+	}
+
+	public int getThresholdValue() {
+		return thresholdValue;
+	}
+
+	protected void setThresholdValue(int thresholdValue) {
+		this.thresholdValue = thresholdValue;
+	}
+
+	public int getThresholdDays() {
+		return thresholdDays;
+	}
+
+	protected void setThresholdDays(int thresholdDays) {
+		this.thresholdDays = thresholdDays;
+	}
+
+	public int getAmountOfDays() {
+		return amountOfDays;
+	}
+
+	protected void setAmountOfDays(int amountOfDays) {
+		this.amountOfDays = amountOfDays;
+	}
+
+	public NextCondition getNextCondition() {
+		return nextCondition;
+	}
+
+	public void setNextCondition(NextCondition nextCondition) {
+		this.nextCondition = nextCondition;
+	}
+
+	public Condition getCondition() {
+		return condition;
+	}
+
+	protected void setCondition(Condition condition) {
+		this.condition = condition;
+	}
+	
+	
 
 }

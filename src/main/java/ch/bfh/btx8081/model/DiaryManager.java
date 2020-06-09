@@ -209,6 +209,10 @@ public class DiaryManager implements PatientInterface, DoctorInterface {
 					questionForConsultation);
 		} catch (AutomaticAlarmException e) {
 			new AutomaticAlarm(patient);
+		} finally {
+			if (pressureToConsume > 6) {
+				throw new ShowAvoidanceStrategyException();
+			}
 		}
 	}
 

@@ -4,11 +4,10 @@ import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.menubar.MenuBar;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.FlexComponent.JustifyContentMode;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.router.Route;
 
-import ch.bfh.btx8081.gui.shared.*;
 import ch.bfh.btx8081.interfaces.DoctorService;
 import ch.bfh.btx8081.interfaces.PatientService;
 import ch.bfh.btx8081.interfaces.Service;
@@ -25,16 +24,13 @@ public class MenuView extends AppLayout {
 
   // private final Tabs menu;
   private MenuBar menu;
-  private MainView main;
-  private Service service;
+//  private MainView main;
+//  private Service service;
 
   public MenuView(MainView main, Service service) {
 
-    // Create Menu
-    // this.setDrawerOpened(false);
-
-    this.main = main;
-    this.service = service;
+//    this.main = main;
+//    this.service = service;
     menu = new MenuBar();
     if (service instanceof DoctorService) {
 

@@ -133,7 +133,7 @@ public class Entry implements Comparable<Entry> {
 
 	@Override
 	public int compareTo(Entry o) {
-		return this.getDate().compareTo(o.getDate());
+		return o.getDate().compareTo(this.getDate());
 	}
 	
 }

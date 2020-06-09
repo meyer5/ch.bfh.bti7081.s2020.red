@@ -15,19 +15,21 @@ public class AutomaticAlarmPresenter implements AutomaticAlarmInterface.Automati
 		this.service = service;
 		this.main = main;
 		this.view.addListener(this);
-		this.view.setAlarm(service.getPatient().getDiary().getConditionAutomaticAlarm());
+		this.view.setCondition(service.getPatient().getDiary().getConditionAutomaticAlarm());
 	}
 	
 	@Override
 	public void handleSetConditionClick(Condition condition) {
 		service.setConditionAutomaticAlarm(condition);
 		view.showSavedNotification();
+		this.view.setCondition(service.getPatient().getDiary().getConditionAutomaticAlarm());
 	}
 
 	@Override
 	public void handleDeleteConditionClick() {
 		service.removeConditionAutomaticAlarm();
 		view.showSavedNotification();
+		this.view.setCondition(service.getPatient().getDiary().getConditionAutomaticAlarm());
 	}
 
 	@Override

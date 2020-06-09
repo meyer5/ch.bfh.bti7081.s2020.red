@@ -6,7 +6,7 @@ public interface AutomaticAlarmInterface {
 	
 	public void addListener(AutomaticAlarmListener presenter);
 	
-	public void setAlarm(Condition condition);
+	public void setCondition(Condition condition);
 	
 	public void showSavedNotification();
 	

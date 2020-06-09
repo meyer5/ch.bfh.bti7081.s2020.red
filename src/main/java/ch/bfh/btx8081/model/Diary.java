@@ -14,7 +14,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
 import ch.bfh.btx8081.exceptions.AutomaticAlarmException;
-import ch.bfh.btx8081.exceptions.ShowAvoidanceStrategyException;
 
 @Entity // (name = "Diary")
 //@Table(name = "diary")
@@ -74,18 +73,15 @@ public class Diary {
 
 	protected void newEntry(LocalDate date, long consumption, int pressureToConsume, int motivation,
 			List<Activity> activities, String comment, String questionForConsultation)
-			throws ShowAvoidanceStrategyException, AutomaticAlarmException {
+			throws AutomaticAlarmException {
 		QuestionForConsultation q = null;
 		if (questionForConsultation != null && !questionForConsultation.equals("")) {
 			q = new QuestionForConsultation(questionForConsultation);
 			this.addQuestion(q);
 		}
 		this.addEntry(new Entry(date, consumption, pressureToConsume, motivation, activities, comment, q));
-
-		if (pressureToConsume > 6) {
-			throw new ShowAvoidanceStrategyException();
-		}
 		if (conditionAutomaticAlarm != null) {
+			System.out.println("autoalarm check");
 			if (conditionAutomaticAlarm.isGiven(this.entries)) {
 				throw new AutomaticAlarmException();
 			}

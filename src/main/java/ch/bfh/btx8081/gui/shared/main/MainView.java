@@ -45,7 +45,7 @@ import ch.bfh.btx8081.interfaces.PatientService;
 import ch.bfh.btx8081.interfaces.Service;
 import ch.bfh.btx8081.model.Entry;
 
-@Route(value = "Main")
+@Route(value = "")
 public class MainView extends VerticalLayout {
 
 	private static final long serialVersionUID = 1L;
