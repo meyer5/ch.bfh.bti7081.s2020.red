@@ -709,7 +709,19 @@ To-do:
 	   - siehe Scrum.xlsx im Teams
 	   
 
-Naechste Audiokonferenz: 09.06.2020
+<br>
+<br>
+
+#### <p align="center">**09.06.2020:**</p>
+Anwesenheit: alle
+
+- Task 9 abgeschlossen und praesentiert
+
+
+
+	   
+
+
 
 
 
