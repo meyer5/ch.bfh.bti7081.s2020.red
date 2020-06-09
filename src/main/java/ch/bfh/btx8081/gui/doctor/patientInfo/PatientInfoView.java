@@ -21,7 +21,7 @@ import com.vaadin.flow.router.Route;
 
 import ch.bfh.btx8081.model.Patient;
 
-//Overview of the addiction for the patient. Shows different data
+// Overview of the addiction for the patient. Shows different data
 @Route(value = "patient-info")
 public class PatientInfoView extends VerticalLayout implements PatientInfoInterface {
 
@@ -58,7 +58,7 @@ public class PatientInfoView extends VerticalLayout implements PatientInfoInterf
   Icon iconStrategies = VaadinIcon.MAGIC.create();
   Icon iconActivities = VaadinIcon.HANDS_UP.create();
   Icon iconLogOut = VaadinIcon.SIGN_OUT.create();
-  Icon iconBack = VaadinIcon.ARROW_FORWARD.create();
+  Icon iconBack = VaadinIcon.BACKSPACE_A.create();
   Icon iconCondition = VaadinIcon.SLIDERS.create();
 
   Board board = new Board();
@@ -79,31 +79,32 @@ public class PatientInfoView extends VerticalLayout implements PatientInfoInterf
       presenter.hadleQuestionsClick();
     });
 
-    Button automaticAlarmButton = new Button("Edit automatic alarm condition", iconCondition, event -> {
-        presenter.hadleAutomaticAlarmClick();
-      });
+    Button automaticAlarmButton =
+        new Button("Edit automatic alarm condition", iconCondition, event -> {
+          presenter.hadleAutomaticAlarmClick();
+        });
 
     Button entriesListButton = new Button("Show all entries", iconAllEntries, event -> {
       presenter.hadleEntriesListClick();
     });
-    
+
     Button editButton = new Button("Edit Info", iconEditInfo, event -> {
-        presenter.hadleEditClick();
-      });
+      presenter.hadleEditClick();
+    });
 
     Button logOutButton = new Button("Log out", iconLogOut, event -> {
       presenter.hadleLogOutClick();
     });
 
-    Button backButton = new Button("Back", iconBack, event -> {
+    Button backMainViewButton = new Button("Back to patient list", iconBack, event -> {
       presenter.hadleBackClick();
     });
 
     // Fill layout
     vLayout1.add(fixPatientFName, fixPatientLName, fixAddictionLbl, fixInfo);
     vLayout2.add(patientFName, patientLName, addictionLbl, infoLbl);
-    vLayout3.add(activitiesButton, strategiesButton, questionsButton, automaticAlarmButton);
-    vLayout4.add(entriesListButton, editButton, backButton, logOutButton);
+    vLayout3.add(editButton, activitiesButton, strategiesButton, automaticAlarmButton);
+    vLayout4.add(entriesListButton, questionsButton, backMainViewButton, logOutButton);
 
     vLayout1.setDefaultHorizontalComponentAlignment(Alignment.STRETCH);
     vLayout2.setDefaultHorizontalComponentAlignment(Alignment.STRETCH);
@@ -127,7 +128,7 @@ public class PatientInfoView extends VerticalLayout implements PatientInfoInterf
 
     Calendar calendar = Calendar.getInstance();
     LocalDate now = LocalDate.now();
-    calendar.set(now.getYear(), now.getMonthValue()-1, now.getDayOfMonth());
+    calendar.set(now.getYear(), now.getMonthValue() - 1, now.getDayOfMonth());
     int totalDays = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
     String[] days = new String[totalDays];
     for (int i = 0; i < totalDays; i++)
@@ -169,8 +170,8 @@ public class PatientInfoView extends VerticalLayout implements PatientInfoInterf
     Tooltip tooltip = new Tooltip();
 
     tooltip.setFormatter("function() { "
-            + "var unit = { 'Consumption': 'mm', 'Motivation': ':)', 'Max Level': 'mm' }[this.series.name];"
-            + "return ''+ this.x +': '+ this.y +' '+ unit; }");
+        + "var unit = { 'Consumption': 'mm', 'Motivation': ':)', 'Max Level': 'mm' }[this.series.name];"
+        + "return ''+ this.x +': '+ this.y +' '+ unit; }");
 
     conf.setTooltip(tooltip);
 
@@ -186,24 +187,24 @@ public class PatientInfoView extends VerticalLayout implements PatientInfoInterf
     ArrayList<DataSeriesItem> itemsConsumtion = new ArrayList<>(totalDays);
     ArrayList<DataSeriesItem> itemsMotivation = new ArrayList<>(totalDays);
     ArrayList<DataSeriesItem> itemsMaxLevelConsumption = new ArrayList<>(totalDays);
-    for (int i = 0; i < totalDays; i++)
-    {
+    for (int i = 0; i < totalDays; i++) {
       itemsConsumtion.add(new DataSeriesItem(i, 0));
       itemsMotivation.add(new DataSeriesItem(i, 0));
       itemsMaxLevelConsumption.add(new DataSeriesItem(i, 0));
     }
 
-    int latestEntryIndex = entries.size()-1;
-    for (int i = latestEntryIndex; i > -1; i--)
-    {
+    int latestEntryIndex = entries.size() - 1;
+    for (int i = latestEntryIndex; i > -1; i--) {
       LocalDate currentEntryDate = entries.get(i).getDate();
 
-      if(LocalDate.now().getMonth() == currentEntryDate.getMonth()) {
-        itemsConsumtion.set(currentEntryDate.getDayOfMonth() - 1, new DataSeriesItem(currentEntryDate.getDayOfMonth() - 1, entries.get(i).getConsumption()));
-        itemsMotivation.set(currentEntryDate.getDayOfMonth() - 1, new DataSeriesItem(currentEntryDate.getDayOfMonth() - 1, entries.get(i).getMotivation()));
-        itemsMaxLevelConsumption.set(currentEntryDate.getDayOfMonth() - 1, new DataSeriesItem(currentEntryDate.getDayOfMonth() - 1, entries.get(i).getPressureToConsume()));
-      }
-      else
+      if (LocalDate.now().getMonth() == currentEntryDate.getMonth()) {
+        itemsConsumtion.set(currentEntryDate.getDayOfMonth() - 1, new DataSeriesItem(
+            currentEntryDate.getDayOfMonth() - 1, entries.get(i).getConsumption()));
+        itemsMotivation.set(currentEntryDate.getDayOfMonth() - 1, new DataSeriesItem(
+            currentEntryDate.getDayOfMonth() - 1, entries.get(i).getMotivation()));
+        itemsMaxLevelConsumption.set(currentEntryDate.getDayOfMonth() - 1, new DataSeriesItem(
+            currentEntryDate.getDayOfMonth() - 1, entries.get(i).getPressureToConsume()));
+      } else
         break;
     }
 

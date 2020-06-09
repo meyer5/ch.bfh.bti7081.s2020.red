@@ -34,13 +34,13 @@ public class MenuView extends AppLayout {
     menu = new MenuBar();
     if (service instanceof DoctorService) {
 
-      menu.addItem(new Button("Edit Patient data", VaadinIcon.USER_CARD.create()),
+      menu.addItem(new Button("Edit patient data", VaadinIcon.USER_CARD.create()),
           e -> main.openEditPatientView((DoctorService) service));
-      menu.addItem(new Button("all Entries", VaadinIcon.NOTEBOOK.create()),
+      menu.addItem(new Button("All entries", VaadinIcon.NOTEBOOK.create()),
           e -> main.openEntriesListView(service));
-      menu.addItem(new Button("Activites", VaadinIcon.HANDS_UP.create()),
+      menu.addItem(new Button("Activities", VaadinIcon.HANDS_UP.create()),
           e -> main.openActivitiesView(service));
-      menu.addItem(new Button("open Questions", VaadinIcon.QUESTION.create()),
+      menu.addItem(new Button("Open questions", VaadinIcon.QUESTION.create()),
           e -> main.openQuestionsView(service));
       menu.addItem(new Button("Strategies", VaadinIcon.MAGIC.create()),
           e -> main.openStrategiesView(service));
@@ -50,21 +50,21 @@ public class MenuView extends AppLayout {
 
     } else if (service instanceof PatientService) {
       
-      menu.addItem(new Button("new Entry", VaadinIcon.FILE_ADD.create()),
+      menu.addItem(new Button("New entry", VaadinIcon.FILE_ADD.create()),
           e -> main.openNewEntryView((PatientService) service));
-      menu.addItem(new Button("show all Entries List", VaadinIcon.NOTEBOOK.create()),
+      menu.addItem(new Button("Show all entries", VaadinIcon.NOTEBOOK.create()),
           e -> main.openEntriesListView(service));
       menu.addItem(new Button("Alarm", VaadinIcon.BELL_O.create()),
           e -> main.openAlarmView((PatientService) service));
-      menu.addItem(new Button("Question", VaadinIcon.QUESTION.create()),
+      menu.addItem(new Button("Questions", VaadinIcon.QUESTION.create()),
           e -> main.openQuestionsView(service));
-      menu.addItem(new Button("Activites", VaadinIcon.HANDS_UP.create()),
+      menu.addItem(new Button("Activities", VaadinIcon.HANDS_UP.create()),
           e -> main.openActivitiesView(service));
       menu.addItem(new Button("Strategies", VaadinIcon.MAGIC.create()),
           e -> main.openStrategiesView(service));
-      menu.addItem(new Button("back to Mainview", VaadinIcon.ARROW_FORWARD.create()),
+      menu.addItem(new Button("Back to overview", VaadinIcon.ARROW_FORWARD.create()),
           e -> main.openMainPatientView((PatientService) service));
-      menu.addItem(new Button("log out", VaadinIcon.SIGN_OUT.create()), e -> main.openLoginView());
+      menu.addItem(new Button("Log out", VaadinIcon.SIGN_OUT.create()), e -> main.openLoginView());
     }
 
 

@@ -39,7 +39,7 @@ public class MainDoctorView extends VerticalLayout implements MainDoctorInterfac
 			presenter.hadleLogOutClick();
 		});
 		
-		Button createPatientButton = new Button("create new patient", event -> {
+		Button createPatientButton = new Button("Create new patient", event -> {
 			presenter.hadleCreateNewPatientClick();
 		});
 

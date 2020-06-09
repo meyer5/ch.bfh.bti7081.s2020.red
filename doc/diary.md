@@ -634,6 +634,7 @@ Anwesenheit: alle
 - Besprechung ueber bisherige Implementierung
 - Besprechung mit Dozenten Sprint 2
 - Feedback zu Task 8 (8/10 Pkt.)
+	- Zwischenstand: 75/85 Pkt.
 
 
 
@@ -689,6 +690,26 @@ To-do:
 	   
 
 Naechste Audiokonferenz: 08.06.2020
+
+<br>
+<br>
+
+#### <p align="center">**08.06.2020:**</p>
+Anwesenheit: alle
+
+- Besprechung ueber bisherige Implementierung
+- Projekt abschliessen
+- Scrum Backlog 
+- Task 9 vorbereiten
+
+
+
+To-do:  
+
+	   - siehe Scrum.xlsx im Teams
+	   
+
+Naechste Audiokonferenz: 09.06.2020
 
 
 
